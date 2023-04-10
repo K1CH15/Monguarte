@@ -1,0 +1,27 @@
+{% extends 'partials/body.html'%}
+{% block contenido %}
+<a href="{% url 'detalle_venta-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Cantidad Total</th>
+                <th scope="col">Precio Unitario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Detalle_Venta in venta %}
+                {% if Cliente.estado %}
+                    <tr>
+                        <td>{{Cliente.registro}}</td>
+                        <td>{{Cliente.get_tipo_documento}}</td>
+                        <td>{{Cliente.numero_documento_cliente}}</td>
+                        <td>{{Cliente.nombre}}</td>
+                        <td>{{Cliente.apellido}}</td>
+                        <td>{{Cliente.numero_telefono}}</td>
+                        <td>{{Cliente.direccion}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}
