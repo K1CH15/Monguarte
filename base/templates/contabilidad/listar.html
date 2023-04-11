@@ -1,0 +1,42 @@
+{% extends 'partials/body.html' %}
+
+
+{% block contenido %}
+
+<table class="table table-striped table-hover">
+    <thead>
+
+        <tr>
+            <th>°N de Registro</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for contabilidad in contabilidades %}
+
+        {% if contabilidad.estado != "0" %}
+            <tr>
+                <td>{{contabilidad.id}}</td>
+                <td>{{contabilidad.get_tipo__display}}</td>
+                <td>{{contabilidad.valor}}</td>
+                <td>{{contabilidad.fecha}}</td>
+                <td>{{contabilidad.get_estado_display}}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'contabilidades-eliminar' contabilidad.id %}">Eliminar</a>
+                    <a class="btn btn-primary" href="{% url 'contabilidades-modificar' contabilidad.id %}">Modificar</a>
+                </td>
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+
+    </tbody>
+</table>
+<a href="{% url 'contabilidades-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+{% endblock contenido %}

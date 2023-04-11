@@ -1,0 +1,42 @@
+{% extends 'partials/body.html' %}
+
+
+
+
+{% block contenido %}
+
+<table class="table table-striped table-hover">
+    <thead>
+
+        <tr>
+            <th>°N de Registro</th>
+            <th>Valor</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for nomina in nominas %}
+
+        {% if nomina.estado != "0" %}
+            <tr>
+                <td>{{nomina.id}}</td>
+                <td>{{nomina.valor}}</td>
+                <td>{{nomina.fecha}}</td>
+                <td>{{nomina.get_estado_display}}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'nominas-eliminar' nomina.id %}">Eliminar</a>
+                    <a class="btn btn-primary" href="{% url 'nominas-modificar' nomina.id %}">Modificar</a>
+                </td>
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+
+    </tbody>
+</table>
+<a href="{% url 'nominas-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+{% endblock contenido %}

@@ -1,0 +1,42 @@
+{% extends 'partials/body.html' %}
+
+% extends 'partials/body.html' %}
+
+
+{% block contenido %}
+
+<table class="table table-striped table-hover">
+    <thead>
+
+        <tr>
+            <th>°N de Registro</th>
+            <th>Valor</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for aporte in aportes %}
+
+        {% if aporte.estado != "0" %}
+            <tr>
+                <td>{{aporte.id}}</td>
+                <td>{{aporte.valor}}</td>
+                <td>{{aporte.fecha}}</td>
+                <td>{{aporte.get_estado_display}}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'aportes-eliminar' aporte.id %}">Eliminar</a>
+                    <a class="btn btn-primary" href="{% url 'aportes-modificar' aporte.id %}">Modificar</a>
+                </td>
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+
+    </tbody>
+</table>
+<a href="{% url 'aportes-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+{% endblock contenido %}
