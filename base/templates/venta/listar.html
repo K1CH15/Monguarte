@@ -1,0 +1,31 @@
+{% extends 'partials/body.html'%}
+{% block contenido %}
+<a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Valor Total</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Venta in venta %}
+                {% if Venta.estado != "0" %}
+                    <tr>
+                        <td>{{Venta.id}}</td>
+                        <td>{{Venta.fecha}}</td>
+                        <td>{{Venta.valor_total}}</td>
+                        <td>{{Venta.estado}}</td>
+                        <td>
+                            <a class="btn btn-danger" href="{% url 'ventas-eliminar' Venta.id %}">-</a>
+                            <a class="btn btn-primary" href="{% url 'ventas-modificar' Venta.id %}">+</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}
