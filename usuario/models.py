@@ -5,7 +5,7 @@ from django.core.validators import integer_validator,MaxLengthValidator
 # Create your models here.
 #Modelo Persona
 class Persona(models.Model):
-    id=models.AutoField(primary_key=True)
+
     class TipoDocumento(models.TextChoices):
         CC='CC ',_("Cédula de Ciudadanía")
         TI='TI',_("Tarjeta de Identidad")
@@ -29,14 +29,18 @@ class Persona(models.Model):
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
+    def __str__(self):
+        return"%s %s %s %s %s"%(self.tipo_documento,self.numero_documento,self.rol,self.primer_nombre,self.primer_apellido)
+    class meta:
+        verbose_name_plural="Persona"
 #Modelo de Contabilidad
 class Contabilidad(models.Model):
-    id=models.AutoField(primary_key=True)
+
     class TipoI(models.TextChoices):
         INGRESO='1',_("Ingreso")
         EGRESO='0',_("Egreso")
     tipo=models.CharField(max_length=1,choices=TipoI.choices,default=TipoI.INGRESO,verbose_name="Ingreso o Egreso")
-    valor=models.DecimalField(max_digits=25, decimal_places=5, verbose_name="Valor")#puede que se deje fijo en 8mil
+    valor=models.DecimalField(max_digits=25, decimal_places=2, verbose_name="Valor")#puede que se deje fijo en 8mil
     fecha=models.DateTimeField(verbose_name="Fecha de Pago",auto_now_add=True)
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
@@ -44,34 +48,44 @@ class Contabilidad(models.Model):
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 #Modelo Aporte
 class Aporte(models.Model):
-    id=models.AutoField(primary_key=True)
+
     valor=models.DecimalField(max_digits=25, decimal_places=2, verbose_name="Valor del Aporte")
     fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
+
+    persona=models.ForeignKey(Persona, verbose_name=_("Persona"), on_delete=models.CASCADE)
+
 #modelo de IPS
 class Ips(models.Model):
-    id=models.AutoField(primary_key=True)
+
     nombre=models.CharField(max_length=20,verbose_name="Nombre")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
+    def __str__(self):
+        return"%s"%(self.nombre)
+    class meta:
+        verbose_name_plural="Prestador de salud"
 #Modelo de Nómina
 class Nomina(models.Model):
-    id=models.AutoField(primary_key=True)
-    valor=models.DecimalField(max_digits=25, decimal_places=5, verbose_name="Valor a Pagar")
+
+    valor=models.DecimalField(max_digits=25, decimal_places=2, verbose_name="Valor a Pagar")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
-#Modelo Trbajador
-class Trabajador (models.Model):
-    id=models.AutoField(primary_key=True)
-    #persona_numero_documento=models.ForeignKey()
-    #id_nomina=models.ForeignKey()
-    #ips=models.models.ForeignKey()
+    def __str__(self):
+        return"%s"%(self.valor)
+    class meta:
+        verbose_name_plural="Nomina"
+
+class Trabajador(models.Model):
+    persona=models.ForeignKey(Persona, verbose_name=_("Persona"), on_delete=models.CASCADE)
+    nomina=models.ForeignKey(Nomina, verbose_name=_("Npmmina"), on_delete=models.CASCADE)
+    ips=models.ForeignKey(Ips, verbose_name=_("Prestador de salud"), on_delete=models.CASCADE)

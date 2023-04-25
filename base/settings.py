@@ -39,10 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Apps
     'usuario',
+    'inventario',
+    'productos',
+    'compra',
+    'venta',
+    
     #Librerias
     'django_bootstrap5',#pip install django-bootstrap5
     'crispy_forms', #pip install django-crispy-forms
     'crispy_bootstrap5', #pip install crispy-bootstrap5
+    'django_bootstrap_icons',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"

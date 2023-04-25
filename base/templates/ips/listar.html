@@ -1,23 +1,30 @@
 {% extends 'partials/body.html' %}
-
-% extends 'partials/body.html' %}
-
-
+{% load static %}
 {% block contenido %}
 
-<table class="table table-striped table-hover">
-    <thead>
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{{ titulo }}</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                        <th>°N de Registro</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
 
-        <tr>
-            <th>°N de Registro</th>
-            <th>Nombre</th>
-            <th>Estado</th>
-        </tr>
-
-    </thead>
-
-    <tbody>
-
+                    </tr>
+                </thead>
+              <tbody>
         {% for ips in ipss %}
 
         {% if ips.estado != "0" %}
@@ -26,15 +33,39 @@
                 <td>{{ips.nombre}}</td>
                 <td>{{ips.get_estado_display}}</td>
                 <td>
-                    <a class="btn btn-danger" href="{% url 'ipss-eliminar' ips.id %}">Eliminar</a>
+                  <button  type="button" data-ids="{{ips.id}}" class="btnEliminar btn btn-danger"
+                  data-bs-toggle="modal" data-bs-target="#modal-danger">
+                  Eliminar
+                  </button>
                     <a class="btn btn-primary" href="{% url 'ipss-modificar' ips.id %}">Modificar</a>
                 </td>
             </tr>
-
             {% endif %}
         {% endfor %}
+              </tbody>
+              <tfoot>
+                    <tr>
+                        <th>°N de Registro</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
 
-    </tbody>
-</table>
-<a href="{% url 'ipss-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+                    </tr>
+              </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <a href="{% url 'ipss-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
 {% endblock contenido %}

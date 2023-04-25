@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib import messages
 from usuario.forms import PersonaForm,PersonaUptadeForm
 from usuario.forms import ContabilidadForm,ContabilidadUptadeForm
 from usuario.forms import AporteForm,AporteUptadeForm
@@ -14,7 +15,11 @@ def persona_crear(request):
         form=PersonaForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('personas')
+            messages.success(request,'la persona se a creado correctamente')
+            return redirect('personas')
+        else:
+            messages.error(request,'error revise los campos')
+
     else:
         form=PersonaForm()
     context={
@@ -24,11 +29,15 @@ def persona_crear(request):
     return render(request,"persona/crear.html",context)
 
 def persona_listar(request):
-    titulo="Persona"
+    titulo="persona"
+    modulo="usuario"
     personas=Persona.objects.all()
     context={
         "titulo":titulo,
-        "personas":personas
+        "modulo":modulo,
+        "personas":personas,
+        
+        
     }
     return render(request,"persona/listar.html",context)
 
@@ -62,7 +71,10 @@ def contabilidad_crear(request):
         form=ContabilidadForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('contabilidades')
+            messages.success(request,'se creado exitosamente')
+            return redirect('contabilidades')
+        else:
+            messages.error(request,'error en los campos')
     else:
         form=ContabilidadForm()
     context={
@@ -73,12 +85,15 @@ def contabilidad_crear(request):
 
 def contabilidad_listar(request):
     titulo="contabilidad"
+    modulo="usuario"
     Contabilidades=Contabilidad.objects.all()
     context={
         "titulo":titulo,
-        "contabilidades":Contabilidades
+        "contabilidades":Contabilidades,
+        "modulo":modulo,
+        
     }
-    return render(request,"Contabilidad/listar.html",context)
+    return render(request,"contabilidad/listar.html",context)
 
 def contabilidad_modificar(request,pk):
     titulo="contabilidad"
@@ -87,7 +102,7 @@ def contabilidad_modificar(request,pk):
         form=ContabilidadUptadeForm(request.POST,instance=contabilidad)
         if form.is_valid():
             form.save()
-            return redirect('Contabilidades')
+            return redirect('contabilidades')
     else:
         form=ContabilidadUptadeForm(instance=contabilidad)
     context={
@@ -101,7 +116,7 @@ def contabilidad_eliminar(request,pk):
     contabiliadad.update(
         estado="0"
     )
-    return redirect('Contabilidades')
+    return redirect('contabilidades')
 
 #CRUD Aporte
 def aporte_crear(request):
@@ -110,7 +125,10 @@ def aporte_crear(request):
         form=AporteForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('aportes')
+            messages.success(request,'se creado exitosamente')
+            return redirect('aportes')
+        else:
+            messages.error(request,'error en los campos')
     else:
         form=AporteForm()
     context={
@@ -121,10 +139,13 @@ def aporte_crear(request):
 
 def aporte_listar(request):
     titulo="Aporte"
+    modulo="usuario"
     aportes=Aporte.objects.all()
     context={
         "titulo":titulo,
-        "aportes":aportes
+        "modulo":modulo,
+        "aportes":aportes,
+        
     }
     return render(request,"aporte/listar.html",context)
 
@@ -158,7 +179,10 @@ def ips_crear(request):
         form=IpsForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('ipss')
+            messages.success(request,'se creado exitosamente')
+            return redirect('ipss')
+        else:
+            messages.error(request,'error en los campos')
     else:
         form=IpsForm()
     context={
@@ -169,10 +193,12 @@ def ips_crear(request):
 
 def ips_listar(request):
     titulo="Ips"
+    modulo="usuario"
     ipss=Ips.objects.all()
     context={
         "titulo":titulo,
-        "ipss":ipss
+        "ipss":ipss,
+        "modulo":modulo,
     }
     return render(request,"ips/listar.html",context)
 
@@ -206,7 +232,10 @@ def nomina_crear(request):
         form=NominaForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('nominas')
+            messages.success(request,'se creado exitosamente')
+            return redirect('nominas')
+        else:
+            messages.error(request,'error en los campos')
     else:
         form=NominaForm()
     context={
@@ -217,10 +246,13 @@ def nomina_crear(request):
 
 def nomina_listar(request):
     titulo="Nomina"
+    modulo="usuario"
     nominas=Nomina.objects.all()
     context={
         "titulo":titulo,
-        "nominas":nominas
+        "modulo":modulo,
+        "nominas":nominas,
+        
     }
     return render(request,"nomina/listar.html",context)
 
@@ -254,7 +286,10 @@ def trabajador_crear(request):
         form=TrabajadorForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('trabajadores')
+            messages.success(request,'se creado exitosamente')
+            return redirect('trabajadores')
+        else:
+            messages.error(request,'error en los campos')
     else:
         form=TrabajadorForm()
     context={
@@ -265,10 +300,13 @@ def trabajador_crear(request):
 
 def trabajador_listar(request):
     titulo="Trabajador"
+    modulo="usuario"
     trabajadores=Trabajador.objects.all()
     context={
         "titulo":titulo,
-        "Trabajadores":trabajadores
+        "modulo":modulo,
+        "Trabajadores":trabajadores,
+
     }
     return render(request,"trabajador/listar.html",context)
 def trabajador_modificar(request,pk):
