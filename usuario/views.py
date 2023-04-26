@@ -36,8 +36,7 @@ def persona_listar(request):
         "titulo":titulo,
         "modulo":modulo,
         "personas":personas,
-        
-        
+
     }
     return render(request,"persona/listar.html",context)
 

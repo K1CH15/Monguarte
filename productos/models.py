@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-#Modelo del módulo Productos
+
 # Create your models here.
-from inventario.models import Stock
 #Modelo de Tipo de Producto
 class Tipo(models.Model):
     nombre=models.CharField(max_length=30,verbose_name="Tipo")
@@ -45,6 +44,6 @@ class Producto(models.Model):
     tipo=models.ForeignKey(Tipo,verbose_name=_("Tipo"),on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s %s %s"%(self.nombre,self.cantidad,self.precio_unitario)
+        return"%s %s %s"%(self.id)
     class meta:
         verbose_name_plural="Producto"

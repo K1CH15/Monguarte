@@ -5,7 +5,6 @@ from django.core.validators import integer_validator,MaxLengthValidator
 # Create your models here.
 #Modelo Persona
 class Persona(models.Model):
-
     class TipoDocumento(models.TextChoices):
         CC='CC ',_("Cédula de Ciudadanía")
         TI='TI',_("Tarjeta de Identidad")
@@ -30,7 +29,7 @@ class Persona(models.Model):
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
     def __str__(self):
-        return"%s %s %s %s %s"%(self.tipo_documento,self.numero_documento,self.rol,self.primer_nombre,self.primer_apellido)
+        return"%s"%(self.id)
     class meta:
         verbose_name_plural="Persona"
 #Modelo de Contabilidad
@@ -68,7 +67,7 @@ class Ips(models.Model):
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
     def __str__(self):
-        return"%s"%(self.nombre)
+        return"%s"%(self.id)
     class meta:
         verbose_name_plural="Prestador de salud"
 #Modelo de Nómina
@@ -81,7 +80,7 @@ class Nomina(models.Model):
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
     def __str__(self):
-        return"%s"%(self.valor)
+        return"%s"%(self.id)
     class meta:
         verbose_name_plural="Nomina"
 

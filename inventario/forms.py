@@ -1,33 +1,44 @@
 
 from django import forms
 from django.forms import ModelForm
-from inventario.models import Materia_Prima,Stock
-
+from inventario.models import Materia_Prima,Stock_Producto,Stock_Materia_Prima
 class Materia_PrimaForm(ModelForm):
 
     class Meta:
         model =Materia_Prima
         fields = "__all__"
-        exclude=[""]
+        exclude=["estado"]
 class Materia_PrimaUptadeForm(ModelForm):
 
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-        exclude=[""]
+        
 
-class StockForm(forms.ModelForm):
-
-    class Meta:
-        model = Stock
-        fields = "__all__"
-        exclude=[""]
-
-class StockUptadeForm(forms.ModelForm):
+class Stock_ProductoForm(ModelForm):
 
     class Meta:
-        model = Stock
+        model = Stock_Producto
         fields = "__all__"
-        exclude=[""]
+        exclude=["estado"]
 
+class Stock_ProductoUptadeForm(ModelForm):
 
+    class Meta:
+        model = Stock_Producto
+        fields = "__all__"
+        
+
+class Stock_Materia_PrimaForm(ModelForm):
+
+    class Meta:
+        model = Stock_Materia_Prima
+        fields = "__all__"
+        exclude=["estado"]
+
+class Stock_Materia_PrimaUptadeForm(ModelForm):
+
+    class Meta:
+        model = Stock_Materia_Prima
+        fields = "__all__"
+        
