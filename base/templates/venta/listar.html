@@ -1,6 +1,5 @@
-{% extends 'partials/body.html' %}
+{% extends 'partials/body.html'%}
 {% block contenido %}
-
 <div class="wrapper">
     <!-- Main content -->
     <section class="content">
@@ -15,36 +14,41 @@
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                      <tr>
-                          <th>Nombre</th>
-                          <th>estado</th>
-                          <th>Acción</th>
-                      </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fecha</th>
+                            <th>Valor Total</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
                   </thead>
                 <tbody>
-                  {% for tipo in tipos %}
-
-                  {% if tipo.estado != "0" %}
-                      <tr>
-                          <td>{{tipo.nombre}}</td>
-                          <td>{{tipo.get_estado_display}}</td>
-                              <td>
-                              <button  type="button" data-ids="{{tipo.id}}" class="btnEliminar btn btn-danger"
+                    {% for Venta in venta %}
+                    {% if Venta.estado != "0" %}
+                        <tr>
+                            <td>{{Venta.id}}</td>
+                            <td>{{Venta.fecha}}</td>
+                            <td>{{Venta.valor_total}}</td>
+                            <td>{{Venta.get_estado_display}}</td>
+                            <td>
+                              <button  type="button" data-ids="{{venta.id}}" class="btnEliminar btn btn-danger"
                                 data-bs-toggle="modal" data-bs-target="#modal-danger">
                                 Eliminar
                               </button>
-                                  <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'tipos-modificar' tipo.id %}">Modificar</a>
+                                  <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'ventas-modificar' Venta.id %}">Modificar</a>
                               </td>
                           </tr>
                       {% endif %}
                   {% endfor %}
                 </tbody>
                 <tfoot>
-                  <tr>
-                      <th>Nombre</th>
-                      <th>estado</th>
-                      <th>Acción</th>
-                  </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Fecha</th>
+                        <th>Valor Total</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
                 </tfoot>
                   </table>
                 </div>
@@ -59,6 +63,6 @@
         <!-- /.container-fluid -->
       </section>
       <!-- /.content -->
-      <a href="{% url 'tipos-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+      <a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
     </div>
 {% endblock contenido %}

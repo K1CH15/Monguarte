@@ -51,7 +51,7 @@ def detalle_venta_crear(request):
         form=Detalle_VentaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('detalle_venta')
+            return redirect('detalle_ventas')
     else:
         form=Detalle_VentaForm()
     context={"titulo":titulo,"form":form}
@@ -73,7 +73,7 @@ def detalle_venta_modificar(request,pk):
         form=Detalle_VentaUpdateForm(request.POST, instance=detalle_venta)
         if form.is_valid():
             form.save()
-            return redirect('detalle_venta')
+            return redirect('detalle_ventas')
     else:
         form=Detalle_VentaUpdateForm(instance=detalle_venta)
     context={"titulo":titulo,"form":form}

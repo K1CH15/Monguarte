@@ -88,7 +88,7 @@ def stock_materia_prima_listar(request):
         "modulo":modulo,
         "stocks":stock_materia_prima,
     }
-    return render(request,"/listar.html",context)
+    return render(request,"stock materia prima/listar.html",context)
 
 def stock_materia_prima_modificar(request,pk):
     titulo="stock materia prima"

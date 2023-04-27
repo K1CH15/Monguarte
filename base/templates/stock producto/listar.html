@@ -18,7 +18,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                      <th>°N de Registro</th>
+                      <th>Nombre</th>
                       <th>Tipo de Documento</th>
                       <th>Número de Documento</th>
                       <th>Nombres</th>
@@ -42,14 +42,14 @@
                           <td>{{persona.primer_apellido}} {{persona.segundo_apellido}}</td>
                           <td>{{persona.telefono}}</td>
                           <td>{{persona.get_rol_display}}</td>
-                          <td>{{persona.correo_electronico}}</td>
-                          <td>{{persona.get_estado_display}}</td>
+                          <td>{{ persona.correo_electronico }}</td>
+                          <td>{{ persona.get_estado_display }}</td>
                           <td>
 
                           <button  type="button" data-ids="{{persona.id}}" class="btnEliminar btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#modal-danger">
                             Eliminar
-                          </button>
+                        </button>
                               <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'personas-modificar' persona.id %}">Modificar</a>
                           </td>
                       </tr>

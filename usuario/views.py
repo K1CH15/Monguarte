@@ -251,7 +251,6 @@ def nomina_listar(request):
         "titulo":titulo,
         "modulo":modulo,
         "nominas":nominas,
-        
     }
     return render(request,"nomina/listar.html",context)
 
@@ -298,13 +297,13 @@ def trabajador_crear(request):
     return render(request,"trabajador/crear.html",context)
 
 def trabajador_listar(request):
-    titulo="Trabajador"
+    titulo="trabajador"
     modulo="usuario"
     trabajadores=Trabajador.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "Trabajadores":trabajadores,
+        "trabajadores":trabajadores,
 
     }
     return render(request,"trabajador/listar.html",context)

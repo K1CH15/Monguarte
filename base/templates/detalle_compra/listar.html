@@ -1,35 +1,64 @@
 {% extends 'partials/body.html' %}
-
+{% load static %}
 
 {% block contenido %}
-<a href="{% url 'detalle_compra-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Precio Unitario</th>
-            <th>Cantidad Total </th>
-            <th>Id Compra </th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        {% for detalle_compra in detalle_compras %}
-        
-            <tr>
-                <td>{{detalle_compra.id}}</td>
-                <td>{{detalle_compra.precio_unidad}}</td>
-                <td>{{detalle_compra.cantidad_total}}</td>
-                <td>{{detalle_compra.id_compra}}</td>
-
-                <td>
-                    <a class="btn btn-primary" href="{% url 'detalle_compra-modificar' detalle_compra.id %}">+</a>
-                </td>
-            </tr>
-        
-        {% endfor %}
-    </tbody>
-</table>
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-12">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ titulo }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad Total </th>
+                        <th>Id Compra </th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle_compra in detalle_compras %}
+                    <tr>
+                        <td>{{detalle_compra.id}}</td>
+                        <td>{{detalle_compra.precio_unidad}}</td>
+                        <td>{{detalle_compra.cantidad_total}}</td>
+                        <td>{{detalle_compra.id_compra}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'detalle_compra-modificar' detalle_compra.id %}">Modificar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad Total </th>
+                    <th>Id Compra </th>
+                    <th>Acción</th>
+                </tr>
+            </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+            <a href="{% url 'detalle_compra-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
 {% endblock contenido %}
-    
