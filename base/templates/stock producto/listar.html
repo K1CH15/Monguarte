@@ -1,8 +1,8 @@
 
 {% extends 'partials/body.html' %}
 {% load static %}
-
 {% block contenido %}
+
 <div class="wrapper">
   <!-- Main content -->
   <section class="content">
@@ -18,58 +18,42 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                      <th>Nombre</th>
-                      <th>Tipo de Documento</th>
-                      <th>Número de Documento</th>
-                      <th>Nombres</th>
-                      <th>Apellidos</th>
-                      <th>Teléfono</th>
-                      <th>Rol</th>
-                      <th>Correo Electrónico</th>
-                      <th>Estado</th>
+                      <th>Cantidad</th>
+                      <th>estado</th>
+                      <th>detalle producto</th>
+                      <th>detalle_venta</th>
                       <th>Acción</th>
-
                   </tr>
               </thead>
             <tbody>
-                  {% for persona in personas %}
-                  {% if persona.estado != "0" %}
+                  {% for stock_producto in stocksp %}
+                    {% if stock_producto.estado != "0" %}
                       <tr>
-                          <td>{{persona.id}}</td>
-                          <td>{{persona.get_tipo_documento_display}}</td>
-                          <td>{{persona.numero_documento}}</td>
-                          <td>{{persona.primer_nombre}} {{persona.segundo_nombre}}</td>
-                          <td>{{persona.primer_apellido}} {{persona.segundo_apellido}}</td>
-                          <td>{{persona.telefono}}</td>
-                          <td>{{persona.get_rol_display}}</td>
-                          <td>{{ persona.correo_electronico }}</td>
-                          <td>{{ persona.get_estado_display }}</td>
-                          <td>
+                          <td>{{stock_producto.cantidad}}</td>
+                          <td>{{stock_producto.get_estado_display}}</td>
+                          <td>{{stock_producto.detalle_producto}}</td>
+                          <td>{{stock_producto.detalle_venta}}</td>
 
-                          <button  type="button" data-ids="{{persona.id}}" class="btnEliminar btn btn-danger"
+                          <td>
+                          <button  type="button" data-ids="{{stock_producto.id}}" class="btnEliminar btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#modal-danger">
                             Eliminar
-                        </button>
-                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'personas-modificar' persona.id %}">Modificar</a>
+                          </button>
+                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'materias-primas-modificar' stock_producto.id %}">Modificar</a>
                           </td>
                       </tr>
                       {% endif %}
                   {% endfor %}
             </tbody>
             <tfoot>
-              <tr>
-                  <th>°N de Registro</th>
-                  <th>Tipo de Documento</th>
-                  <th>Número de Documento</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Teléfono</th>
-                  <th>Rol</th>
-                  <th>Correo Electrónico</th>
-                  <th>Estado</th>
+                <tr>
+                  <th>Cantidad</th>
+                  <th>estado</th>
+                  <th>detalle producto</th>
+                  <th>detalle_venta</th>
                   <th>Acción</th>
-
               </tr>
+
             </tfoot>
               </table>
             </div>
@@ -84,7 +68,7 @@
     <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-  <a href="{% url 'personas-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+  <a href="{% url 'stock-producto-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
 </div>
 
 {% endblock contenido %}

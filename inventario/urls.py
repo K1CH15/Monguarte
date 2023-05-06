@@ -10,9 +10,9 @@ urlpatterns = [
     path('stock producto/eliminar/<int:pk>/', stock_producto_eliminar, name="stock-producto-eliminar" ),
 
     path('materia prima/',materia_prima_listar, name="materias-primas"),
-    path('materia prima/crear/', materia_prima_crear, name="materia-prima-crear" ),
-    path('materia prima/modificar/<int:pk>/', materia_prima_modificar, name="materia-prima-modificar" ),
-    path('materia prima/eliminar/<int:pk>/', materia_prima_eliminar, name="materia-prima-eliminar" ),
+    path('materia prima/crear/', materia_prima_crear, name="materias-primas-crear" ),
+    path('materia prima/modificar/<int:pk>/', materia_prima_modificar, name="materias-primas-modificar" ),
+    path('materia prima/eliminar/<int:pk>/', materia_prima_eliminar, name="materias-primas-eliminar" ),
 
     path('stock materia prima/',stock_materia_prima_listar, name="stock-materias-primas"),
     path('stock materia prima/crear/', stock_materia_prima_crear, name="stock-materia-prima-crear" ),

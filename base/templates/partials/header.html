@@ -1,1 +1,168 @@
-{% load static %}
+{% load bootstrap_icons %}
+
+<header>
+    <nav class=" navbar  fixed-top  p-0">
+      <div class="container-fluid text-bg-primary p-0">
+        <div class="navbar bg-body-tertiary">
+          <div class="container">
+            
+            <a class="navbar-brand" href="#">
+              <img src="static/img/logo.png"  class="rounded-circle" alt="Bootstrap" width="70" height="70">
+            </a>
+            
+            <div class="dropdown">
+              <button  class="btn btn-secondary dropdown-toggle bg-transparent border-0" style="font-family: 'Dancing Script', cursive;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                COMPRA
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 " style="font-family: 'Dancing Script', cursive;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               VENTA
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle bg-transparent border-0" style="font-family: 'Dancing Script', cursive;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                INVENTARIO
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle bg-transparent border-0" style="font-family: 'Dancing Script', cursive;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                USUARIO
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle bg-transparent border-0" style="font-family: 'Dancing Script', cursive;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                PRODUCTO
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+        <a class="navbar-brand " href="#">
+          <h1 style="font-family: 'Dancing Script', cursive;">MonguArte</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="width: 280px;" class="offcanvas  bg-dark offcanvas-end  " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-family: 'Dancing Script', cursive;">MonguArte</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          
+          <div class="flex-shrink-0 p-3" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none text-light border-bottom">
+              <svg class="bi pe-none me-2" width="80" height="24"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-5 fw-semibold"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;;"><img src="/static/img/logo.png" alt="" class="rounded-circle"  width="70" height="70"></fort></fort></span>
+            </a>
+            <ul class="list-unstyled ps-0">
+              <li class="mb-1">{% bs_icon 'bag-heart' color='white' %}
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#compra-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  
+                  COMPRA
+                </fort></fort></button>
+                <div class="collapse" id="compra-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Descripción general</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Actualizaciones</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Informes</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="mb-1"> {% bs_icon 'cash-coin' color='white' %}
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#venta-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  VENTA
+                </fort></fort></button>
+                <div class="collapse" id="venta-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Descripción general</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Semanalmente</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Mensual</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Anualmente</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="mb-1">{% bs_icon 'clipboard2-data' color='white' %}
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#inventario-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  INVENTARIO
+                </fort></fort></button>
+                <div class="collapse" id="inventario-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nuevo</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Procesada</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Enviado</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">devuelto</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="mb-1">{% bs_icon 'person-fill' color='white' %}
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#usuario-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  USUARIO
+                </fort></fort></button>
+                <div class="collapse" id="usuario-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nuevo</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Procesada</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Enviado</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">devuelto</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="mb-1">{% bs_icon 'boxes' color='white' %}
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#producto-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  PRODUCTO
+                </fort></fort></button>
+                <div class="collapse" id="producto-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nuevo</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Procesada</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Enviado</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">devuelto</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="border-top my-3"></li>
+              <li class="mb-1"> {% bs_icon 'person-gear' color='white' %} 
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-light" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
+                  CUENTA
+                </fort></fort></button>
+                <div class="collapse" id="account-collapse" style="">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nuevo...</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Perfil</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Ajustes</fort></fort></a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">desconectar</fort></fort></a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </header>

@@ -14,7 +14,7 @@ def materia_prima_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'la Materia prima se a creado correctamente')
-            return redirect('')
+            return redirect('materias-primas')
         else:
             messages.error(request,'error revise los campos')
 
@@ -29,11 +29,11 @@ def materia_prima_crear(request):
 def materia_prima_listar(request):
     titulo="materia prima"
     modulo="inventario"
-    materia_primas=Materia_Prima.objects.all()
+    m=Materia_Prima.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "materias primas":materia_primas,
+        "materias":m,
     }
     return render(request,"materia prima/listar.html",context)
 
@@ -44,7 +44,7 @@ def materia_prima_modificar(request,pk):
         form=Materia_PrimaUptadeForm(request.POST,instance=materia_prima)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('materias-primas')
     else:
         form=Materia_PrimaUptadeForm(instance=materia_prima)
     context={
@@ -58,7 +58,7 @@ def materia_prima_eliminar(request,pk):
     materia_prima.update(
         estado="0"
     )
-    return redirect('')
+    return redirect('materias-primas')
 
 #CRUD Stock_Materia_Prima
 def stock_materia_prima_crear(request):
@@ -68,7 +68,7 @@ def stock_materia_prima_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'la Materia prima se a creado correctamente')
-            return redirect('')
+            return redirect('stock-materias-primas')
         else:
             messages.error(request,'error revise los campos')
     else:
@@ -77,7 +77,7 @@ def stock_materia_prima_crear(request):
         "titulo":titulo,
         "form":form
     }
-    return render(request,"/crear.html",context)
+    return render(request,"stock materia prima/crear.html",context)
 
 def stock_materia_prima_listar(request):
     titulo="stock materia prima"
@@ -86,7 +86,7 @@ def stock_materia_prima_listar(request):
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "stocks":stock_materia_prima,
+        "stocksm":stock_materia_prima,
     }
     return render(request,"stock materia prima/listar.html",context)
 
@@ -97,21 +97,21 @@ def stock_materia_prima_modificar(request,pk):
         form=Stock_Materia_PrimaUptadeForm(request.POST,instance=stock_materia_prima)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('stock-materias-primas')
     else:
         form=Stock_Materia_Prima(instance=stock_materia_prima)
     context={
         "titulo":titulo,
         "form":form
     }
-    return render (request,"/modificar.html",context)
+    return render (request,"stock materia prima/modificar.html",context)
 
 def stock_materia_prima_eliminar(request,pk):
     stock_materia_prima=Stock_Materia_Prima.objects.filter(id=pk)
     stock_materia_prima.update(
         estado="0"
     )
-    return redirect('')
+    return redirect('stock-materias-primas')
 #CRUD Stock_Producto
 def stock_producto_crear(request):
     titulo="stock producto"
@@ -120,7 +120,7 @@ def stock_producto_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'falta')
-            return redirect('')
+            return redirect('stock-productos')
         else:
             messages.error(request,'xd')
     else:
@@ -129,7 +129,7 @@ def stock_producto_crear(request):
         "titulo":titulo,
         "form":form
     }
-    return render(request,"/crear.html",context)
+    return render(request,"stock producto/crear.html",context)
 
 def stock_producto_listar(request):
     titulo="stock producto"
@@ -138,9 +138,9 @@ def stock_producto_listar(request):
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "stocks":stock_producto,
+        "stocksp":stock_producto,
     }
-    return render(request,"/listar.html",context)
+    return render(request,"stock producto/listar.html",context)
 
 def stock_producto_modificar(request,pk):
     titulo="stock producto"
@@ -149,18 +149,18 @@ def stock_producto_modificar(request,pk):
         form=Stock_ProductoUptadeForm(request.POST,instance=stock_producto)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('stock-productos')
     else:
         form=Stock_Materia_Prima(instance=stock_producto)
     context={
         "titulo":titulo,
         "form":form
     }
-    return render (request,"/modificar.html",context)
+    return render (request,"stock producto/modificar.html",context)
 
 def stock_producto_eliminar(request,pk):
     stock_producto=Stock_Producto.objects.filter(id=pk)
     stock_producto.update(
         estado="0"
     )
-    return redirect('')
+    return redirect('stock-productos')

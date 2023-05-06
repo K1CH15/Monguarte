@@ -5,15 +5,15 @@ from venta.models import Detalle_Venta
 # Create your models here.
 
 class Materia_Prima(models.Model):
-    nombre=models.TextField(verbose_name="Nombre de la Materia Prima", help_text="Ingrese el Nombre de la Materia Prima")
-    tipo=models.TextField(max_length=30,verbose_name="Tipo de Materia Prima")
-    color=models.TextField(max_length=20,verbose_name="Color Materia Prima")
+    nombre=models.CharField(max_length=20,verbose_name="Nombre de la Materia Prima", help_text="Ingrese el Nombre de la Materia Prima")
+    tipo=models.CharField(max_length=20,verbose_name="Tipo de Materia Prima")
+    color=models.CharField(max_length=20,verbose_name="Color Materia Prima")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTIVO='0',_("Inactivo")
     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
     def __str__(self):
-        return"%s"%(self.id)
+        return"%s %s %s"%(self.nombre,self.tipo,self.color)
     class Meta:
         verbose_name_plural="Materia Prima"
 
@@ -26,7 +26,7 @@ class Stock_Materia_Prima(models.Model):
     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s"%(self.id)
+        return"%s"%(self.cantidad)
     class Meta:
         verbose_name_plural="Stock Materia Prima"
 
