@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from venta.models import Venta, Detalle_Venta
 from venta.forms import Detalle_VentaForm,Detalle_VentaUpdateForm,VentaForm,VentaUpdateForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 #VIEWS VENTA
+@login_required
 def venta_crear(request):
     titulo="Venta"
     if request.method=='POST':
@@ -19,12 +22,14 @@ def venta_crear(request):
     context={"titulo":titulo,"form":form}
     return render(request,"venta/crear.html", context)
 
+@login_required
 def venta_listar(request):
     titulo="venta"
     venta=Venta.objects.all()
     context={"titulo":titulo,"venta":venta}
     return render(request,"venta/listar.html", context)
 
+@login_required
 def venta_modificar(request,pk):
     titulo="Venta"
     venta=Venta.objects.get(id=pk)
@@ -39,12 +44,14 @@ def venta_modificar(request,pk):
     context={"titulo":titulo,"form":form}
     return render(request,"venta/modificar.html", context)
 
+@login_required
 def venta_eliminar(request,pk):
     venta=Venta.objects.filter(id=pk)
     venta.update(estado="0")
     return redirect('ventas')
 
 #VIEWS DETALLE_VENTA
+@login_required
 def detalle_venta_crear(request):
     titulo="Detalle_Venta "
     if request.method=='POST':
@@ -57,6 +64,7 @@ def detalle_venta_crear(request):
     context={"titulo":titulo,"form":form}
     return render(request,"detalle_venta/crear.html", context)
 
+@login_required
 def detalle_venta_listar(request):
     titulo="Detalle_Venta"
     detalles=Detalle_Venta.objects.all()
@@ -66,6 +74,7 @@ def detalle_venta_listar(request):
     }
     return render(request,"detalle_venta/listar.html", context)
 
+@login_required
 def detalle_venta_modificar(request,pk):
     titulo="Detalle_Venta"
     detalle_venta=Detalle_Venta.objects.get(id=pk)
