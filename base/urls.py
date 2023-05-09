@@ -29,9 +29,9 @@ urlpatterns = [
     path('logout/',logout_user,name="logout"),
 
 
-    path('usuario/',include('usuario.urls')),
-    path('compra/', include('compra.urls')),
-    path('inventario/', include('inventario.urls')),
-    path('venta/', include('venta.urls')),
-    path('producto/', include('productos.urls')),
+    path('Usuarios/',include('usuario.urls')),
+    path('Compras/', include('compra.urls')),
+    path('Inventarios/', include('inventario.urls')),
+    path('Ventas/', include('venta.urls')),
+    path('Productos/', include('productos.urls')),
 ]

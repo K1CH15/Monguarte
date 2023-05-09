@@ -1,6 +1,8 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator
 # Create your models here.
 #Modelo de Tipo de Producto
 class Tipo(models.Model):
@@ -33,8 +35,10 @@ class Tamaño(models.Model):
 class Producto(models.Model):
 
     nombre=models.CharField(max_length=45,verbose_name="Nombre")
-    precio_unitario=models.FloatField(max_length=10,verbose_name="Precio unitario")
-
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)])
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
+    cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1,help_text="La cantidad tiene que ser menor a 100")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTIVO='0',_("Inactivo")

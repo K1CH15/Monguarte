@@ -9,7 +9,6 @@ class CompraForm(ModelForm):
         fields = "__all__"
         exclude = ["estado"]
         success_message = 'Contacto añadido correctamente.'
-
 class CompraUpdateForm(ModelForm):
     class Meta:
         model = Compra
@@ -31,3 +30,4 @@ class Detalle_CompraUpdateForm(ModelForm):
         fields = "__all__"
         exclude =["id"]
         success_message = 'Contacto añadido correctamente.'
+

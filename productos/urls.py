@@ -7,12 +7,12 @@ urlpatterns = [
     path('producto/crear/', producto_crear, name="productos-crear" ),
     path('producto/modificar/<int:pk>/', producto_modificar, name="productos-modificar" ),
     path('producto/eliminar/<int:pk>/', producto_eliminar, name="productos-eliminar" ),
-    
+
     path('tamaño/', tamaño_listar, name="tamaños" ),
     path('tamaño/crear/', tamaño_crear, name="tamaños-crear" ),
     path('tamaño/modificar/<int:pk>/', tamaño_modificar, name="tamaños-modificar" ),
     path('tamaño/eliminar/<int:pk>/', tamaño_eliminar, name="tamaños-eliminar" ),
-    
+
     path('tipo/', tipo_listar, name="tipos" ),
     path('tipo/crear/', tipo_crear, name="tipos-crear" ),
     path('tipo/modificar/<int:pk>/', tipo_modificar, name="tipos-modificar" ),

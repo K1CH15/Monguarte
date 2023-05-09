@@ -1,9 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import integer_validator,MaxLengthValidator
+from django.core.validators import integer_validator,MaxLengthValidator,ValidationError,RegexValidator
 #Módulo de usuarios
 # Create your models here.
 #Modelo Persona
+# def letras_uniquemente(value):
+#     if not value.isalpha():
+#         raise ValidationError("El campo solo permite letras.")
 class Persona(models.Model):
     class TipoDocumento(models.TextChoices):
         CC='CC ',_("Cédula de Ciudadanía")
@@ -11,10 +14,10 @@ class Persona(models.Model):
         CE='CE',_("Cédula de Extranjería")
     tipo_documento=models.CharField(max_length=3,choices=TipoDocumento.choices,default=TipoDocumento.CC,verbose_name="Tipo de Documento")
     numero_documento=models.CharField(max_length=10,validators=[integer_validator],verbose_name="Número de Documento", unique=True)
-    primer_nombre=models.CharField(max_length=20,verbose_name="Primer Nombre")
-    segundo_nombre=models.CharField(max_length=20,verbose_name="Segundo Nombre")
-    primer_apellido=models.CharField(max_length=20,verbose_name="Primer Apellido")
-    segundo_apellido=models.CharField(max_length=20,verbose_name="Segundo Apellido")
+    primer_nombre=models.CharField(max_length=10,verbose_name="Primer Nombre")
+    segundo_nombre=models.CharField(max_length=10,verbose_name="Segundo Nombre")
+    primer_apellido=models.CharField(max_length=10,verbose_name="Primer Apellido")
+    segundo_apellido=models.CharField(max_length=10,verbose_name="Segundo Apellido")
     telefono=models.CharField(max_length=10,validators=[integer_validator,MaxLengthValidator(10)],verbose_name="Número Telefónico")
     class  Rol(models.TextChoices):
         ADMINISTRADOR='ADMI',_("Administrador")

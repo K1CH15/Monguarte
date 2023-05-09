@@ -1,14 +1,24 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm,TextInput
 from usuario.models import Persona,Contabilidad,Aporte,Ips,Nomina,Trabajador
+from django.core.validators import RegexValidator
+
 #fORMULARIOS
 #formularios Persona
 class PersonaForm(ModelForm):
+
 
     class Meta:
         model = Persona
         fields = "__all__"
         exclude=["estado"]
+        widgets = {
+            'primer_nombre': TextInput(attrs={'class': 'form-control'}),
+            'segundo_nombre': TextInput(attrs={'class': 'form-control'}),
+            'primer_apellido': TextInput(attrs={'class': 'form-control'}),
+            'segundo_apellido': TextInput(attrs={'class': 'form-control'}),
+        }
+
 class PersonaUptadeForm(ModelForm):
 
     class Meta:

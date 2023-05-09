@@ -1,13 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-#Módulo de compra
+from django.core.validators import MaxValueValidator
 from usuario.models import Persona
 from inventario.models import Materia_Prima
 # Create your models here.
 #Modelo de Compra
 class Compra(models.Model):
     fecha = models.DateTimeField(verbose_name="Fecha de Compra",auto_now_add=True)
-    valor_total = models.DecimalField(max_digits=10,decimal_places=2,verbose_name="Valor total")
+    
+    valor_total_compra = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999999)], verbose_name="Valor total")
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.valor_total_compra)#.replace(',', '.')
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTIVO='0',_("Inactivo")
@@ -19,8 +22,10 @@ class Compra(models.Model):
         verbose_name_plural="Compra"
 #Modelo de Detalle_Compra
 class Detalle_Compra(models.Model):
-    precio_unidad = models.DecimalField(max_digits=10,decimal_places=2,verbose_name=("Precio unitario"))
-    cantidad_total = models.IntegerField(verbose_name="Cantidad Total")
+    precio_unidad = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999999)], verbose_name="Valor total")
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unidad)#.replace(',', '.')
+    cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1,help_text="La cantidad tiene que ser menor a 100")
     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=("Materia Prima"), on_delete=models.CASCADE)
     compra=models.ForeignKey(Compra,verbose_name="Compra", on_delete=models.CASCADE)
     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)

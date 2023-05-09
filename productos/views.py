@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from productos.models import Producto,Tamaño,Tipo
 from productos.forms import ProductoForm,ProductoUpdateForm,TamañoForm, TamañoUpdateForm,TipoForm,TipoUpdateForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-# Create your views here.}
-@login_required
+# Create your views here.
 def producto_crear(request):
     titulo="Producto"
     if request.method== 'POST':
@@ -24,19 +22,17 @@ def producto_crear(request):
         }
     return render(request,"productos/crear.html", context)
 
-@login_required
 def producto_listar(request):
     titulo="Producto"
     modulo="Productos"
-    productos= Producto.objects.all()
+    productosn= Producto.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "productos":productos
+        "productosn":productosn
     }
     return render(request,"productos/listar.html", context)
 
-@login_required
 def producto_modificar(request,pk):
     titulo="Usuario"
     producto= Producto.objects.get(id=pk)
@@ -55,7 +51,6 @@ def producto_modificar(request,pk):
         }
     return render(request,"productos/modificar.html", context)
 
-@login_required
 def producto_eliminar(request,pk):
     producto= Producto.objects.filter(id=pk)
     producto.update(
@@ -63,7 +58,7 @@ def producto_eliminar(request,pk):
     )
     return redirect('productos')
 
-@login_required
+
 def tamaño_crear(request):
     titulo="Tamaño"
     if request.method== 'POST':
@@ -83,7 +78,6 @@ def tamaño_crear(request):
         }
     return render(request,"tamaños/crear.html", context)
 
-@login_required
 def tamaño_listar(request):
     titulo="Tamaño"
     modulo="Productos"
@@ -95,7 +89,6 @@ def tamaño_listar(request):
     }
     return render(request,"tamaños/listar.html", context)
 
-@login_required
 def tamaño_modificar(request,pk):
     titulo="Tamaño"
     tamaño= Tamaño.objects.get(id=pk)
@@ -116,7 +109,6 @@ def tamaño_modificar(request,pk):
         }
     return render(request,"tamaños/modificar.html", context)
 
-@login_required
 def tamaño_eliminar(request,pk):
     tamaño= Tamaño.objects.filter(id=pk)
     tamaño.update(
@@ -124,7 +116,10 @@ def tamaño_eliminar(request,pk):
     )
     return redirect('tamaños')
 
-@login_required
+
+
+
+  
 def tipo_crear(request):
     titulo="Tipo"
     if request.method== 'POST':
@@ -143,7 +138,6 @@ def tipo_crear(request):
         }
     return render(request,"tipos/crear.html", context)
 
-@login_required
 def tipo_listar(request):
     titulo="Tipo"
     modulo="productos"
@@ -155,10 +149,11 @@ def tipo_listar(request):
     }
     return render(request,"tipos/listar.html", context)
 
-@login_required
 def tipo_modificar(request,pk):
     titulo="Tipo"
+    
     tipo= Tipo.objects.get(id=pk)
+    
     if request.method== 'POST':
         form= TipoUpdateForm(request.POST, instance=tipo)
         if form.is_valid():
@@ -171,8 +166,6 @@ def tipo_modificar(request,pk):
         "form":form
         }
     return render(request,"tipos/modificar.html", context)
-
-@login_required
 def tipo_eliminar(request,pk):
     tipo= Tipo.objects.filter(id=pk)
     tipo.update(

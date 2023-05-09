@@ -7,7 +7,7 @@ from usuario.models import Persona
 #Modelo de Venta
 class Venta(models.Model):
     fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
-    valor_total=models.DecimalField(max_digits=25,decimal_places=2,verbose_name="Valor total")
+    valor_total=models.DecimalField(max_digits=6,decimal_places=2,verbose_name="Valor total")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
@@ -21,8 +21,8 @@ class Venta(models.Model):
 
 #Modelo de Detalle Venta
 class Detalle_Venta(models.Model):
-    precio_unitario=models.DecimalField(max_digits=25, decimal_places=2,verbose_name="Precio Unitario")
-    cantidad_total = models.IntegerField(verbose_name="Cantidad Total")
+    precio_unitario=models.DecimalField(max_digits=6, decimal_places=2,verbose_name="Precio Unitario")
+    cantidad_total = models.PositiveIntegerField(verbose_name="Cantidad Total")
     venta=models.ForeignKey(Venta, verbose_name=_("Venta"), on_delete=models.CASCADE)
 
     def __str__(self):

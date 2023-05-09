@@ -19,15 +19,16 @@
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Cantidad </th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
               <tbody>
-                    {% for producto in productos %}
+                    {% for producto in productosn %}
 
                         {% if producto.estado != "0" %}
                         <tr>
                             <td>{{producto.nombre}}</td>
-                            <td>{{producto.precio_unitario}}</td>
+                            <td>{{producto.precio_formato_colombiano}}</td>
                             <td>{{producto.cantidad}}</td>
                             <td>
                             <button  type="button" data-ids="{{producto.id}}" class="btnEliminar btn btn-danger"
@@ -45,6 +46,7 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Cantidad </th>
+                    <th>Acciones</th>
                 </tr>
               </tfoot>
                 </table>

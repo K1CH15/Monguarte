@@ -36,5 +36,3 @@ class TipoUpdateForm(ModelForm):
     class Meta:
         model = Tipo
         fields = "__all__"
-
-
