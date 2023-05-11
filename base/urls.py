@@ -20,7 +20,7 @@ from base.views import principal,logout_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path("inicio/",principal, name="index"),
     path('',auth_views.LoginView.as_view(),name='inicio'),
     path('reiniciar/',auth_views.PasswordResetView.as_view(),name='password_reset'),
     path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
@@ -29,9 +29,9 @@ urlpatterns = [
     path('logout/',logout_user,name="logout"),
 
 
-    path('Usuarios/',include('usuario.urls')),
-    path('Compras/', include('compra.urls')),
-    path('Inventarios/', include('inventario.urls')),
-    path('Ventas/', include('venta.urls')),
-    path('Productos/', include('productos.urls')),
+    path('usuarios/',include('usuario.urls')),
+    path('compras/', include('compra.urls')),
+    path('inventarios/', include('inventario.urls')),
+    path('ventas/', include('venta.urls')),
+    path('productos/', include('productos.urls')),
 ]

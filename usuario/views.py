@@ -33,7 +33,7 @@ def persona_crear(request):
 ##@login_required
 def persona_listar(request):
     titulo="persona"
-    modulo="usuario"
+    modulo="usuarios"
     personas=Persona.objects.all()
     context={
         "titulo":titulo,
@@ -91,7 +91,7 @@ def contabilidad_crear(request):
 ##@login_required
 def contabilidad_listar(request):
     titulo="contabilidad"
-    modulo="usuario"
+    modulo="usuarios"
     Contabilidades=Contabilidad.objects.all()
     context={
         "titulo":titulo,
@@ -149,7 +149,7 @@ def aporte_crear(request):
 ##@login_required
 def aporte_listar(request):
     titulo="Aporte"
-    modulo="usuario"
+    modulo="usuarios"
     aportes=Aporte.objects.all()
     context={
         "titulo":titulo,
@@ -264,7 +264,7 @@ def nomina_crear(request):
 ##@login_required
 def nomina_listar(request):
     titulo="Nomina"
-    modulo="usuario"
+    modulo="usuarios"
     nominas=Nomina.objects.all()
     context={
         "titulo":titulo,
@@ -321,7 +321,7 @@ def trabajador_crear(request):
 ##@login_required
 def trabajador_listar(request):
     titulo="trabajador"
-    modulo="usuario"
+    modulo="usuarios"
     trabajadores=Trabajador.objects.all()
     context={
         "titulo":titulo,

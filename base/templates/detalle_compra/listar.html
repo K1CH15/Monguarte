@@ -28,9 +28,9 @@
                     {% for detalle_compra in detalle_compras %}
                     <tr>
                         <td>{{detalle_compra.id}}</td>
-                        <td>{{detalle_compra.precio_unidad}}</td>
-                        <td>{{detalle_compra.cantidad_total}}</td>
-                        <td>{{detalle_compra.id_compra}}</td>
+                        <td>{{detalle_compra.precio_formato_colombiano}}</td>
+                        <td>{{detalle_compra.cantidad}}</td>
+                        <td>Precio: <b>{{detalle_compra.compra.valor_total_compra}} </b>Fecha:<b> {{detalle_compra.compra.fecha}}</b></td>
                         <td>
                             <a class="btn btn-primary" href="{% url 'detalle_compra-modificar' detalle_compra.id %}">Modificar</a>
                         </td>

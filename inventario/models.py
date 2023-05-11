@@ -13,7 +13,7 @@ class Materia_Prima(models.Model):
         INACTIVO='0',_("Inactivo")
     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
     def __str__(self):
-        return"%s %s %s"%(self.nombre,self.tipo,self.color)
+        return"%s %s %s %s %s %s "%("Materia Prima:",self.nombre,"de tipo",self.tipo,"de color",self.color)
     class Meta:
         verbose_name_plural="Materia Prima"
 

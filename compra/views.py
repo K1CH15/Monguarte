@@ -27,8 +27,8 @@ def compra_crear(request):
 
 #@login_required
 def compra_listar(request):
-    titulo="Compra"
-    modulo="compra"
+    titulo="compra"
+    modulo="compras"
     compras = Compra.objects.all()
     context={
         "titulo":titulo,
