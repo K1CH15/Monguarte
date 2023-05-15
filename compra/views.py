@@ -29,11 +29,11 @@ def compra_crear(request):
 def compra_listar(request):
     titulo="compra"
     modulo="compras"
-    compras = Compra.objects.all()
+    comprasn = Compra.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "compras":compras,
+        "comprasn":comprasn,
     }
     return render(request,"compra/listar.html", context)
 

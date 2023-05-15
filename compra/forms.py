@@ -8,19 +8,19 @@ class CompraForm(ModelForm):
         model = Compra
         fields = "__all__"
         exclude = ["estado"]
-        success_message = 'Contacto añadido correctamente.'
+        success_message = 'la compra se añadió correctamente'
 class CompraUpdateForm(ModelForm):
     class Meta:
         model = Compra
         fields ="__all__"
         exclude=["id","fecha"]
-        success_message = 'Contacto añadido correctamente.'
+        success_message = 'la compra se actualizó correctamente'
 
 class Detalle_CompraForm(ModelForm):
     class Meta:
         model = Detalle_Compra
         fields = "__all__"
-        success_message = 'Contacto añadido correctamente.'
+        success_message = 'el detalle de la compra se añadió correctamente'
 
 
 class Detalle_CompraUpdateForm(ModelForm):
@@ -29,5 +29,5 @@ class Detalle_CompraUpdateForm(ModelForm):
         model = Detalle_Compra
         fields = "__all__"
         exclude =["id"]
-        success_message = 'Contacto añadido correctamente.'
+        success_message = 'el detalle de la compra se actualizó correctamente'
 

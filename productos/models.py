@@ -44,7 +44,7 @@ class Producto(models.Model):
         INACTIVO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
-    tamaño=models.ForeignKey(Tamaño,verbose_name=_("Tamaño"),on_delete=models.CASCADE)
+    tamano=models.ForeignKey(Tamaño,verbose_name=_("Tamaño"),on_delete=models.CASCADE)
     tipo=models.ForeignKey(Tipo,verbose_name=_("Tipo"),on_delete=models.CASCADE)
 
     def __str__(self):
