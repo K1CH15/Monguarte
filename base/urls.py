@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
-from base.views import principal,logout_user
+from base.views import principal,logout_user,error_404
+from django.conf.urls import handler404
+
+handler404=error_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
