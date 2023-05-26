@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.views.defaults import page_not_found
 from compra.models import Compra,Detalle_Compra
 from venta.models import Venta,Detalle_Venta
 from inventario.models import Materia_Prima,Stock_Materia_Prima,Detalle_Producto,Stock_Producto
@@ -53,6 +52,3 @@ def principal(request):
 def logout_user(request):
     logout(request)
     return redirect('inicio')
-
-def error_404(request,expection):
-    return page_not_found(request,'404.html')
