@@ -1,0 +1,30 @@
+{
+  "name": "monguarte",
+  "version": "1.0.0",
+  "description": "aplicativo para la gestión de informacion de la empresa monguarte",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K1CH15/Monguarte.git"
+  },
+  "keywords": [
+    "Monguarte",
+    "Artesanias"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/K1CH15/Monguarte/issues"
+  },
+  "homepage": "https://github.com/K1CH15/Monguarte#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "datatables.net": "^1.13.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.7.0",
+    "sweetalert2": "^11.7.5"
+  }
+}
