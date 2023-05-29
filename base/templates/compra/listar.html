@@ -33,7 +33,7 @@
                             <td>{{compra.id}}</td>
                             <td>{{compra.fecha}}</td>
                             <td>{{compra.precio_formato_colombiano}}</td>
-                            <td>{{compra.estado}}</td>
+                            <td>{{compra.get_estado_display}}</td>
                             <td>
                             <button  type="button" data-ids="{{compra.id}}" class="btnEliminar btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#modal-danger">

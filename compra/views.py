@@ -16,7 +16,7 @@ def compra_crear(request):
             messages.success(request, 'La Compra Se Agrego Correctamente')
             return redirect('compra')
         else:
-            messages.error(request, 'La Compra Tiene Errores')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form= CompraForm()
     context={
@@ -77,7 +77,7 @@ def detalle_compra_crear(request):
             messages.success(request, 'El Detalle Compra Se Agrego Correctamente')
             return redirect('detalle_compra')
         else:
-            messages.error(request, 'El Detalle Compra Tiene Errores')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form= Detalle_CompraForm()
     context={

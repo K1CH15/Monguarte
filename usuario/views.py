@@ -17,11 +17,10 @@ def persona_crear(request):
         form=PersonaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'la persona se a creado correctamente')
+            messages.success(request,'Se ha creado correctamente.')
             return redirect('personas')
         else:
-            messages.error(request,'error revise los campos')
-
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=PersonaForm()
     context={
@@ -51,6 +50,7 @@ def persona_modificar(request,pk):
         form=PersonaUptadeForm(request.POST,instance=persona)
         if form.is_valid():
             form.save()
+            messages.info(request,'El registro ha sido actualizado correctamente')
             return redirect('personas')
     else:
         form=PersonaUptadeForm(instance=persona)
@@ -79,8 +79,7 @@ def contabilidad_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('contabilidades')
         else:
-            messages.error(request,'error en los campos')
-    else:
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
         form=ContabilidadForm()
     context={
         "titulo":titulo,
@@ -137,7 +136,7 @@ def aporte_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('aportes')
         else:
-            messages.error(request,'error en los campos')
+             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=AporteForm()
     context={
@@ -195,7 +194,7 @@ def ips_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('ipss')
         else:
-            messages.error(request,'error en los campos')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=IpsForm()
     context={
@@ -252,7 +251,7 @@ def nomina_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('nominas')
         else:
-            messages.error(request,'error en los campos')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=NominaForm()
     context={
@@ -309,7 +308,7 @@ def trabajador_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('trabajadores')
         else:
-            messages.error(request,'error en los campos')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=TrabajadorForm()
     context={

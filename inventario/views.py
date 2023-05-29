@@ -19,7 +19,7 @@ def materia_prima_crear(request):
             messages.success(request,'la Materia prima se a creado correctamente')
             return redirect('materias-primas')
         else:
-            messages.error(request,'error revise los campos')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
 
     else:
         form=Materia_PrimaForm()
@@ -77,7 +77,7 @@ def stock_materia_prima_crear(request):
             messages.success(request,'la Materia prima se a creado correctamente')
             return redirect('stock-materias-primas')
         else:
-            messages.error(request,'error revise los campos')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=Stock_Materia_PrimaForm()
     context={
@@ -134,7 +134,7 @@ def stock_producto_crear(request):
             messages.success(request,'falta')
             return redirect('stock-productos')
         else:
-            messages.error(request,'xd')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=Stock_ProductoForm()
     context={
@@ -191,7 +191,7 @@ def detalle_producto_crear(request):
             messages.success(request,'falta')
             return redirect('detalle-productos')
         else:
-            messages.error(request,'xd')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form=Detalle_ProductoForm()
     context={

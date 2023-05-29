@@ -80,7 +80,8 @@ class Nomina(models.Model):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.valor).replace(',', '.')
     def __str__(self):
         return"%s"%(self.valor)
     class meta:

@@ -31,7 +31,7 @@
                 {% if nomina.estado != "0" %}
                     <tr>
                         <td>{{nomina.id}}</td>
-                        <td>{{nomina.valor}}</td>
+                        <td>{{nomina.precio_formato_colombiano}}</td>
                         <td>{{nomina.fecha}}</td>
                         <td>{{nomina.get_estado_display}}</td>
                         <td>
@@ -70,7 +70,4 @@
     </section>
     <!-- /.content -->
   </div>
-  
-
-
 {% endblock contenido %}

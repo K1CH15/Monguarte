@@ -13,7 +13,7 @@ def producto_crear(request):
 
             return redirect('productos')
         else:
-            messages.error(request, 'El formulario tiene errores.')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form= ProductoForm()
     context={
@@ -69,7 +69,7 @@ def tamaño_crear(request):
 
             return redirect('tamaños')
         else:
-            messages.error(request, 'El formulario  de tamañotiene errores.')
+             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form= TamañoForm()
     context={
@@ -116,10 +116,6 @@ def tamaño_eliminar(request,pk):
     )
     return redirect('tamaños')
 
-
-
-
-  
 def tipo_crear(request):
     titulo="Tipo"
     if request.method== 'POST':
@@ -129,7 +125,7 @@ def tipo_crear(request):
             messages.success(request, 'El formulario de tipo se ha enviado correctamente.')
             return redirect('tipos')
         else:
-            messages.error(request, 'El formulario  de tipo tiene errores.')
+            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
         form= TipoForm()
     context={
