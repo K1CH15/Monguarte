@@ -22,9 +22,16 @@
   "homepage": "https://github.com/K1CH15/Monguarte#readme",
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.5",
     "datatables.net": "^1.13.4",
+    "datatables.net-bs4": "^1.13.4",
+    "datatables.net-buttons-bs4": "^2.3.6",
+    "datatables.net-responsive": "^2.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.0",
-    "sweetalert2": "^11.7.5"
+    "jszip": "^3.10.1",
+    "pdfmake": "^0.2.7",
+    "sweetalert2": "^11.4.8",
+    "toastr": "^2.1.4"
   }
 }
