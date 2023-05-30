@@ -32,7 +32,7 @@ def materia_prima_crear(request):
 #@login_required
 def materia_prima_listar(request):
     titulo="materia prima"
-    modulo="inventario"
+    modulo="inventarios"
     m=Materia_Prima.objects.all()
     context={
         "titulo":titulo,
@@ -71,7 +71,7 @@ def materia_prima_eliminar(request,pk):
 def stock_materia_prima_crear(request):
     titulo="stock materia prima"
     if request.method == 'POST':
-        form=Stock_Materia_Prima(request.POST)
+        form=Stock_Materia_PrimaForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'la Materia prima se a creado correctamente')
@@ -89,7 +89,7 @@ def stock_materia_prima_crear(request):
 #@login_required
 def stock_materia_prima_listar(request):
     titulo="stock materia prima"
-    modulo="inventario"
+    modulo="inventarios"
     stock_materia_prima=Stock_Materia_Prima.objects.all()
     context={
         "titulo":titulo,
@@ -128,7 +128,7 @@ def stock_materia_prima_eliminar(request,pk):
 def stock_producto_crear(request):
     titulo="stock producto"
     if request.method == 'POST':
-        form=Stock_Producto(request.POST)
+        form=Stock_ProductoForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'falta')
@@ -146,7 +146,7 @@ def stock_producto_crear(request):
 #@login_required
 def stock_producto_listar(request):
     titulo="stock producto"
-    modulo="inventario"
+    modulo="inventarios"
     stock_producto=Stock_Producto.objects.all()
     context={
         "titulo":titulo,

@@ -33,13 +33,12 @@
                           <td>{{stock_producto.get_estado_display}}</td>
                           <td>{{stock_producto.detalle_producto}}</td>
                           <td>{{stock_producto.detalle_venta}}</td>
-
                           <td>
                           <button  type="button" data-ids="{{stock_producto.id}}" class="btnEliminar btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#modal-danger">
                             Eliminar
                           </button>
-                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'materias-primas-modificar' stock_producto.id %}">Modificar</a>
+                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'stock-producto-modificar' stock_producto.id %}">Modificar</a>
                           </td>
                       </tr>
                       {% endif %}

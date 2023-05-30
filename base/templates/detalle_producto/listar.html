@@ -31,10 +31,6 @@
                           <td>{{detalle_producto.stock_materia_prima}}</td>
 
                           <td>
-                          <button  type="button" data-ids="{{detalle_producto.id}}" class="btnEliminar btn btn-danger"
-                            data-bs-toggle="modal" data-bs-target="#modal-danger">
-                            Eliminar
-                          </button>
                               <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'detalle-productos-modificar' detalle_producto.id %}">Modificar</a>
                           </td>
                       </tr>
@@ -61,6 +57,6 @@
     <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-  <a href="{% url 'stock-producto-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+  <a href="{% url 'detalle-productos-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
 </div>
 {% endblock contenido %}

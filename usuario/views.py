@@ -71,7 +71,7 @@ def persona_eliminar(request,pk):
 #CRUD Contabilidad
 ##@login_required
 def contabilidad_crear(request):
-    titulo="Contabilidad"
+    titulo="contabilidad"
     if request.method == 'POST':
         form=ContabilidadForm(request.POST)
         if form.is_valid():
@@ -79,7 +79,8 @@ def contabilidad_crear(request):
             messages.success(request,'se creado exitosamente')
             return redirect('contabilidades')
         else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+    else:
         form=ContabilidadForm()
     context={
         "titulo":titulo,
@@ -96,7 +97,7 @@ def contabilidad_listar(request):
         "titulo":titulo,
         "contabilidades":Contabilidades,
         "modulo":modulo,
-        
+
     }
     return render(request,"contabilidad/listar.html",context)
 

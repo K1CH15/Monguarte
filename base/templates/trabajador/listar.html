@@ -27,7 +27,7 @@
                 </thead>
             <tbody>
         {% for trabajador in trabajadores %}
-        {% if trabajador.persona.rol == "ADMI" or  trabajador.persona.rol == "VEN" %}
+        {% if trabajador.persona.rol == "VEN" %}
 
             <tr>
                 <td>{{trabajador.id}}</td>
@@ -36,7 +36,7 @@
                     {{trabajador.persona.primer_nombre}} {{trabajador.persona.segundo_nombre}}
                     {{trabajador.persona.primer_apellido}} {{trabajador.persona.segundo_apellido}}
                 </td>
-                <td>{{trabajador.nomina.valor}}</td>
+                <td>{{trabajador.formato_colombiano}}</td>
                 <td>{{trabajador.ips.nombre_ips}}</td>
                 <td>{{trabajador.persona.get_rol_display}}</td>
                 <td>

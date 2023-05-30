@@ -1,4 +1,3 @@
-
 from django import forms
 from django.forms import ModelForm
 from inventario.models import Materia_Prima,Stock_Producto,Stock_Materia_Prima,Detalle_Producto
@@ -27,7 +26,7 @@ class Stock_ProductoUptadeForm(ModelForm):
     class Meta:
         model = Stock_Producto
         fields = "__all__"
-        
+
 
 class Stock_Materia_PrimaForm(ModelForm):
 

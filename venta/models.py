@@ -26,6 +26,6 @@ class Detalle_Venta(models.Model):
     venta=models.ForeignKey(Venta, verbose_name=_("Venta"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s %s"%(self.cantidad_total,self.precio_unitario,self.venta)
+        return"%s %s %s"%(self.cantidad_total,self.precio_unitario,self.venta)
     class meta:
         verbose_name_plural="Detalle Venta"

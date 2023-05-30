@@ -48,6 +48,8 @@ class Contabilidad(models.Model):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.valor).replace(',', '.')
 #Modelo Aporte
 class Aporte(models.Model):
     valor=models.DecimalField(max_digits=25, decimal_places=2, verbose_name="Valor del Aporte")
@@ -88,6 +90,9 @@ class Nomina(models.Model):
         verbose_name_plural="Nomina"
 
 class Trabajador(models.Model):
-    persona=models.ForeignKey(Persona, verbose_name=_("Seleccione al Trabajador"),help_text="Recuerde que solo las personas con rol de vendedor se mostraran en los trabajadores", on_delete=models.CASCADE)
+    
+    persona=models.     ForeignKey(Persona, verbose_name=_("Seleccione al Trabajador"),help_text="Recuerde que solo las personas con rol de vendedor se mostraran en los trabajadores", on_delete=models.CASCADE)
     nomina=models.ForeignKey(Nomina, verbose_name=_("Valor a Pagar"),help_text="Valor que se le paga al trabajador", on_delete=models.CASCADE)
     ips=models.ForeignKey(Ips, verbose_name=_("Prestador de salud"),help_text="Seleccione una IPS", on_delete=models.CASCADE)
+    def formato_colombiano(self):
+        return '${:,.0f}'.format(self.nomina.valor).replace(',', '.')

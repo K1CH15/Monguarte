@@ -27,18 +27,18 @@
               </thead>
             <tbody>
                   {% for stock_materia_prima in stocksm %}
-                    {% if stock_producto.estado != "0" %}
+                    {% if stock_materia_prima.estado != "0" %}
                       <tr>
                           <td>{{stock_materia_prima.cantidad}}</td>
                           <td>{{stock_materia_prima.get_estado_display}}</td>
                           <td>{{stock_materia_prima.materia_prima}}</td>
 
                           <td>
-                          <button  type="button" data-ids="{{stock_producto.id}}" class="btnEliminar btn btn-danger"
+                          <button  type="button" data-ids="{{stock_materia_prima.id}}" class="btnEliminar btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#modal-danger">
                             Eliminar
                           </button>
-                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'materias-primas-modificar' stock_producto.id %}">Modificar</a>
+                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'stock-materia-prima-modificar' stock_materia_prima.id %}">Modificar</a>
                           </td>
                       </tr>
                       {% endif %}
@@ -65,6 +65,6 @@
     <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-  <a href="{% url 'stock-producto-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+  <a href="{% url 'stock-materia-prima-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
 </div>
 {% endblock contenido %}
