@@ -19,14 +19,16 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>°N de Registro</th>
                       <th>Producto</th>
-                      <th>Stock</th>
+                      <th>Stock Materia Prima</th>
                       <th>Acción</th>
                   </tr>
               </thead>
             <tbody>
                   {% for detalle_producto in detallesP %}
                       <tr>
+                          <td>{{detalle_producto.id }}</td>
                           <td>{{detalle_producto.producto}}</td>
                           <td>{{detalle_producto.stock_materia_prima}}</td>
 
@@ -39,8 +41,9 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>°N de Registro</th>
                 <th>Producto</th>
-                <th>Stock</th>
+                <th>Stock Materia Prima</th>
                 <th>Acción</th>
             </tr>
             </tfoot>

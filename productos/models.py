@@ -48,6 +48,6 @@ class Producto(models.Model):
     tipo=models.ForeignKey(Tipo,verbose_name=_("Tipo"),on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s"%(self.id)
+        return"%s %s %s"%(self.nombre,self.cantidad,self.precio_unitario)
     class meta:
         verbose_name_plural="Producto"

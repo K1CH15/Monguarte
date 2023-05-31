@@ -26,7 +26,7 @@ class Stock_Materia_Prima(models.Model):
     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s"%(self.cantidad)
+        return"%s %s"%("la cantidad de producto es:",self.materia_prima24)
     class Meta:
         verbose_name_plural="Stock Materia Prima"
 
@@ -47,6 +47,6 @@ class Stock_Producto(models.Model):
     detalle_venta=models.ForeignKey(Detalle_Venta, verbose_name=_("Detalle venta"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s"%(self.id)
+        return"%s %s %s"%(self.cantidad,self.detalle_producto,self.detalle_venta)
     class Meta:
         verbose_name_plural="Stock Producto"
