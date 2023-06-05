@@ -1,26 +1,73 @@
 {% extends 'partials/body.html'%}
+{% load static %}
 {% block contenido %}
-<a href="{% url 'detalle_venta-crear' %}" class="btn btn-success w-25">Crear {{ titulo}}</a>
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Cantidad Total</th>
-                <th scope="col">Precio Unitario</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for Detalle_Venta in venta %}
+
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-12">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ titulo }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
                 <tr>
-                    <td>{{Detalle_Venta.id}}</td>
-                    <td>{{Detalle_Venta.cantidad_total}}</td>
-                    <td>{{Detalle_Venta.precio_unitario}}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{% url 'detalle_venta-modificar' Venta.id_venta %}">+</a>
-                    </td>
+                    <th>Id</th>
+                    <th>Cantidad Total</th>
+                    <th>Precio Unitario</th>
+                    <th>Venta id</th>
+                    <th>Valor total</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    {% for Detalle_Venta in detalles %}
+                    <tr>
+                        <td>{{Detalle_Venta.id}}</td>
+                        <td>{{Detalle_Venta.cantidad_total}}</td>
+                        <td>{{Detalle_Venta.precio_unitario}}</td>
+                        <td>{{Detalle_Venta.venta}}</td>
+                        <td>{{Detalle_Venta.venta.valor_total}}</td>
+                        <td>{{Detalle_Venta.venta.fecha}}</td>
+                        <td>{{Detalle_Venta.venta.get_estado_display}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'detalle_venta-modificar' Detalle_Venta.id %}">Modificar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Cantidad Total</th>
+                    <th>Precio Unitario</th>
+                    <th>Venta id</th>
+                    <th>Valor total</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+            <a href="{% url 'detalle_venta-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
 {% endblock contenido %}

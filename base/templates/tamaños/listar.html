@@ -1,0 +1,65 @@
+{% extends 'partials/body.html' %}
+{% block contenido %}
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"> {{titulo}} </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                        <th>Nombre del Tamaño</th>
+                        <th>estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+              <tbody>
+                {% for tamaño in tamaños %}
+
+                    {% if tamaño.estado != "0" %}
+                        <tr>
+                        <td>{{tamaño.nombre}}</td>
+                        <td>{{tamaño.get_estado_display}}</td>
+                            <td>
+                            <button  type="button" data-ids="{{producto.id}}" class="btnEliminar btn btn-danger"
+                              data-bs-toggle="modal" data-bs-target="#modal-danger">
+                              Eliminar
+                            </button>
+                                <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'tamaños-modificar' tamaño.id %}">Modificar</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                    <th>Nombre del {{ titulo }}</th>
+                    <th>estado</th>
+                    <th>Acción</th>
+                </tr>
+              </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <a href="{% url 'tamaños-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+  </div>
+{% endblock contenido %}
+
+  

@@ -1,0 +1,75 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-12">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ titulo }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>°N de Registro</th>
+                        <th>Valor</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                {% for aporte in aportes %}
+
+                {% if aporte.estado != "0" %}
+                    <tr>
+                        <td>{{aporte.id}}</td>
+                        <td>{{aporte.valor}}</td>
+                        <td>{{aporte.fecha}}</td>
+                        <td>{{aporte.get_estado_display}}</td>
+                        <td>
+                            <button  type="button" data-ids="{{aporte.id}}" class="btnEliminar btn btn-danger"
+                            data-bs-toggle="modal" data-bs-target="#modal-danger">
+                            Eliminar
+                            </button>
+                    <a class="btn btn-primary" href="{% url 'aportes-modificar' aporte.id %}">Modificar</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>°N de Registro</th>
+                    <th>Valor</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+
+                </tr>
+            </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+            <a href="{% url 'aportes-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+{% endblock contenido %}

@@ -1,0 +1,14 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block contenido %}
+{% comment %} {% if trabajador.persona.rol == "ADMI" or  trabajador.persona.rol == "VEN" %} {% endcomment %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Agregar {{titulo}}">
+    </form>
+{% comment %} {%endif%} {% endcomment %}
+{% endblock contenido %}
+

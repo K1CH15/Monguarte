@@ -15,9 +15,9 @@ class VentaForm(ModelForm):
     class Meta:
         model = Venta
         fields = '__all__'
+        exclude = ["estado"]
 class VentaUpdateForm(ModelForm):
     class Meta:
         model = Venta
         fields = '__all__'
-        #exclude = ["estado"]
-
+        exclude = ["estado"]
