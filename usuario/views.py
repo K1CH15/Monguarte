@@ -347,5 +347,3 @@ def trabajador_modificar(request,pk):
         "form":form
     }
     return render (request,"trabajador/modificar.html",context)
-
-
