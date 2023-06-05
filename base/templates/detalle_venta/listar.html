@@ -1,0 +1,26 @@
+{% extends 'partials/body.html'%}
+{% block contenido %}
+<a href="{% url 'detalle_venta-crear' %}" class="btn btn-success w-25">Crear {{ titulo}}</a>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Cantidad Total</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Detalle_Venta in venta %}
+                <tr>
+                    <td>{{Detalle_Venta.id}}</td>
+                    <td>{{Detalle_Venta.cantidad_total}}</td>
+                    <td>{{Detalle_Venta.precio_unitario}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'detalle_venta-modificar' Venta.id_venta %}">+</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}
