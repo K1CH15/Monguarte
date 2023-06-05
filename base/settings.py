@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,19 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     #Apps
     'usuario',
     'inventario',
-    'productos',
+    'producto',
     'compra',
-    'venta',
-    
+    'venta'
+
     #Librerias
     'django_bootstrap5',#pip install django-bootstrap5
     'crispy_forms', #pip install django-crispy-forms
     'crispy_bootstrap5', #pip install crispy-bootstrap5
     'django_bootstrap_icons',
-
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"
 CRISPY_TEMPLATE_PACK= "bootstrap5"
@@ -136,7 +136,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS= [
     os.path.join(BASE_DIR,"static"),
     ('node_modules',os.path.join(BASE_DIR, 'node_modules')),
-
 ]
 STATIC_ROOT ="/static"
 

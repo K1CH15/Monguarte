@@ -21,4 +21,3 @@ class VentaUpdateForm(ModelForm):
         model = Venta
         fields = '__all__'
         exclude = ["estado"]
-
