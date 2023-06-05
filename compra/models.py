@@ -33,4 +33,3 @@ class Detalle_Compra(models.Model):
         return"%s %s"%(self.materia_prima,self.cantidad)
     class meta:
         verbose_name_plural="Detalle Compra"
- 

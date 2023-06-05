@@ -37,7 +37,6 @@ class Persona(models.Model):
         verbose_name_plural="Persona"
 #Modelo de Contabilidad
 class Contabilidad(models.Model):
-
     class TipoI(models.TextChoices):
         INGRESO='1',_("Ingreso")
         EGRESO='0',_("Egreso")
