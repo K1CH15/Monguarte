@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -40,15 +42,16 @@ INSTALLED_APPS = [
     
     #Apps
     'usuario',
+    'inventario',
     'producto',
     'compra',
-    'stock',
     'venta'
+
     #Librerias
     'django_bootstrap5',#pip install django-bootstrap5
     'crispy_forms', #pip install django-crispy-forms
     'crispy_bootstrap5', #pip install crispy-bootstrap5
-
+    'django_bootstrap_icons',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"
 CRISPY_TEMPLATE_PACK= "bootstrap5"
@@ -129,9 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS= [
     os.path.join(BASE_DIR,"static"),
+    ('node_modules',os.path.join(BASE_DIR, 'node_modules')),
 ]
 STATIC_ROOT ="/static"
 
@@ -139,3 +143,13 @@ STATIC_ROOT ="/static"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'monguarte2@gmail.com'
+EMAIL_HOST_PASSWORD = 'llojmubhpfbgldsc'
+EMAIL_USE_TLS = True
+
+LOGIN_URL = 'inicio'
+LOGIN_REDIRECT_URL = 'index'

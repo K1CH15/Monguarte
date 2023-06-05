@@ -1,0 +1,70 @@
+
+{% extends 'partials/body.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"> {{titulo}} </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                      <th>Cantidad</th>
+                      <th>Estado</th>
+                      <th>Materia Prima</th>
+                      <th>Acción</th>
+                  </tr>
+              </thead>
+            <tbody>
+                  {% for stock_materia_prima in stocksm %}
+                    {% if stock_materia_prima.estado != "0" %}
+                      <tr>
+                          <td>{{stock_materia_prima.cantidad}}</td>
+                          <td>{{stock_materia_prima.get_estado_display}}</td>
+                          <td>{{stock_materia_prima.materia_prima}}</td>
+
+                          <td>
+                          <button  type="button" data-ids="{{stock_materia_prima.id}}" class="btnEliminar btn btn-danger"
+                            data-bs-toggle="modal" data-bs-target="#modal-danger">
+                            Eliminar
+                          </button>
+                              <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'stock-materia-prima-modificar' stock_materia_prima.id %}">Modificar</a>
+                          </td>
+                      </tr>
+                      {% endif %}
+                  {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Materia Prima</th>
+                <th>Acción</th>
+            </tr>
+            </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  <a href="{% url 'stock-materia-prima-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+</div>
+{% endblock contenido %}

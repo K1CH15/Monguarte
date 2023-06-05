@@ -1,0 +1,7 @@
+/db.sqlite3
+/node_modules
+*.pyc
+***/0001_initial.py
+/.vscode
+/sync.ffs_db
+/package-lock.json
