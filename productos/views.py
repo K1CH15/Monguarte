@@ -136,7 +136,7 @@ def tipo_crear(request):
 
 def tipo_listar(request):
     titulo="Tipo"
-    modulo="productos"
+    modulo="Productos"
     tipos= Tipo.objects.all()
     context={
         "titulo":titulo,
