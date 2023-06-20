@@ -9,14 +9,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+
     <link rel="icon" href="{% static 'img/sheep.png' %}" type="image/svg+xml">
 
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cdn.jsdelivr.net_npm_slick-carousel@1.8.1_slick_slick.css' %}"/>
     <link href="{% static '/node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{% static 'css/fonts.googleapis.com_css_family=Source+Sans+Pro_300,400,400i,700&display=fallback.css' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static '/node_modules/fontawesome-free/css/all.min.css' %}">
     <!-- DataTables -->
@@ -29,7 +28,7 @@
     <link rel="stylesheet" href="{% static '/node_modules/sweetalert2/dist/sweetalert2.min.css' %}">
     <!--Estilos  -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'node_modules/fontawesome-free/css/all.min.css' %}" />
     
         <title> Monguarte - {{ titulo }} </title>
 </head>
