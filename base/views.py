@@ -52,3 +52,15 @@ def principal(request):
 def logout_user(request):
     logout(request)
     return redirect('inicio')
+#modulos
+def usuario_vista (request):
+    return render(request,"partials/usuario.html")
+def compra_vista (request):
+    return render(request,"partials/compra.html")
+def inventario_vista (request):
+    return render(request,"partials/inventario.html")
+def venta_vista (request):
+    return render(request,"partials/venta.html")
+def producto_vista (request):
+    return render(request,"partials/producto.html")
+
