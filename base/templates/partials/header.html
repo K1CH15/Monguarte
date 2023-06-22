@@ -21,81 +21,71 @@
                 <span class="fs-5 fw-semibold"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;;"><img src="/static/img/Monguarte_color.jpg" alt="" class="rounded-circle"  width="70" height="70"></fort></fort></span>
               </a>
               <ul class="list-unstyled ps-0">
-                <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#compra-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    
-                    COMPRA
-                  </fort></fort></button>
-                  <div class="collapse" id="compra-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'compra'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Compra</fort></fort></a></li>
-                      <li><a href="{% url 'detalle_compra'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Detalle Compra</fort></fort></a></li>
-                    </ul>
-                  </div>
+                  <li class="mb-1" >
+                      <div class="dropdown0 ">
+                          <button class="dropbtn0">COMPRA</button>
+                          <div class="dropdown0-content0">
+                              <a href="{% url 'compra'%}">Compra</a>
+                              <a href="{% url 'detalle_compra'%}">Detalle Compra</a>
+                          </div>
+                      </div>
                 </li>
-                <li class="mb-1"> 
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#venta-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    VENTA
-                  </fort></fort></button>
-                  <div class="collapse" id="venta-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'ventas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Venta</fort></fort></a></li>
-                      <li><a href="{% url 'detalle_ventas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Detalle Venta</fort></fort></a></li>
-                    </ul>
-                  </div>
+
+                <li class="mb-1">
+                    <div class="dropdown0 ">
+                          <button class="dropbtn0">VENTA</button>
+                          <div class="dropdown0-content0">
+                              <a href="{% url 'ventas'%}">Venta</a>
+                              <a href="{% url 'detalle_ventas'%}">Detalle Venta</a>
+                          </div>
+                      </div>
                 </li>
                 <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#inventario-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    INVENTARIO
-                  </fort></fort></button>
-                  <div class="collapse" id="inventario-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'stock-productos'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Stock Producto</fort></fort></a></li>
-                      <li><a href="{% url 'materias-primas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Materia Prima</fort></fort></a></li>
-                      <li><a href="{% url 'stock-materias-primas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Stock Materia Prima </fort></fort></a></li>
-                      <li><a href="{% url 'detalle-productos'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Detalle Producto </fort></fort></a></li>
-                    </ul>
-                  </div>
+                    <div class="dropdown0 ">
+                          <button class="dropbtn0">INVENTARIO</button>
+                          <div class="dropdown0-content0">
+                              <a href="{% url 'stock-productos'%}">Stock Producto</a>
+                              <a href="{% url 'materias-primas'%}">Materia Prima</a>
+                              <a href="{% url 'stock-materias-primas'%}">Stock Materia Prima</a>
+                              <a href="{% url 'detalle-productos'%}">Detalle Producto</a>
+                          </div>
+                      </div>
                 </li>
                 <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#usuario-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    USUARIO
-                  </fort></fort></button>
-                  <div class="collapse" id="usuario-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'personas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Persona</fort></fort></a></li>
-                      <li><a href="{% url 'contabilidades'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Contabilidad</fort></fort></a></li>
-                      <li><a href="{% url 'ipss'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1" ><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Ips</fort></fort></a></li>
-                      <li><a href="{% url 'nominas'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nomina</fort></fort></a></li>
-                      <li><a href="{% url 'trabajadores'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Trabajador</fort></fort></a></li>
-                    </ul>
-                  </div>
+                    <div class="dropdown0 ">
+                          <button class="dropbtn0">USUARIO</button>
+                          <div class="dropdown0-content0">
+                              <a href="{% url 'personas'%}">Persona</a>
+                              <a href="{% url 'contabilidades'%}">Contabilidad</a>
+                              <a href="{% url 'ipss'%}">Ips</a>
+                              <a href="{% url 'nominas'%}">Nominas</a>
+                              <a href="{% url 'trabajadores'%}">Trabajadores</a>
+                              <a href="{% url 'aportes'%}">Aportes</a>
+                          </div>
+                      </div>
                 </li>
                 <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#producto-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    PRODUCTO
-                  </fort></fort></button>
-                  <div class="collapse" id="producto-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'productos'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Producto</fort></fort></a></li>
-                      <li><a href="{% url 'tamaños'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Tamaño</fort></fort></a></li>
-                      <li><a href="{% url 'tipos'%}" class="link-body-emphasis d-inline-flex text-decoration-none rounded p-1"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Tipo</fort></fort></a></li>
-                    </ul>
-                  </div>
+                      <div class="dropdown0 ">
+                          <button class="dropbtn0">PRODUCTO</button>
+                          <div class="dropdown0-content0">
+                              <a href="{% url 'productos'%}">Producto</a>
+                              <a href="{% url 'tamaños'%}">Tamaño</a>
+                              <a href="{% url 'tipos'%}">Tipo</a>
+                          </div>
+                      </div>
                 </li>
                 <li class="border-top my-2"></li>
                 <li class="mb-1"> <i class="bi bi-0-square"></i>
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-dark" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">
-                    CUENTA
-                  </fort></fort></button>
-                  <div class="collapse" id="account-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Nuevo...</fort></fort></a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Perfil</fort></fort></a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">Ajustes</fort></fort></a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;">desconectar</fort></fort></a></li>
-                    </ul>
-                  </div>
+                    <li class="mb-1">
+                      <div class="dropdown0 ">
+                          <button class="dropbtn0">CUENTA</button>
+                          <div class="dropdown0-content0">
+                              <a href="#">Nuevo</a>
+                              <a href="#">Perfil</a>
+                              <a href="#">Ajustes</a>
+                          </div>
+                      </div>
+
                 </li>
               </ul>
             </div>
@@ -105,7 +95,7 @@
     </div></a>
     </div>
     <div class="col-4 text-center">
-      <a class="blog-header-logo text-body-emphasis text-light"  href="http://127.0.0.1:8000/inicio/"><h1 style="font-family: 'Dancing Script', cursive; " href="">MonguArte</h1></a>
+      <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none" href="http://127.0.0.1:8000/inicio/"><h1 style="font-family: 'Dancing Script', cursive; " href="">MonguArte</h1></a>
         </a>
     </div>
 

@@ -16,8 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
-from base.views import principal,logout_user
+from base.views import (
+    principal,
+    logout_user,
+    usuario_vista,
+    compra_vista,
+    inventario_vista,
+    venta_vista,
+    producto_vista,
 
+    )
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("inicio/",principal, name="index"),
@@ -34,4 +42,13 @@ urlpatterns = [
     path('inventarios/', include('inventario.urls')),
     path('ventas/', include('venta.urls')),
     path('productos/', include('productos.urls')),
+    # vistas de modulos
+    path('usuarios/', usuario_vista, name="usuario"),
+    path('compras/', compra_vista, name="compras"),
+    path('inventarios/', inventario_vista, name="inventario"),
+    path('ventas/', venta_vista, name="venta"),
+    path('productos/', producto_vista, name="producto"),
 ]
+
+
+
