@@ -44,7 +44,7 @@ urlpatterns = [
     path('productos/', include('productos.urls')),
     # vistas de modulos
     path('usuarios/', usuario_vista, name="usuario"),
-    path('compras/', compra_vista, name="compra"),
+    path('compras/', compra_vista, name="compras"),
     path('inventarios/', inventario_vista, name="inventario"),
     path('ventas/', venta_vista, name="venta"),
     path('productos/', producto_vista, name="producto"),
