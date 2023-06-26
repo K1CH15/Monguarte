@@ -368,5 +368,12 @@ footer .wave01#wave4
     100%{background-position-x: 1000px;}
 }
 
-
+.resposive{
+    display: grid;
+    grid-template-columns:
+            repeat(
+                    auto-fit,
+                    minmax(150px,1fr)
+            );
+}
 

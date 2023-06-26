@@ -3,86 +3,89 @@
 {% block contenido %}
     <!-- Content Header (Page header) -->
     <div class="d-flex justify-content-end" style="height: 1px;">
-            <ol class="breadcrumb float-sm-right" >
-                <li class="breadcrumb-item" ><a href="{% url 'index' %}">Inicio</a></li>
-                <li class="breadcrumb-item active" ><a href="{% url 'usuario' %}">usuarios</a></li>
-                <li class="breadcrumb-item active">{{ titulo }} </li>
-            </ol>
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'usuario' %}">usuarios</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
     </div>
     <!-- /.content-header -->
-<div class="wrapper">
-    <!-- Main content -->
-    <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-        <div class="col-12">
-            <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">{{ titulo }}</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>N° de Registro</th>
-                        <th>Numero de Documento</th>
-                        <th>Nombre Trabajador</th>
-                        <th>Valor de Sueldo</th>
-                        <th>Prestadora de Salud</th>
-                        <th>Rol</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-            <tbody>
-        {% for trabajador in trabajadores %}
-        {% if trabajador.persona.rol == "VEN" %}
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ titulo }}</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>N° de Registro</th>
+                                            <th>Numero de Documento</th>
+                                            <th>Nombre Trabajador</th>
+                                            <th>Valor de Sueldo</th>
+                                            <th>Prestadora de Salud</th>
+                                            <th>Rol</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for trabajador in trabajadores %}
+                                            {% if trabajador.persona.rol == "VEN" %}
 
-            <tr>
-                <td>{{trabajador.id}}</td>
-                <th>{{trabajador.persona.tipo_documento}}{{trabajador.persona.numero_documento}}</th>
-                <td>
-                    {{trabajador.persona.primer_nombre}} {{trabajador.persona.segundo_nombre}}
-                    {{trabajador.persona.primer_apellido}} {{trabajador.persona.segundo_apellido}}
-                </td>
-                <td>{{trabajador.formato_colombiano}}</td>
-                <td>{{trabajador.ips.nombre_ips}}</td>
-                <td>{{trabajador.persona.get_rol_display}}</td>
-                <td>
-                    <a class="btn btn-primary" href="{% url 'trabajadores-modificar' trabajador.id %}">Modificar</a>
-                </td>
-            </tr>
-            {% endif %}
-        {% endfor %}
+                                                <tr>
+                                                    <td>{{ trabajador.id }}</td>
+                                                    <th>
+                                                        {{ trabajador.persona.tipo_documento }}{{ trabajador.persona.numero_documento }}</th>
+                                                    <td>
+                                                        {{ trabajador.persona.primer_nombre }} {{ trabajador.persona.segundo_nombre }}
+                                                        {{ trabajador.persona.primer_apellido }} {{ trabajador.persona.segundo_apellido }}
+                                                    </td>
+                                                    <td>{{ trabajador.formato_colombiano }}</td>
+                                                    <td>{{ trabajador.ips.nombre_ips }}</td>
+                                                    <td>{{ trabajador.persona.get_rol_display }}</td>
+                                                    <td>
+                                                        <a class="btn btn-primary"
+                                                           href="{% url 'trabajadores-modificar' trabajador.id %}">Modificar</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
 
 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>N° de Registro</th>
-                    <th>Numero de Documento</th>
-                    <th>Nombre trabajador</th>
-                    <th>Valor de sueldo</th>
-                    <th>Prestadora de salud</th>
-                    <th>Rol</th>
-                    <th>Acción</th>
-                </tr>
-            </tfoot>
-                </table>
-            </div>
-            <!-- /.card-body -->
-            </div>
-            <a href="{% url 'trabajadores-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
-            <!-- /.card -->
-        </div>
-        <!-- /.col -->
-        </div>
-        <!-- /.row -->
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>N° de Registro</th>
+                                            <th>Numero de Documento</th>
+                                            <th>Nombre trabajador</th>
+                                            <th>Valor de sueldo</th>
+                                            <th>Prestadora de salud</th>
+                                            <th>Rol</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <a href="{% url 'trabajadores-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
     </div>
-    <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
 
 
 
