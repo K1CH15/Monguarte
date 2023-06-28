@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
+from django.views.generic import TemplateView
 from base.views import (
     principal,
     logout_user,
@@ -48,6 +49,7 @@ urlpatterns = [
     path('inventarios/', inventario_vista, name="inventario"),
     path('ventas/', venta_vista, name="venta"),
     path('productos/', producto_vista, name="producto"),
+    path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
 ]
 
 
