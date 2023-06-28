@@ -37,6 +37,7 @@
     "jszip": "^3.10.1",
     "overlayscrollbars": "^2.2.0",
     "pdfmake": "^0.2.7",
+    "sass": "^1.63.6",
     "sweetalert2": "^11.4.8",
     "toastr": "^2.1.4"
   }
