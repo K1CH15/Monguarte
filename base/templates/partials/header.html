@@ -22,28 +22,27 @@
               </a>
               <ul class="list-unstyled ps-0">
                   <li class="mb-1" >
-                      <div class="dropdown0 ">
-                          <button class="dropbtn0">COMPRA</button>
-                          <div class="dropdown0-content0">
+                      <div class="custom-dropdown">
+                          <button class="custom-dropbtn">COMPRA</button>
+                          <div class="custom-dropdown-content">
                               <a href="{% url 'compra'%}">Compra</a>
                               <a href="{% url 'detalle_compra'%}">Detalle Compra</a>
                           </div>
                       </div>
                 </li>
-
                 <li class="mb-1">
-                    <div class="dropdown0 ">
-                          <button class="dropbtn0">VENTA</button>
-                          <div class="dropdown0-content0">
+                    <div class="custom-dropdown">
+                          <button class="custom-dropbtn">VENTA</button>
+                          <div class="custom-dropdown-content">
                               <a href="{% url 'ventas'%}">Venta</a>
                               <a href="{% url 'detalle_ventas'%}">Detalle Venta</a>
                           </div>
                       </div>
                 </li>
                 <li class="mb-1">
-                    <div class="dropdown0 ">
-                          <button class="dropbtn0">INVENTARIO</button>
-                          <div class="dropdown0-content0">
+                    <div class="custom-dropdown">
+                          <button class="custom-dropbtn">INVENTARIO</button>
+                          <div class="custom-dropdown-content">
                               <a href="{% url 'stock-productos'%}">Stock Producto</a>
                               <a href="{% url 'materias-primas'%}">Materia Prima</a>
                               <a href="{% url 'stock-materias-primas'%}">Stock Materia Prima</a>
@@ -52,9 +51,9 @@
                       </div>
                 </li>
                 <li class="mb-1">
-                    <div class="dropdown0 ">
-                          <button class="dropbtn0">USUARIO</button>
-                          <div class="dropdown0-content0">
+                    <div class="custom-dropdown">
+                          <button class="custom-dropbtn">USUARIO</button>
+                          <div class="custom-dropdown-content">
                               <a href="{% url 'personas'%}">Persona</a>
                               <a href="{% url 'contabilidades'%}">Contabilidad</a>
                               <a href="{% url 'ipss'%}">Ips</a>
@@ -65,9 +64,9 @@
                       </div>
                 </li>
                 <li class="mb-1">
-                      <div class="dropdown0 ">
-                          <button class="dropbtn0">PRODUCTO</button>
-                          <div class="dropdown0-content0">
+                    <div class="custom-dropdown">
+                          <button class="custom-dropbtn">PRODUCTO</button>
+                          <div class="custom-dropdown-content">
                               <a href="{% url 'productos'%}">Producto</a>
                               <a href="{% url 'tamaños'%}">Tamaño</a>
                               <a href="{% url 'tipos'%}">Tipo</a>
@@ -77,15 +76,15 @@
                 <li class="border-top my-2"></li>
                 <li class="mb-1"> <i class="bi bi-0-square"></i>
                     <li class="mb-1">
-                      <div class="dropdown0 ">
-                          <button class="dropbtn0">CUENTA</button>
-                          <div class="dropdown0-content0">
+                  <div class="custom-dropdown">
+                          <button class="custom-dropbtn">CUENTA</button>
+                          <div class="custom-dropdown-content">
                               <a href="#">Nuevo</a>
                               <a href="#">Perfil</a>
                               <a href="#">Ajustes</a>
+                              <button onclick="button"> <a href="{% url 'logout' %}">Nuevo</a> </button>
                           </div>
                       </div>
-
                 </li>
               </ul>
             </div>

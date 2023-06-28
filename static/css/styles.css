@@ -217,26 +217,29 @@ button:focus {
   color: #f1eded; 
 }
 
+/*boton desplegables */
 
-/* Style The Dropdown Button */
-.dropbtn0 {
-   border-radius: 50%;
-  background-color: transparent;
-  color: black;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown0 {
+/* Estilos para el botón desplegable */
+.custom-dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown0-content0 {
+.custom-dropbtn {
+  background-color: transparent; /* Gris plateado */
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición de color */
+}
+.custom-dropbtn:hover {
+  background-color: rgba(192, 192, 192, 0.8); /* Gris plateado con opacidad reducida */
+}
+
+/* Estilos para el contenido desplegable */
+.custom-dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -245,28 +248,22 @@ button:focus {
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown0-content0 a {
+.custom-dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown0-content0 a:hover {background-color: #f1f1f1}
+.custom-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
 
-/* Show the dropdown menu on hover */
-.dropdown0:hover .dropdown0-content0 {
+/* Mostrar el contenido desplegable cuando se pasa el cursor sobre el botón */
+.custom-dropdown:hover .custom-dropdown-content {
   display: block;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown0:hover .dropbtn0 {
-  background-color: #5c9ead;
-}
-
-
+/*boton desplegables */
 
 /* footer*/
 
@@ -367,6 +364,79 @@ footer .wave01#wave4
     0%{background-position-x: 0px;}
     100%{background-position-x: 1000px;}
 }
+
+
+
+/*boton flotante de ayuda */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#btn-mas {
+  display: none;
+}
+
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 10%; /* Ajuste para colocar el botón más a la izquierda */
+}
+
+.redes a,
+.btn-mas label {
+  display: block;
+  text-decoration: none;
+  background: #cc2b2b;
+  color: #fff;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+  transition: all 500ms ease;
+}
+
+.redes a:hover {
+  background: #fff;
+  color: #cc2b2b;
+}
+
+.redes a {
+  margin-bottom: -15px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#btn-mas:checked ~ .redes a {
+  margin-bottom: 10px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-mas label {
+  cursor: pointer;
+  background: #f44141;
+  font-size: 23px;
+}
+
+#btn-mas:checked ~ .btn-mas label {
+  transform: rotate(135deg);
+  font-size: 25px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
