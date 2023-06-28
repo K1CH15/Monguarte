@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 #VIEWS VENTA
 #@login_required
 def venta_crear(request):
-    titulo="Venta"
+    titulo="venta"
     if request.method=='POST':
         form=VentaForm(request.POST)
         if form.is_valid():

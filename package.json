@@ -30,12 +30,14 @@
     "datatables.net-responsive": "^2.4.1",
     "datatables.net-responsive-bs": "^2.4.1",
     "datatables.net-responsive-bs4": "^2.4.1",
+    "datatables.net-responsive-bs5": "^2.4.1",
     "font-awesome": "^4.7.0",
     "fontawesome-free": "^1.0.4",
     "jquery": "^3.7.0",
     "jszip": "^3.10.1",
     "overlayscrollbars": "^2.2.0",
     "pdfmake": "^0.2.7",
+    "sass": "^1.63.6",
     "sweetalert2": "^11.4.8",
     "toastr": "^2.1.4"
   }
