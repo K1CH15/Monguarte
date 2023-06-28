@@ -13,12 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
-
-
+from django.views.generic import TemplateView
 from base.views import (
     principal,
     logout_user,
@@ -27,8 +25,8 @@ from base.views import (
     inventario_vista,
     venta_vista,
     producto_vista,
-    )
 
+    )
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("inicio/",principal, name="index"),
@@ -51,8 +49,7 @@ urlpatterns = [
     path('inventarios/', inventario_vista, name="inventario"),
     path('ventas/', venta_vista, name="venta"),
     path('productos/', producto_vista, name="producto"),
-
-
+    path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
 ]
 
 
