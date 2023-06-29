@@ -207,7 +207,7 @@ def ips_crear(request):
 ##@login_required
 def ips_listar(request):
     titulo="Ips"
-    modulo="usuario"
+    modulo="usuarios"
     ipss=Ips.objects.all()
     context={
         "titulo":titulo,
@@ -333,7 +333,7 @@ def trabajador_listar(request):
 
 ##@login_required
 def trabajador_modificar(request,pk):
-    titulo="Trabajador"
+    titulo="trabajador"
     trabajador=Trabajador.objects.get(id=pk)
     if request.method=='POST':
         form=TrabajadorUptadeForm(request.POST,instance=trabajador)

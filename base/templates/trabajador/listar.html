@@ -37,25 +37,30 @@
                                         </thead>
                                         <tbody>
                                         {% for trabajador in trabajadores %}
-                                            {% if trabajador.persona.rol == "VEN" %}
+                                            {#                                            {% if trabajador.persona.rol == "VEN" %}#}
 
-                                                <tr>
-                                                    <td>{{ trabajador.id }}</td>
-                                                    <th>
-                                                        {{ trabajador.persona.tipo_documento }}{{ trabajador.persona.numero_documento }}</th>
-                                                    <td>
-                                                        {{ trabajador.persona.primer_nombre }} {{ trabajador.persona.segundo_nombre }}
-                                                        {{ trabajador.persona.primer_apellido }} {{ trabajador.persona.segundo_apellido }}
-                                                    </td>
-                                                    <td>{{ trabajador.formato_colombiano }}</td>
-                                                    <td>{{ trabajador.ips.nombre_ips }}</td>
-                                                    <td>{{ trabajador.persona.get_rol_display }}</td>
-                                                    <td>
-                                                        <a class="btn btn-primary"
-                                                           href="{% url 'trabajadores-modificar' trabajador.id %}">Modificar</a>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                            <tr>
+                                                <td>{{ trabajador.id }}</td>
+                                                <th>
+                                                    {{ trabajador.persona.tipo_documento }}{{ trabajador.persona.numero_documento }}</th>
+                                                <td>
+                                                    {{ trabajador.persona.primer_nombre }} {{ trabajador.persona.segundo_nombre }}
+                                                    {{ trabajador.persona.primer_apellido }} {{ trabajador.persona.segundo_apellido }}
+                                                </td>
+                                                <td>{{ trabajador.formato_colombiano }}</td>
+                                                <td>{{ trabajador.ips.nombre_ips }}</td>
+                                                <td>{{ trabajador.persona.get_rol_display }}</td>
+                                                <td>
+{#                                                    <button type="button" data-ids="{{ trabajador.id }}"#}
+{#                                                            class="btnEliminar btn btn-danger"#}
+{#                                                            data-bs-toggle="modal" data-bs-target="#modal-danger">#}
+{#                                                        Eliminar#}
+{#                                                    </button>#}
+                                                    <a class="btn btn-primary"
+                                                       href="{% url 'trabajadores-modificar' trabajador.id %}">Modificar</a>
+                                                </td>
+                                            </tr>
+                                            {#                                            {% endif %}#}
                                         {% endfor %}
 
 
