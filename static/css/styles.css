@@ -380,10 +380,10 @@ marlon
   display: none;
 }
 
-.container {
+.conta {
   position: fixed;
   bottom: 20px;
-  right: 10%; /* Ajuste para colocar el botón más a la izquierda */
+  right: 95%; /* Ajuste para colocar el botón más a la izquierda */
 }
 
 .redes a,
@@ -442,4 +442,4 @@ marlon
 
 
 
- main
+
