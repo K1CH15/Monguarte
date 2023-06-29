@@ -13,7 +13,7 @@ class Materia_Prima(models.Model):
         INACTIVO='0',_("Inactivo")
     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
     def __str__(self):
-        return"%s %s %s %s %s %s "%("Materia Prima:",self.nombre,"de tipo",self.tipo,"de color",self.color)
+        return"%s %s %s %s %s %s"%("Materia Prima:",self.nombre,"de tipo",self.tipo,"de color",self.color)
     class Meta:
         verbose_name_plural="Materia Prima"
 
@@ -26,7 +26,7 @@ class Stock_Materia_Prima(models.Model):
     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return"%s %s"%("la cantidad de producto es:",self.materia_prima24)
+        return"%s %s"%("la cantidad de producto es:",self.materia_prima)
     class Meta:
         verbose_name_plural="Stock Materia Prima"
 
