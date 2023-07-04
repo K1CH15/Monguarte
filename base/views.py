@@ -92,3 +92,6 @@ def producto_vista (request):
     }
     return render(request,"partials/producto.html",context)
 
+def my_awesome_view(request):
+
+    dd(request)

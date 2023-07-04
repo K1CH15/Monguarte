@@ -15,19 +15,39 @@
 <head>
   <title>Dark Mode Toggle</title>
   <script src="{% static '/node_modules/jquery/dist/jquery.min.js' %}"></script>
-  <script>
-    $(document).ready(function() {
-      $('#dark-mode-toggle').on('click', function() {
-        $('body').toggleClass('dark-mode');
-      });
-    });
-  </script>
-  <style>
-    .dark-mode {
-      background-color: #333;
-      color: #fff;
+<script>
+  $(document).ready(function() {
+    // Obtener el estado actual del modo desde el almacenamiento local
+    var modoActual = localStorage.getItem("modo");
+
+    // Verificar el estado actual del modo y aplicar el estilo correspondiente
+    if (modoActual === "oscuro") {
+      $('body').addClass('dark-mode');
     }
-  </style>
+
+    // Escuchar el evento de clic en el botón
+    $('#dark-mode-toggle').on('click', function() {
+      // Cambiar el modo
+      if (modoActual === "oscuro") {
+        modoActual = "claro";
+        $('body').removeClass('dark-mode');
+      } else {
+        modoActual = "oscuro";
+        $('body').addClass('dark-mode');
+      }
+
+      // Guardar la preferencia en el almacenamiento local
+      localStorage.setItem("modo", modoActual);
+    });
+  });
+</script>
+<style>
+  .dark-mode {
+    background-color: #333;
+    color: #fff;
+  }
+</style>
+
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
