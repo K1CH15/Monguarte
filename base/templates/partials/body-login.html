@@ -10,10 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% bootstrap_css %}
         {% bootstrap_javascript %}
-        <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
-        <link rel="shortcut icon" href="{% static 'img/Monguarte_color.jpgn' %}"
-            type="image/x-icon">
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        <script src="{% static '/node_modules/jquery/dist/jquery.min.js' %}"></script>
+        <link rel="icon" href="{% static 'img/sheep.png' %}" type="image/svg+xml">
+        <script src="{% static 'js/code.jquery.com_jquery-3.6.4.min.js' %}" <!--  https://code.jquery.com/jquery-3.6.4.min.js-->
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous"></script>
         <!-- Incluye el plugin slick -->
@@ -26,12 +25,15 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <title> Monguarte - Iniciar Sesión </title>
     </head>
-    <body class="  login-page " style="background-color: rgba(50, 50, 50, 0.25);"> 
+    <body class="  login-page " style="background-image:url(/static/img/fondo.png);">
         
             <!-- Contenido aquí -->
                         {% block contenido %}
 
                         {% endblock contenido %}
+
+
+
     </body>
 
 </html>

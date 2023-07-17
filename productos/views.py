@@ -79,8 +79,8 @@ def tamaño_crear(request):
     return render(request,"tamaños/crear.html", context)
 
 def tamaño_listar(request):
-    titulo="Tamaño"
-    modulo="Productos"
+    titulo="tamaño"
+    modulo="productos"
     tamaños= Tamaño.objects.all()
     context={
         "titulo":titulo,
@@ -136,7 +136,7 @@ def tipo_crear(request):
 
 def tipo_listar(request):
     titulo="Tipo"
-    modulo="productos"
+    modulo="Productos"
     tipos= Tipo.objects.all()
     context={
         "titulo":titulo,

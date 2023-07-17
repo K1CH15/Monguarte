@@ -1,68 +1,80 @@
-{% extends 'partials/body.html'%}
+{% extends 'partials/body.html' %}
 {% block contenido %}
-<div class="wrapper">
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title"> {{titulo}} </h3>
+    <!-- /.content-header -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'venta' %}">ventas</a></li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> {{ titulo }} </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">l
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Fecha</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for Venta in venta %}
+                                            {% if Venta.estado != "0" %}
+                                                <tr>
+                                                    <td>{{ Venta.id }}</td>
+                                                    <td>{{ Venta.fecha }}</td>
+                                                    <td>{{ Venta.valor_total }}</td>
+                                                    <td>{{ Venta.get_estado_display }}</td>
+                                                    <td>
+                                                        <button type="button" data-ids="{{ Venta.id }}"
+                                                                class="btnEliminar btn btn-danger"
+                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                            Eliminar
+                                                        </button>
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                           href="{% url 'ventas-modificar' Venta.id %}">Modificar</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Fecha</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Fecha</th>
-                            <th>Valor Total</th>
-                            <th>Estado</th>
-                            <th>Acción</th>
-                        </tr>
-                  </thead>
-                <tbody>
-                    {% for Venta in venta %}
-                    {% if Venta.estado != "0" %}
-                        <tr>
-                            <td>{{Venta.id}}</td>
-                            <td>{{Venta.fecha}}</td>
-                            <td>{{Venta.valor_total}}</td>
-                            <td>{{Venta.get_estado_display}}</td>
-                            <td>
-                              <button  type="button" data-ids="{{venta.id}}" class="btnEliminar btn btn-danger"
-                                data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                Eliminar
-                              </button>
-                                  <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1" href="{% url 'ventas-modificar' Venta.id %}">Modificar</a>
-                              </td>
-                          </tr>
-                      {% endif %}
-                  {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Fecha</th>
-                        <th>Valor Total</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                    </tr>
-                </tfoot>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-      <a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{titulo}}</a>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+        <a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
     </div>
 {% endblock contenido %}

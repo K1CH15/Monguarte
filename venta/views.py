@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 #VIEWS VENTA
 #@login_required
 def venta_crear(request):
-    titulo="Venta"
+    titulo="venta"
     if request.method=='POST':
         form=VentaForm(request.POST)
         if form.is_valid():
@@ -25,13 +25,14 @@ def venta_crear(request):
 #@login_required
 def venta_listar(request):
     titulo="venta"
+    modulo="ventas"
     venta=Venta.objects.all()
-    context={"titulo":titulo,"venta":venta}
+    context={"titulo":titulo,"venta":venta,"modulo": modulo}
     return render(request,"venta/listar.html", context)
 
 #@login_required
 def venta_modificar(request,pk):
-    titulo="Venta"
+    titulo="venta"
     venta=Venta.objects.get(id=pk)
     if request.method=='POST':
         form=VentaUpdateForm(request.POST, instance=venta)
@@ -67,10 +68,12 @@ def detalle_venta_crear(request):
 #@login_required
 def detalle_venta_listar(request):
     titulo="Detalle_Venta"
+    modulo="ventas"
     detalles=Detalle_Venta.objects.all()
     context={
             "titulo":titulo,
-            "detalles":detalles
+            "detalles":detalles,
+            "modulo":modulo
     }
     return render(request,"detalle_venta/listar.html", context)
 

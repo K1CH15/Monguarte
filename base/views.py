@@ -52,3 +52,46 @@ def principal(request):
 def logout_user(request):
     logout(request)
     return redirect('inicio')
+#modulos
+def usuario_vista (request):
+    titulo="usuarios"
+    context={
+
+        "titulo":titulo,
+    }
+    return render(request,"partials/usuario.html",context)
+def compra_vista (request):
+    titulo="compras"
+    context={
+
+        "titulo":titulo,
+    }
+    return render(request,"partials/compra.html",context)
+
+def inventario_vista (request):
+    titulo="invetarios"
+    context={
+
+        "titulo":titulo,
+    }
+    return render(request,"partials/inventario.html",context)
+
+def venta_vista (request):
+    titulo="ventas"
+    context={
+
+        "titulo":titulo,
+    }
+    return render(request,"partials/venta.html",context)
+
+def producto_vista (request):
+    titulo="productos"
+    context={
+
+        "titulo":titulo,
+    }
+    return render(request,"partials/producto.html",context)
+
+def my_awesome_view(request):
+
+    dd(request)

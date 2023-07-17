@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_dump_die',
+
     
     #Apps
     'usuario',
     'inventario',
-    'producto',
+    'productos',
     'compra',
-    'venta'
+    'venta',
 
     #Librerias
     'django_bootstrap5',#pip install django-bootstrap5
@@ -64,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_dump_die.middleware.DumpAndDieMiddleware',
+
 ]
 
 ROOT_URLCONF = 'base.urls'
