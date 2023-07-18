@@ -24,7 +24,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Nombre del Tamaño</th>
+                                        <th>N° de Registro</th>
+                                        <th>Tamaño</th>
                                         <th>estado</th>
                                         <th>Acción</th>
                                     </tr>
@@ -34,6 +35,7 @@
 
                                         {% if tamaño.estado != "0" %}
                                             <tr>
+                                                <td>{{ tamaño.id }}</td>
                                                 <td>{{ tamaño.nombre }}</td>
                                                 <td>{{ tamaño.get_estado_display }}</td>
                                                 <td>
@@ -49,13 +51,6 @@
                                         {% endif %}
                                     {% endfor %}
                                     </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Nombre del {{ titulo }}</th>
-                                        <th>estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                             <!-- /.card-body -->

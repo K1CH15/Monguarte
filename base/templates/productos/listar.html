@@ -26,6 +26,7 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
+                                            <th>N° de Registro</th>
                                             <th>Nombre</th>
                                             <th>Precio</th>
                                             <th>Tamaño</th>
@@ -39,6 +40,7 @@
 
                                             {% if producto.estado != "0" %}
                                                 <tr>
+                                                    <td>{{ producto.id }}</td>
                                                     <td>{{ producto.nombre }}</td>
                                                     <td>{{ producto.precio_formato_colombiano }}</td>
                                                     <td>{{ producto.tamano }}</td>
@@ -57,16 +59,6 @@
                                             {% endif %}
                                         {% endfor %}
                                         </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Precio</th>
-                                            <th>Tamaño</th>
-                                            <th>Tipo</th>
-                                            <th>Cantidad</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->

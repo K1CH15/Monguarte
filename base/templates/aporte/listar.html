@@ -29,6 +29,8 @@
                                         <thead>
                                         <tr>
                                             <th>°N de Registro</th>
+                                            <th>Documento</th>
+                                            <th>Nombre</th>
                                             <th>Valor</th>
                                             <th>Fecha</th>
                                             <th>Estado</th>
@@ -40,6 +42,8 @@
                                             {% if aporte.estado != "0" %}
                                                 <tr>
                                                     <td>{{ aporte.id }}</td>
+                                                    <td>{{ aporte.persona.numero_documento }}</td>
+                                                    <td>{{ aporte.persona.primer_nombre }} {{ aporte.persona.primer_apellido }} {{ aporte.persona.segundo_apellido }}</td>
                                                     <td>{{ aporte.valor }}</td>
                                                     <td>{{ aporte.fecha }}</td>
                                                     <td>{{ aporte.get_estado_display }}</td>
@@ -56,16 +60,6 @@
                                             {% endif %}
                                         {% endfor %}
                                         </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>°N de Registro</th>
-                                            <th>Valor</th>
-                                            <th>Fecha</th>
-                                            <th>Estado</th>
-                                            <th>Acción</th>
-
-                                        </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

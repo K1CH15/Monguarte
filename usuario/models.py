@@ -91,7 +91,6 @@ class Nomina(models.Model):
 class Trabajador(models.Model):
 
     persona=models.ForeignKey(Persona, verbose_name=_("Seleccione al Trabajador"),help_text="Recuerde que solo las personas con rol de vendedor se mostraran en los trabajadores", on_delete=models.CASCADE)
-    nomina=models.ForeignKey(Nomina, verbose_name=_("Valor a Pagar"),help_text="Valor que se le paga al trabajador", on_delete=models.CASCADE)
     ips=models.ForeignKey(Ips, verbose_name=_("Prestador de salud"),help_text="Seleccione una IPS", on_delete=models.CASCADE)
     def formato_colombiano(self):
         return '${:,.0f}'.format(self.nomina.valor).replace(',', '.')
