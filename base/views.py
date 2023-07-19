@@ -92,6 +92,10 @@ def producto_vista (request):
     }
     return render(request,"partials/producto.html",context)
 
+def accessibility (request):
+
+    return render(request,"partials/accessibility.html")
+
 def my_awesome_view(request):
 
     dd(request)
