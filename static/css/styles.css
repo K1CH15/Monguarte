@@ -114,7 +114,6 @@
 
 
 /*carrusel*/
-/*
 * {
   box-sizing: border-box;
   margin: 0;
@@ -211,7 +210,10 @@ button:focus {
   border-bottom-right-radius: 5px;
 }
 
-*/
+
+/*Imagenes del carrucel*/
+
+
 .oscuro{ 
   background-color: #1f1f1f; 
   color: #f1eded; 
