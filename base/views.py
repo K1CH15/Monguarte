@@ -6,7 +6,7 @@ from venta.models import Venta,Detalle_Venta
 from inventario.models import Materia_Prima,Stock_Materia_Prima,Detalle_Producto,Stock_Producto
 from productos.models import Tipo,Tamaño,Producto
 from usuario.models import Persona,Trabajador,Aporte,Contabilidad,Ips,Nomina
-#@login_required
+@login_required
 def principal(request):
     titulo="Bienvenido"
     compras= Compra.objects.all().count
@@ -96,6 +96,18 @@ def accessibility (request):
 
     return render(request,"partials/accessibility.html")
 
-def my_awesome_view(request):
+def password1 (request):
 
-    dd(request)
+    return render(request,"registration/password_reset_complete.html")
+def password2 (request):
+
+    return render(request,"registration/password_reset_confirm.html")
+def password3 (request):
+
+    return render(request,"registration/password_reset_done.html")
+def password4 (request):
+
+    return render(request,"registration/password_reset_email.html")
+def password5 (request):
+
+    return render(request,"registration/password_reset_form.html")

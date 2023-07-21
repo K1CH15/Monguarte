@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #CRUD Materia Prima
-#@login_required
+
+@login_required
 def materia_prima_crear(request):
     titulo="materia prima"
     if request.method == 'POST':
@@ -29,7 +30,8 @@ def materia_prima_crear(request):
     }
     return render(request,"materia prima/crear.html",context)
 
-#@login_required
+
+@login_required
 def materia_prima_listar(request):
     titulo="materia prima"
     modulo="inventarios"
@@ -41,7 +43,8 @@ def materia_prima_listar(request):
     }
     return render(request,"materia prima/listar.html",context)
 
-#@login_required
+
+@login_required
 def materia_prima_modificar(request,pk):
     titulo="materia prima"
     materia_prima=Materia_Prima.objects.get(id=pk)
@@ -58,7 +61,8 @@ def materia_prima_modificar(request,pk):
     }
     return render (request,"/modificar.html",context)
 
-#@login_required
+
+@login_required
 def materia_prima_eliminar(request,pk):
     materia_prima=Materia_Prima.objects.filter(id=pk)
     materia_prima.update(
@@ -67,7 +71,8 @@ def materia_prima_eliminar(request,pk):
     return redirect('materias-primas')
 
 #CRUD Stock_Materia_Prima
-#@login_required
+
+@login_required
 def stock_materia_prima_crear(request):
     titulo="stock materia prima"
     if request.method == 'POST':
@@ -86,7 +91,8 @@ def stock_materia_prima_crear(request):
     }
     return render(request,"stock materia prima/crear.html",context)
 
-#@login_required
+
+@login_required
 def stock_materia_prima_listar(request):
     titulo="stock materia prima"
     modulo="inventarios"
@@ -98,7 +104,8 @@ def stock_materia_prima_listar(request):
     }
     return render(request,"stock materia prima/listar.html",context)
 
-#@login_required
+
+@login_required
 def stock_materia_prima_modificar(request,pk):
     titulo="stock materia prima"
     stock_materia_prima=Stock_Materia_Prima.objects.get(id=pk)
@@ -115,7 +122,8 @@ def stock_materia_prima_modificar(request,pk):
     }
     return render (request,"stock materia prima/modificar.html",context)
 
-#@login_required
+
+@login_required
 def stock_materia_prima_eliminar(request,pk):
     stock_materia_prima=Stock_Materia_Prima.objects.filter(id=pk)
     stock_materia_prima.update(
@@ -124,7 +132,8 @@ def stock_materia_prima_eliminar(request,pk):
     return redirect('stock-materias-primas')
 
 #CRUD Stock_Producto
-#@login_required
+
+@login_required
 def stock_producto_crear(request):
     titulo="stock producto"
     if request.method == 'POST':
@@ -143,7 +152,8 @@ def stock_producto_crear(request):
     }
     return render(request,"stock producto/crear.html",context)
 
-#@login_required
+
+@login_required
 def stock_producto_listar(request):
     titulo="stock producto"
     modulo="inventarios"
@@ -155,7 +165,8 @@ def stock_producto_listar(request):
     }
     return render(request,"stock producto/listar.html",context)
 
-#@login_required
+
+@login_required
 def stock_producto_modificar(request,pk):
     titulo="stock producto"
     stock_producto=Stock_Producto.objects.get(id=pk)
@@ -172,7 +183,8 @@ def stock_producto_modificar(request,pk):
     }
     return render (request,"stock producto/modificar.html",context)
 
-#@login_required
+
+@login_required
 def stock_producto_eliminar(request,pk):
     stock_producto=Stock_Producto.objects.filter(id=pk)
     stock_producto.update(
@@ -181,7 +193,8 @@ def stock_producto_eliminar(request,pk):
     return redirect('stock-productos')
 
 #CRUD detalle_Producto
-#@login_required
+
+@login_required
 def detalle_producto_crear(request):
     titulo="detalle producto"
     if request.method == 'POST':
@@ -200,7 +213,8 @@ def detalle_producto_crear(request):
     }
     return render(request,"detalle_producto/crear.html",context)
 
-#@login_required
+
+@login_required
 def detalle_producto_listar(request):
     titulo="detalle producto"
     modulo="inventario"
@@ -212,7 +226,8 @@ def detalle_producto_listar(request):
     }
     return render(request,"detalle_producto/listar.html",context)
 
-#@login_required
+
+@login_required
 def detalle_producto_modificar(request,pk):
     titulo="detalle producto"
     detalle_producto=Detalle_Producto.objects.get(id=pk)
