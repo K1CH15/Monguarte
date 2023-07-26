@@ -25,12 +25,6 @@ from base.views import (
     inventario_vista,
     venta_vista,
     producto_vista,
-    password1,
-    password2,
-    password3,
-    password4,
-    password5,
-
 )
 
 urlpatterns = [
@@ -55,13 +49,7 @@ urlpatterns = [
     path('ventas/', venta_vista, name="venta"),
     path('productos/', producto_vista, name="producto"),
     path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
-
-    # pruebas de login
-
-    path('password1/', password1, name="pas1"),
-    path('password2/', password2, name="pas2"),
-    path('password3/', password3, name="pas3"),
-    path('password4/', password4, name="pas4"),
-    path('password5/', password5, name="pas5"),
+    #Login requiret
+    #path('accounts/', include('django.contrib.auth.urls')),
 
 ]

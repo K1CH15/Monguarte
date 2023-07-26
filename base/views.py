@@ -96,18 +96,3 @@ def accessibility (request):
 
     return render(request,"partials/accessibility.html")
 
-def password1 (request):
-
-    return render(request,"registration/password_reset_complete.html")
-def password2 (request):
-
-    return render(request,"registration/password_reset_confirm.html")
-def password3 (request):
-
-    return render(request,"registration/password_reset_done.html")
-def password4 (request):
-
-    return render(request,"registration/password_reset_email.html")
-def password5 (request):
-
-    return render(request,"registration/password_reset_form.html")

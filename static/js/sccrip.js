@@ -120,5 +120,5 @@
         disableAnimations: true
     };
 
-    window.addEventListener('load', function () { new Accessibility(options); }, false);
+    window.addEventListener('load', function () { new Accessibility(options); }, true);
 })();
