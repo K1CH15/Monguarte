@@ -10,7 +10,8 @@ from usuario.forms import TrabajadorForm, TrabajadorUptadeForm
 from usuario.models import Persona,Contabilidad,Aporte,Ips,Nomina,Trabajador
 
 #CRUD PERSONA
-##@login_required
+
+@login_required
 def persona_crear(request):
     titulo="Persona"
     if request.method == 'POST':
@@ -29,7 +30,8 @@ def persona_crear(request):
     }
     return render(request,"persona/crear.html",context)
 
-##@login_required
+
+@login_required
 def persona_listar(request):
     titulo="persona"
     modulo="usuarios"
@@ -42,7 +44,8 @@ def persona_listar(request):
     }
     return render(request,"persona/listar.html",context)
 
-##@login_required
+
+@login_required
 def persona_modificar(request,pk):
     titulo="Persona"
     persona=Persona.objects.get(id=pk)
@@ -60,7 +63,8 @@ def persona_modificar(request,pk):
     }
     return render (request,"persona/modificar.html",context)
 
-##@login_required
+
+@login_required
 def persona_eliminar(request,pk):
     persona=Persona.objects.filter(id=pk)
     persona.update(
@@ -69,7 +73,8 @@ def persona_eliminar(request,pk):
     return redirect('personas')
 
 #CRUD Contabilidad
-##@login_required
+
+@login_required
 def contabilidad_crear(request):
     titulo="contabilidad"
     if request.method == 'POST':
@@ -88,7 +93,8 @@ def contabilidad_crear(request):
     }
     return render(request,"contabilidad/crear.html",context)
 
-##@login_required
+
+@login_required
 def contabilidad_listar(request):
     titulo="contabilidad"
     modulo="usuarios"
@@ -101,7 +107,8 @@ def contabilidad_listar(request):
     }
     return render(request,"contabilidad/listar.html",context)
 
-##@login_required
+
+@login_required
 def contabilidad_modificar(request,pk):
     titulo="contabilidad"
     contabilidad=Contabilidad.objects.get(id=pk)
@@ -118,7 +125,8 @@ def contabilidad_modificar(request,pk):
     }
     return render (request,"contabilidad/modificar.html",context)
 
-##@login_required
+
+@login_required
 def contabilidad_eliminar(request,pk):
     contabiliadad=Contabilidad.objects.filter(id=pk)
     contabiliadad.update(
@@ -127,7 +135,8 @@ def contabilidad_eliminar(request,pk):
     return redirect('contabilidades')
 
 #CRUD Aporte
-##@login_required
+
+@login_required
 def aporte_crear(request):
     titulo="Aporte"
     if request.method == 'POST':
@@ -146,7 +155,8 @@ def aporte_crear(request):
     }
     return render(request,"aporte/crear.html",context)
 
-##@login_required
+
+@login_required
 def aporte_listar(request):
     titulo="Aporte"
     modulo="usuarios"
@@ -159,7 +169,8 @@ def aporte_listar(request):
     }
     return render(request,"aporte/listar.html",context)
 
-##@login_required
+
+@login_required
 def aporte_modificar(request,pk):
     titulo="Aporte"
     aporte=Aporte.objects.get(id=pk)
@@ -176,7 +187,8 @@ def aporte_modificar(request,pk):
     }
     return render (request,"aporte/modificar.html",context)
 
-##@login_required
+
+@login_required
 def aporte_eliminar(request,pk):
     aporte=Aporte.objects.filter(id=pk)
     aporte.update(
@@ -185,7 +197,8 @@ def aporte_eliminar(request,pk):
     return redirect('aportes')
 
 #CRUD Ips
-##@login_required
+
+@login_required
 def ips_crear(request):
     titulo="Ips"
     if request.method == 'POST':
@@ -204,7 +217,8 @@ def ips_crear(request):
     }
     return render(request,"ips/crear.html",context)
 
-##@login_required
+
+@login_required
 def ips_listar(request):
     titulo="Ips"
     modulo="usuarios"
@@ -216,7 +230,8 @@ def ips_listar(request):
     }
     return render(request,"ips/listar.html",context)
 
-##@login_required
+
+@login_required
 def ips_modificar(request,pk):
     titulo="Ips"
     ips=Ips.objects.get(id=pk)
@@ -233,7 +248,8 @@ def ips_modificar(request,pk):
     }
     return render (request,"ips/modificar.html",context)
 
-##@login_required
+
+@login_required
 def ips_eliminar(request,pk):
     ips=Ips.objects.filter(id=pk)
     ips.update(
@@ -242,7 +258,8 @@ def ips_eliminar(request,pk):
     return redirect('ipss')
 
 #CRUD Nomina
-##@login_required
+
+@login_required
 def nomina_crear(request):
     titulo="Nomina"
     if request.method == 'POST':
@@ -261,7 +278,8 @@ def nomina_crear(request):
     }
     return render(request,"nomina/crear.html",context)
 
-##@login_required
+
+@login_required
 def nomina_listar(request):
     titulo="Nomina"
     modulo="usuarios"
@@ -273,7 +291,8 @@ def nomina_listar(request):
     }
     return render(request,"nomina/listar.html",context)
 
-##@login_required
+
+@login_required
 def nomina_modificar(request,pk):
     titulo="Nomina"
     nomina=Nomina.objects.get(id=pk)
@@ -290,7 +309,8 @@ def nomina_modificar(request,pk):
     }
     return render (request,"nomina/modificar.html",context)
 
-##@login_required
+
+@login_required
 def nomina_eliminar(request,pk):
     nomina=Nomina.objects.filter(id=pk)
     nomina.update(
@@ -299,7 +319,8 @@ def nomina_eliminar(request,pk):
     return redirect('nominas')
 
 #CRUD Trabajador
-##@login_required
+
+@login_required
 def trabajador_crear(request):
     titulo="Trabajador"
     if request.method == 'POST':
@@ -318,7 +339,8 @@ def trabajador_crear(request):
     }
     return render(request,"trabajador/crear.html",context)
 
-##@login_required
+
+@login_required
 def trabajador_listar(request):
     titulo="trabajador"
     modulo="usuarios"
@@ -331,7 +353,8 @@ def trabajador_listar(request):
     }
     return render(request,"trabajador/listar.html",context)
 
-##@login_required
+
+@login_required
 def trabajador_modificar(request,pk):
     titulo="trabajador"
     trabajador=Trabajador.objects.get(id=pk)

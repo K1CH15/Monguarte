@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path,include
+from django.urls import path, include
 from django.views.generic import TemplateView
 from base.views import (
     principal,
@@ -25,20 +25,19 @@ from base.views import (
     inventario_vista,
     venta_vista,
     producto_vista,
+)
 
-    )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("inicio/",principal, name="index"),
-    path('',auth_views.LoginView.as_view(),name='inicio'),
-    path('reiniciar/',auth_views.PasswordResetView.as_view(),name='password_reset'),
-    path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
-    path('reiniciar/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
-    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
-    path('logout/',logout_user,name="logout"),
+    path("inicio/", principal, name="index"),
+    path('', auth_views.LoginView.as_view(), name='inicio'),
+    path('reiniciar/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('reiniciar/enviar', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reiniciar/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reiniciar/completo', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('logout/', logout_user, name="logout"),
 
-
-    path('usuarios/',include('usuario.urls')),
+    path('usuarios/', include('usuario.urls')),
     path('compras/', include('compra.urls')),
     path('inventarios/', include('inventario.urls')),
     path('ventas/', include('venta.urls')),
@@ -50,7 +49,7 @@ urlpatterns = [
     path('ventas/', venta_vista, name="venta"),
     path('productos/', producto_vista, name="producto"),
     path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
+    #Login requiret
+    #path('accounts/', include('django.contrib.auth.urls')),
+
 ]
-
-
-

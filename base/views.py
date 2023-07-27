@@ -6,7 +6,7 @@ from venta.models import Venta,Detalle_Venta
 from inventario.models import Materia_Prima,Stock_Materia_Prima,Detalle_Producto,Stock_Producto
 from productos.models import Tipo,Tamaño,Producto
 from usuario.models import Persona,Trabajador,Aporte,Contabilidad,Ips,Nomina
-#@login_required
+@login_required
 def principal(request):
     titulo="Bienvenido"
     compras= Compra.objects.all().count
@@ -92,6 +92,7 @@ def producto_vista (request):
     }
     return render(request,"partials/producto.html",context)
 
-def my_awesome_view(request):
+def accessibility (request):
 
-    dd(request)
+    return render(request,"partials/accessibility.html")
+
