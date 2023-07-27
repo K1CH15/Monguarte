@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Creación COMPRA crear,listar,modificar,eliminar
 
+<<<<<<< HEAD
+@login_required
+=======
 #@login_required
 
 #backup
@@ -21,6 +24,7 @@ def hacer_backup(request):
     DbBackupCommand().handle(filename=backup_file, verbosity=verbosity_level)
 
     return redirect('compra')
+>>>>>>> main
 def compra_crear(request):
     titulo = "Compra"
     compras = Compra.objects.all()  # Obtén las compras desde la base de datos
@@ -44,7 +48,7 @@ def compra_crear(request):
 
     return render(request, "compra/crear.html", context)
 
-#@login_required
+@login_required
 def compra_listar(request):
     titulo="compra"
     modulo="compras"
@@ -56,7 +60,7 @@ def compra_listar(request):
     }
     return render(request,"compra/listar.html", context)
 
-#@login_required
+@login_required
 def compra_modificar(request,pk):
     titulo="Compra"
     compra= Compra.objects.get(id=pk)
@@ -77,7 +81,7 @@ def compra_modificar(request,pk):
         }
     return render(request,"compra/modificar.html", context)
 
-#@login_required
+@login_required
 def compra_eliminar(request,pk):
     compra= Compra.objects.filter(id=pk)
     compra.update(
@@ -86,7 +90,7 @@ def compra_eliminar(request,pk):
     return redirect('compra')
 
 #Creación DETALLE COMPRA
-#@login_required
+@login_required
 def detalle_compra_crear(request):
     titulo = "Detalle Compra Crear"
     comprasn = Compra.objects.all()  # Obtén las compras desde la base de datos
@@ -111,7 +115,7 @@ def detalle_compra_crear(request):
 
     return render(request, "detalle_compra/crear.html", context)
 
-#@login_required
+@login_required
 def detalle_compra_listar(request):
     titulo="Detalle_compra"
     detalle_compras= Detalle_Compra.objects.all()
@@ -122,7 +126,7 @@ def detalle_compra_listar(request):
     }
     return render(request,"detalle_compra/listar.html", context)
 
-#@login_required
+@login_required
 def detalle_compra_modificar(request,pk):
     titulo="Detalle_compra"
     detalle_compra = Detalle_Compra.objects.get(id=pk)
