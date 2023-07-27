@@ -121,10 +121,19 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   height: 100vh;
 }
-
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Centra verticalmente el contenido */
+  max-width: 1800px; /* Establece un ancho máximo para el carrusel */
+  margin: 0 auto; /* Centra el contenedor en la página */
+}
 .slider-container {
   position: relative;
   overflow: hidden;
