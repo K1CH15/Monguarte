@@ -21,6 +21,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
+                                <a href="{% url 'hacer_backup' %}" class="btn btn-primary me-md-2">Hacer Backup</a>
                                 <h3 class="card-title">{{ titulo }}</h3>
                             </div>
                             <!-- /.card-header -->
@@ -72,6 +73,8 @@
                                 <!-- /.card-body -->
                             </div>
                             <a href="{% url 'compra-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
+
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
