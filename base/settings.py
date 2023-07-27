@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'crispy_forms', #pip install django-crispy-forms
     'crispy_bootstrap5', #pip install crispy-bootstrap5
     'django_bootstrap_icons',
+    'dbbackup', #pip intall django-dbbackup
+    'django_extensions', # pip install django-extensions
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"
 CRISPY_TEMPLATE_PACK= "bootstrap5"
@@ -157,3 +159,11 @@ EMAIL_USE_TLS = True
 
 LOGIN_URL = 'inicio'
 LOGIN_REDIRECT_URL = 'index'
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# configuracion de django-dbbackup
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {
+    'location':BASE_DIR / 'base'/'backups/'
+}
