@@ -3,3 +3,5 @@ django-bootstrap5
 django-crispy-forms
 crispy-bootstrap5
 django-bootstrap-icons
+django-dbbackup
+django-extensions
