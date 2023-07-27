@@ -8,10 +8,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Creación COMPRA crear,listar,modificar,eliminar
 
-<<<<<<< HEAD
-@login_required
-=======
-#@login_required
 
 #backup
 def hacer_backup(request):
@@ -24,10 +20,10 @@ def hacer_backup(request):
     DbBackupCommand().handle(filename=backup_file, verbosity=verbosity_level)
 
     return redirect('compra')
->>>>>>> main
+
 def compra_crear(request):
     titulo = "Compra"
-    compras = Compra.objects.all()  # Obtén las compras desde la base de datos
+    compra = Compra.objects.all()  # Obtén las compras desde la base de datos
 
     if request.method == 'POST':
         form = CompraForm(request.POST)
@@ -43,7 +39,7 @@ def compra_crear(request):
     context = {
         "titulo": titulo,
         "form": form,
-        "compras": compras  # Pasa las compras al contexto
+        "compra": compra  # Pasa las compras al contexto
     }
 
     return render(request, "compra/crear.html", context)
@@ -52,11 +48,11 @@ def compra_crear(request):
 def compra_listar(request):
     titulo="compra"
     modulo="compras"
-    comprasn = Compra.objects.all()
+    compra = Compra.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "comprasn":comprasn,
+        "compra":compra,
     }
     return render(request,"compra/listar.html", context)
 
