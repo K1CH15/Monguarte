@@ -167,3 +167,4 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {
     'location':BASE_DIR / 'base'/'backups/'
 }
+AUTH_USER_MODEL = 'usuario.Persona'

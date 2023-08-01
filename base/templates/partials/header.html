@@ -3,7 +3,7 @@
 
 
 
-<header class=" sticky-top lh-1 py-3" style=" background-color: #5c9ead">
+<header class=" sticky-top lh-1 py-1" style=" background-color: #5c9ead">
 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -66,14 +66,26 @@
   <li class="mb-1" style="display: inline-block;"> <i class="bi bi-0-square"></i>
   </li>
   <li class="mb-1" style="display: inline-block;">
-    <div class="custom-dropdown">
-      <button class="custom-dropbtn">CUENTA</button>
-      <div class="custom-dropdown-content">
-        <a href="#">Nuevo</a>
-        <a href="#">Perfil</a>
-        <a href="#">Ajustes</a>
-        <button onclick="button"> <a href="{% url 'logout' %}">Nuevo</a> </button>
-      </div>
+    <!-- cierre de secion -->
+<nav class="navbar  ">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <span class="navbar-text">Bienvenida, {{ user.first_name }} ({{ user.rol }})</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<!-- cierre de secion -->
     </div>
   </li>
       </ul>
@@ -181,10 +193,8 @@
                   <div class="custom-dropdown">
                           <button class="custom-dropbtn">CUENTA</button>
                           <div class="custom-dropdown-content">
-                              <a href="#">Nuevo</a>
-                              <a href="#">Perfil</a>
-                              <a href="#">Ajustes</a>
-                              <button onclick="button"> <a href="{% url 'logout' %}">Nuevo</a> </button>
+                              
+                              <button onclick="button"> <a href="{% url 'logout' %}">Salir</a> </button>
                           </div>
                       </div>
                 </li>

@@ -1,24 +1,41 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import integer_validator,MaxLengthValidator,ValidationError,RegexValidator
-#Módulo de usuarios
-# Create your models here.
-#Modelo Persona
-# def letras_uniquemente(value):
-#     if not value.isalpha():
-#         raise ValidationError("El campo solo permite letras.")
-class Persona(models.Model):
+from django.core.validators import integer_validator, MaxLengthValidator
+from django.contrib.auth.models import AbstractUser, Group, Permission
+
+class Persona(AbstractUser):
     class TipoDocumento(models.TextChoices):
-        CC='CC ',_("Cédula de Ciudadanía")
-        TI='TI',_("Tarjeta de Identidad")
-        CE='CE',_("Cédula de Extranjería")
-    tipo_documento=models.CharField(max_length=3,choices=TipoDocumento.choices,default=TipoDocumento.CC,verbose_name="Tipo de Documento")
-    numero_documento=models.CharField(max_length=10,validators=[integer_validator],verbose_name="Número de Documento", unique=True)
-    primer_nombre=models.CharField(max_length=10,verbose_name="Primer Nombre")
-    segundo_nombre=models.CharField(max_length=10,verbose_name="Segundo Nombre")
-    primer_apellido=models.CharField(max_length=10,verbose_name="Primer Apellido")
-    segundo_apellido=models.CharField(max_length=10,verbose_name="Segundo Apellido")
-    telefono=models.CharField(max_length=10,validators=[integer_validator,MaxLengthValidator(10)],verbose_name="Número Telefónico")
+        CC = 'CC', _("Cédula de Ciudadanía")
+        TI = 'TI', _("Tarjeta de Identidad")
+        CE = 'CE', _("Cédula de Extranjería")
+    
+    tipo_documento = models.CharField(
+        max_length=3,
+        choices=TipoDocumento.choices,
+        default=TipoDocumento.CC,
+        verbose_name="Tipo de Documento"
+    )
+    
+    numero_documento = models.CharField(
+        max_length=10,
+        validators=[integer_validator],
+        verbose_name="Número de Documento",
+        unique=True
+    )
+    
+    primer_nombre = models.CharField(max_length=10, verbose_name="Primer Nombre")
+    segundo_nombre = models.CharField(max_length=10, verbose_name="Segundo Nombre")
+    primer_apellido = models.CharField(max_length=10, verbose_name="Primer Apellido")
+    segundo_apellido = models.CharField(max_length=10, verbose_name="Segundo Apellido")
+    telefono = models.CharField(
+        max_length=10,
+        validators=[integer_validator, MaxLengthValidator(10)],
+        verbose_name="Número Telefónico"
+    )
+    
+    groups = models.ManyToManyField(Group, blank=True, related_query_name="usuarios")
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='usuarios')
+
     class  Rol(models.TextChoices):
         ADMINISTRADOR='ADMI',_("Administrador")
         VENDEDOR='VEN',_("Vendedor")
@@ -33,6 +50,11 @@ class Persona(models.Model):
 
     def __str__(self):
         return"%s %s %s %s"%(self.numero_documento,self.primer_nombre,self.primer_apellido,self.rol)
+    def save(self, *args, **kwargs):
+        # Antes de guardar el usuario, asegúrate de encriptar la contraseña
+        if self.password:
+            self.set_password(self.password)
+        super().save(*args, **kwargs)
     class meta:
         verbose_name_plural="Persona"
 #Modelo de Contabilidad
