@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import integer_validator, MaxLengthValidator
-from django.contrib.auth.models import AbstractUser, Group, Permission
 
-class Persona(AbstractUser):
+
+class Persona(models.Model):
     class TipoDocumento(models.TextChoices):
         CC = 'CC', _("Cédula de Ciudadanía")
         TI = 'TI', _("Tarjeta de Identidad")
@@ -33,9 +33,7 @@ class Persona(AbstractUser):
         verbose_name="Número Telefónico"
     )
     
-    groups = models.ManyToManyField(Group, blank=True, related_query_name="usuarios")
-    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='usuarios')
-
+ 
     class  Rol(models.TextChoices):
         ADMINISTRADOR='ADMI',_("Administrador")
         VENDEDOR='VEN',_("Vendedor")
