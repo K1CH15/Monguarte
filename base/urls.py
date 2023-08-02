@@ -43,13 +43,11 @@ urlpatterns = [
     path('ventas/', include('venta.urls')),
     path('productos/', include('productos.urls')),
     # vistas de modulos
-    path('usuarios/', usuario_vista, name="usuario"),
-    path('compras/', compra_vista, name="compras"),
-    path('inventarios/', inventario_vista, name="inventario"),
-    path('ventas/', venta_vista, name="venta"),
-    path('productos/', producto_vista, name="producto"),
+    path('Usuarios/', usuario_vista, name="usuario"),
+    path('Compras/', compra_vista, name="compras"),
+    path('Inventarios/', inventario_vista, name="inventario"),
+    path('Ventas/', venta_vista, name="venta"),
+    path('Productos/', producto_vista, name="producto"),
     path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
-    #Login requiret
-    #path('accounts/', include('django.contrib.auth.urls')),
 
 ]
