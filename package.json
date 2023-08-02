@@ -9,10 +9,16 @@
     "buildjs": "uglifyjs-folder resources/js/ -eo static/js/",
     "build": "npm run buildcss & npm run buildjs",
     "watch": "npm-watch",
+    "super": "python manage.py createsuperuser",
+    "usuario": "python manage.py makemigrations usuario",
+    "producto": "python manage.py makemigrations productos",
+    "inventario": "python manage.py makemigrations inventario",
+    "compra": "python manage.py makemigrations compra",
+    "venta": "python manage.py makemigrations venta",
     "migrate": "python manage.py migrate",
-    "migrations": "python manage.py makemigrations",
+    "migrations": "npm run usuario & npm run producto & npm run inventario & npm run compra &npm run venta",
     "server": "python manage.py runserver",
-    "ver": "npm run migrate & npm run migrations & npm run server"
+    "ver": "npm run migrations & npm run migrate  & npm run server"
   },
   "watch": {
     "build": {
@@ -37,8 +43,8 @@
   },
   "homepage": "https://github.com/K1CH15/Monguarte#readme",
   "dependencies": {
-    "accessibility": "^4.5.7",
     "@popperjs/core": "^2.11.8",
+    "accessibility": "^4.5.7",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
     "datatables.net": "^1.13.4",
@@ -58,6 +64,7 @@
     "pdfmake": "^0.2.7",
     "sass": "^1.63.6",
     "sass-lint": "^1.13.1",
+    "select2": "^4.1.0-rc.0",
     "sweetalert2": "^11.4.8",
     "toastr": "^2.1.4",
     "uglify-js": "^3.17.4",
