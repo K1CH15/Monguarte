@@ -1,6 +1,8 @@
-from django.db import models
+
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import integer_validator, MaxLengthValidator
+from django.db import models
+
 
 
 class Persona(models.Model):
@@ -8,21 +10,21 @@ class Persona(models.Model):
         CC = 'CC', _("Cédula de Ciudadanía")
         TI = 'TI', _("Tarjeta de Identidad")
         CE = 'CE', _("Cédula de Extranjería")
-    
+
     tipo_documento = models.CharField(
         max_length=3,
         choices=TipoDocumento.choices,
         default=TipoDocumento.CC,
         verbose_name="Tipo de Documento"
     )
-    
+
     numero_documento = models.CharField(
         max_length=10,
         validators=[integer_validator],
         verbose_name="Número de Documento",
         unique=True
     )
-    
+
     primer_nombre = models.CharField(max_length=10, verbose_name="Primer Nombre")
     segundo_nombre = models.CharField(max_length=10, verbose_name="Segundo Nombre")
     primer_apellido = models.CharField(max_length=10, verbose_name="Primer Apellido")
@@ -32,29 +34,31 @@ class Persona(models.Model):
         validators=[integer_validator, MaxLengthValidator(10)],
         verbose_name="Número Telefónico"
     )
-    
- 
-    class  Rol(models.TextChoices):
-        ADMINISTRADOR='ADMI',_("Administrador")
-        VENDEDOR='VEN',_("Vendedor")
-        PROVEEDOR='PROV',_("Proveedor")
-        CLIENTE='CLIE',_("Cliente")
-    rol=models.CharField(max_length=4,choices=Rol.choices,help_text="Roles:Administrador,Vendedor,Proveedor,Cliente")
-    correo_electronico=models.EmailField(max_length=50,verbose_name="Correo Electrónico")
+    # Indica los campos que deseas ocultar en el sitio de administración
+
+    class Rol(models.TextChoices):
+        ADMINISTRADOR = 'ADMI', _("Administrador")
+        VENDEDOR = 'VEN', _("Vendedor")
+        PROVEEDOR = 'PROV', _("Proveedor")
+        CLIENTE = 'CLIE', _("Cliente")
+
+    rol = models.CharField(max_length=4, choices=Rol.choices,
+                           help_text="Roles: Administrador, Vendedor, Proveedor, Cliente")
+    correo_electronico = models.EmailField(max_length=50, verbose_name="Correo Electrónico")
+
     class Estado(models.TextChoices):
-        ACTIVO='1',_("Activo")
-        INACTICO='0',_("Inactivo")
-    estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
+        ACTIVO = '1', _("Activo")
+        INACTIVO = '0', _("Inactivo")
+
+    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def __str__(self):
-        return"%s %s %s %s"%(self.numero_documento,self.primer_nombre,self.primer_apellido,self.rol)
-    def save(self, *args, **kwargs):
-        # Antes de guardar el usuario, asegúrate de encriptar la contraseña
-        if self.password:
-            self.set_password(self.password)
-        super().save(*args, **kwargs)
-    class meta:
-        verbose_name_plural="Persona"
+        return "%s %s %s %s" % (self.numero_documento, self.primer_nombre, self.primer_apellido, self.rol)
+
+    class Meta:
+        verbose_name_plural = "Persona"
+
+
 #Modelo de Contabilidad
 class Contabilidad(models.Model):
     class TipoI(models.TextChoices):
