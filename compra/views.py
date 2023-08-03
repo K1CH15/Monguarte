@@ -44,9 +44,9 @@ def compra_crear(request):
 
     return render(request, "compra/crear.html", context)
 
-@login_required
+#@login_required
 def compra_listar(request):
-    titulo="compra"
+    titulo="Compra"
     modulo="compras"
     compra = Compra.objects.all()
     context={
@@ -56,7 +56,7 @@ def compra_listar(request):
     }
     return render(request,"compra/listar.html", context)
 
-@login_required
+#@login_required
 def compra_modificar(request,pk):
     titulo="Compra"
     compra= Compra.objects.get(id=pk)
@@ -77,7 +77,7 @@ def compra_modificar(request,pk):
         }
     return render(request,"compra/modificar.html", context)
 
-@login_required
+#@login_required
 def compra_eliminar(request,pk):
     compra= Compra.objects.filter(id=pk)
     compra.update(
@@ -86,7 +86,7 @@ def compra_eliminar(request,pk):
     return redirect('compra')
 
 #Creación DETALLE COMPRA
-@login_required
+#@login_required
 def detalle_compra_crear(request):
     titulo = "Detalle Compra Crear"
     comprasn = Compra.objects.all()  # Obtén las compras desde la base de datos
@@ -111,9 +111,9 @@ def detalle_compra_crear(request):
 
     return render(request, "detalle_compra/crear.html", context)
 
-@login_required
+#@login_required
 def detalle_compra_listar(request):
-    titulo="Detalle_compra"
+    titulo="Detalle Compra"
     detalle_compras= Detalle_Compra.objects.all()
     context={
         "titulo":titulo,
@@ -122,7 +122,7 @@ def detalle_compra_listar(request):
     }
     return render(request,"detalle_compra/listar.html", context)
 
-@login_required
+#@login_required
 def detalle_compra_modificar(request,pk):
     titulo="Detalle_compra"
     detalle_compra = Detalle_Compra.objects.get(id=pk)

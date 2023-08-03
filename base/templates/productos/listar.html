@@ -30,20 +30,21 @@
                                             <th>Precio</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
-                                            <th>Cantidad</th>
+                                            <th>estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for producto in productosn %}
+                                        {% for producto in productos %}
 
                                             {% if producto.estado != "0" %}
                                                 <tr>
                                                     <td>{{ producto.nombre }}</td>
                                                     <td>{{ producto.precio_formato_colombiano }}</td>
-                                                    <td>{{ producto.tamano }}</td>
-                                                    <td>{{ producto.tipo }}</td>
-                                                    <td>{{ producto.cantidad }}</td>
+                                                    <td>{{ producto.get_tamano_display }}</td>
+                                                    <td>{{ producto.get_tipo_display }}</td>
+                                                    <td>{{ producto.get_estado_display }}</td>
+
                                                     <td>
                                                         <button type="button" data-ids="{{ producto.id }}"
                                                                 class="btnEliminar btn btn-danger"
@@ -63,7 +64,7 @@
                                             <th>Precio</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
-                                            <th>Cantidad</th>
+                                            <th>estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                         </tfoot>
