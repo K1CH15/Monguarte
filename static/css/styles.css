@@ -273,7 +273,7 @@ button:focus {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    min-height: 70vh;
+    min-height: 30vh;
 }
 
 footer
@@ -281,7 +281,7 @@ footer
 
     position: relative;
     width: 100%;
-    background: #5c9eae;
+    background: #6C210C;
     min-height: 50px;
 
 }
@@ -383,7 +383,7 @@ marlon
 .conta {
   position: fixed;
   bottom: 20px;
-  right: 95%; /* Ajuste para colocar el botón más a la izquierda */
+  left: 20px;
 }
 
 .redes a,
@@ -407,13 +407,11 @@ marlon
 }
 
 .redes a {
-  margin-bottom: -15px;
   opacity: 0;
   visibility: hidden;
 }
 
 #btn-mas:checked ~ .redes a {
-  margin-bottom: 10px;
   opacity: 1;
   visibility: visible;
 }
@@ -432,6 +430,9 @@ marlon
 
 
 
+body {
+  background-color: #F0EAD6; /* Cambia #f0f0f0 por el color que desees */
+}
 
 
 
