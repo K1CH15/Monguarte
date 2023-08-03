@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 #VIEWS VENTA
+
 #@login_required
 def venta_crear(request):
     titulo="venta"
@@ -22,6 +23,7 @@ def venta_crear(request):
     context={"titulo":titulo,"form":form}
     return render(request,"venta/crear.html", context)
 
+
 #@login_required
 def venta_listar(request):
     titulo="venta"
@@ -29,6 +31,7 @@ def venta_listar(request):
     venta=Venta.objects.all()
     context={"titulo":titulo,"venta":venta,"modulo": modulo}
     return render(request,"venta/listar.html", context)
+
 
 #@login_required
 def venta_modificar(request,pk):
@@ -45,6 +48,7 @@ def venta_modificar(request,pk):
     context={"titulo":titulo,"form":form}
     return render(request,"venta/modificar.html", context)
 
+
 #@login_required
 def venta_eliminar(request,pk):
     venta=Venta.objects.filter(id=pk)
@@ -52,6 +56,7 @@ def venta_eliminar(request,pk):
     return redirect('ventas')
 
 #VIEWS DETALLE_VENTA
+
 #@login_required
 def detalle_venta_crear(request):
     titulo="Detalle_Venta "
@@ -65,9 +70,10 @@ def detalle_venta_crear(request):
     context={"titulo":titulo,"form":form}
     return render(request,"detalle_venta/crear.html", context)
 
+
 #@login_required
 def detalle_venta_listar(request):
-    titulo="Detalle_Venta"
+    titulo="Detalle Venta"
     modulo="ventas"
     detalles=Detalle_Venta.objects.all()
     context={
@@ -76,6 +82,7 @@ def detalle_venta_listar(request):
             "modulo":modulo
     }
     return render(request,"detalle_venta/listar.html", context)
+
 
 #@login_required
 def detalle_venta_modificar(request,pk):

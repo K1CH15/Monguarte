@@ -1,14 +1,14 @@
 from django.shortcuts import render,redirect
-from inventario.forms import Materia_PrimaForm,Materia_PrimaUptadeForm
-from inventario.forms import Stock_Materia_PrimaForm,Stock_Materia_PrimaUptadeForm
-from inventario.forms import Stock_ProductoForm,Stock_ProductoUptadeForm
-from inventario.models import Materia_Prima,Stock_Materia_Prima,Stock_Producto,Detalle_Producto
-from inventario.forms import Detalle_ProductoForm,Detalle_ProductoUptadeForm
+from inventario.forms import Materia_PrimaForm,Materia_PrimaUptadeForm,Materia_Prima
+from inventario.forms import FabricacionForm,FabricacionUptadeForm,Fabricacion
+from inventario.forms import Unidad_MedidaForm,Unidad_MedidaUptadeForm,Unidad_Medida
 from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #CRUD Materia Prima
+
 #@login_required
 def materia_prima_crear(request):
     titulo="materia prima"
@@ -29,9 +29,10 @@ def materia_prima_crear(request):
     }
     return render(request,"materia prima/crear.html",context)
 
+
 #@login_required
 def materia_prima_listar(request):
-    titulo="materia prima"
+    titulo="Materia Prima"
     modulo="inventarios"
     m=Materia_Prima.objects.all()
     context={
@@ -40,6 +41,7 @@ def materia_prima_listar(request):
         "materias":m,
     }
     return render(request,"materia prima/listar.html",context)
+
 
 #@login_required
 def materia_prima_modificar(request,pk):
@@ -56,7 +58,8 @@ def materia_prima_modificar(request,pk):
         "titulo":titulo,
         "form":form
     }
-    return render (request,"/modificar.html",context)
+    return render (request,"materia prima/modificar.html",context)
+
 
 #@login_required
 def materia_prima_eliminar(request,pk):
@@ -67,165 +70,175 @@ def materia_prima_eliminar(request,pk):
     return redirect('materias-primas')
 
 #CRUD Stock_Materia_Prima
+
 #@login_required
-def stock_materia_prima_crear(request):
-    titulo="stock materia prima"
+def fabricacion_crear(request):
+    titulo="Fabricación"
     if request.method == 'POST':
-        form=Stock_Materia_PrimaForm(request.POST)
+        form=FabricacionForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'la Materia prima se a creado correctamente')
-            return redirect('stock-materias-primas')
+            messages.success(request,'Se a creado correctamente')
+            return redirect('fabricacion')
         else:
             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
-        form=Stock_Materia_PrimaForm()
+        form=FabricacionForm()
     context={
         "titulo":titulo,
         "form":form
     }
-    return render(request,"stock materia prima/crear.html",context)
+    return render(request,"fabricacion/crear.html",context)
+
 
 #@login_required
-def stock_materia_prima_listar(request):
-    titulo="stock materia prima"
+def fabricacion_listar(request):
+    titulo="Fabricación"
     modulo="inventarios"
-    stock_materia_prima=Stock_Materia_Prima.objects.all()
+    fabricacion = Fabricacion.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "stocksm":stock_materia_prima,
+        "fabricas":fabricacion,
     }
-    return render(request,"stock materia prima/listar.html",context)
+    return render(request,"fabricacion/listar.html",context)
+
 
 #@login_required
-def stock_materia_prima_modificar(request,pk):
-    titulo="stock materia prima"
-    stock_materia_prima=Stock_Materia_Prima.objects.get(id=pk)
+def fabricacion_modificar(request,pk):
+    titulo="Fabricación"
+    fabricacion=Fabricacion.objects.get(id=pk)
     if request.method=='POST':
-        form=Stock_Materia_PrimaUptadeForm(request.POST,instance=stock_materia_prima)
+        form=FabricacionUptadeForm(request.POST,instance=fabricacion)
         if form.is_valid():
             form.save()
-            return redirect('stock-materias-primas')
+            return redirect('fabricaciones')
     else:
-        form=Stock_Materia_Prima(instance=stock_materia_prima)
+        form=FabricacionUptadeForm(instance=fabricacion)
     context={
         "titulo":titulo,
         "form":form
     }
-    return render (request,"stock materia prima/modificar.html",context)
+    return render (request,"fabricacion/modificar.html",context)
+
 
 #@login_required
-def stock_materia_prima_eliminar(request,pk):
-    stock_materia_prima=Stock_Materia_Prima.objects.filter(id=pk)
-    stock_materia_prima.update(
+def fabricacion_eliminar(request,pk):
+    fabricacion=Fabricacion.objects.filter(id=pk)
+    fabricacion.update(
         estado="0"
     )
-    return redirect('stock-materias-primas')
+    return redirect('fabricaciones')
 
 #CRUD Stock_Producto
+
 #@login_required
-def stock_producto_crear(request):
-    titulo="stock producto"
+def unidad_medida_crear(request):
+    titulo="Unidad de Medida"
     if request.method == 'POST':
-        form=Stock_ProductoForm(request.POST)
+        form=Unidad_MedidaForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'falta')
-            return redirect('stock-productos')
+            return redirect('unidades-medida')
         else:
             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:
-        form=Stock_ProductoForm()
+        form=Unidad_MedidaForm()
     context={
         "titulo":titulo,
         "form":form
     }
-    return render(request,"stock producto/crear.html",context)
+    return render(request,"unidad de medida/crear.html",context)
 
 #@login_required
-def stock_producto_listar(request):
-    titulo="stock producto"
+def unidad_medida_listar(request):
+    titulo="Unidad de Medida"
     modulo="inventarios"
-    stock_producto=Stock_Producto.objects.all()
+    unidade_medida=Unidad_Medida.objects.all()
     context={
         "titulo":titulo,
         "modulo":modulo,
-        "stocksp":stock_producto,
+        "unidades":unidade_medida,
     }
-    return render(request,"stock producto/listar.html",context)
+    return render(request,"unidad de medida/listar.html",context)
+
 
 #@login_required
-def stock_producto_modificar(request,pk):
-    titulo="stock producto"
-    stock_producto=Stock_Producto.objects.get(id=pk)
+def unidad_medida_modificar(request,pk):
+    titulo="Unidad de Medida"
+    unidad_medida=Unidad_Medida.objects.get(id=pk)
     if request.method=='POST':
-        form=Stock_ProductoUptadeForm(request.POST,instance=stock_producto)
+        form=Unidad_MedidaUptadeForm(request.POST,instance=unidad_medida)
         if form.is_valid():
             form.save()
-            return redirect('stock-productos')
+            return redirect('unidades-medida')
     else:
-        form=Stock_ProductoUptadeForm(instance=stock_producto)
+        form=Unidad_MedidaUptadeForm(instance=unidad_medida)
     context={
         "titulo":titulo,
         "form":form
     }
-    return render (request,"stock producto/modificar.html",context)
+    return render (request,"unidad de medida/modificar.html",context)
 
-#@login_required
-def stock_producto_eliminar(request,pk):
-    stock_producto=Stock_Producto.objects.filter(id=pk)
-    stock_producto.update(
-        estado="0"
-    )
-    return redirect('stock-productos')
 
-#CRUD detalle_Producto
-#@login_required
-def detalle_producto_crear(request):
-    titulo="detalle producto"
-    if request.method == 'POST':
-        form=Detalle_ProductoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'falta')
-            return redirect('detalle-productos')
-        else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
-    else:
-        form=Detalle_ProductoForm()
-    context={
-        "titulo":titulo,
-        "form":form
-    }
-    return render(request,"detalle_producto/crear.html",context)
-
-#@login_required
-def detalle_producto_listar(request):
-    titulo="detalle producto"
-    modulo="inventario"
-    detalle_producto=Detalle_Producto.objects.all()
-    context={
-        "titulo":titulo,
-        "modulo":modulo,
-        "detallesP":detalle_producto,
-    }
-    return render(request,"detalle_producto/listar.html",context)
-
-#@login_required
-def detalle_producto_modificar(request,pk):
-    titulo="detalle producto"
-    detalle_producto=Detalle_Producto.objects.get(id=pk)
-    if request.method=='POST':
-        form=Detalle_ProductoUptadeForm(request.POST,instance=detalle_producto)
-        if form.is_valid():
-            form.save()
-            return redirect('detalle-productos')
-    else:
-        form=Stock_Materia_Prima(instance=detalle_producto)
-    context={
-        "titulo":titulo,
-        "form":form
-    }
-    return render (request,"detalle_producto/modificar.html",context)
-
+# #@login_required
+# def stock_producto_eliminar(request,pk):
+#     stock_producto=Stock_Producto.objects.filter(id=pk)
+#     stock_producto.update(
+#         estado="0"
+#     )
+#     return redirect('stock-productos')
+#
+# #CRUD detalle_Producto
+#
+# #@login_required
+# def detalle_producto_crear(request):
+#     titulo="detalle producto"
+#     if request.method == 'POST':
+#         form=Detalle_ProductoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request,'falta')
+#             return redirect('detalle-productos')
+#         else:
+#             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+#     else:
+#         form=Detalle_ProductoForm()
+#     context={
+#         "titulo":titulo,
+#         "form":form
+#     }
+#     return render(request,"detalle_producto/crear.html",context)
+#
+#
+# #@login_required
+# def detalle_producto_listar(request):
+#     titulo="detalle producto"
+#     modulo="inventario"
+#     detalle_producto=Detalle_Producto.objects.all()
+#     context={
+#         "titulo":titulo,
+#         "modulo":modulo,
+#         "detallesP":detalle_producto,
+#     }
+#     return render(request,"detalle_producto/listar.html",context)
+#
+#
+# #@login_required
+# def detalle_producto_modificar(request,pk):
+#     titulo="detalle producto"
+#     detalle_producto=Detalle_Producto.objects.get(id=pk)
+#     if request.method=='POST':
+#         form=Detalle_ProductoUptadeForm(request.POST,instance=detalle_producto)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('detalle-productos')
+#     else:
+#         form=Stock_Materia_Prima(instance=detalle_producto)
+#     context={
+#         "titulo":titulo,
+#         "form":form
+#     }
+#     return render (request,"detalle_producto/modificar.html",context)
+#

@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 
 from compra.views import compra_listar, compra_crear, compra_modificar, compra_eliminar, detalle_compra_listar, detalle_compra_crear, detalle_compra_modificar
 
@@ -11,4 +12,6 @@ urlpatterns = [
     path('detalle_compra/', detalle_compra_listar, name="detalle_compra" ),
     path('detalle_compra/crear/', detalle_compra_crear, name="detalle_compra-crear" ),
     path('detalle_compra/modificar/<int:pk>/', detalle_compra_modificar, name="detalle_compra-modificar" ),
+
+    path('hacer-backup/', views.hacer_backup, name='hacer_backup'),
 ]

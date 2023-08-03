@@ -4,10 +4,9 @@
 {% block contenido %}
     <!-- Content Header (Page header) -->
     <div class="d-flex justify-content-end" style="height: 1px;">
- HEAD
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'compras' %}">{{ modulo }}</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'compras' %}">Compras</a></li>
             <li class="breadcrumb-item active">{{ titulo }} </li>
         </ol>
 
@@ -21,6 +20,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
+                                <a href="{% url 'hacer_backup' %}" class="btn btn-primary me-md-2">Hacer Backup</a>
                                 <h3 class="card-title">{{ titulo }}</h3>
                             </div>
                             <!-- /.card-header -->
@@ -72,6 +72,8 @@
                                 <!-- /.card-body -->
                             </div>
                             <a href="{% url 'compra-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
+
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->

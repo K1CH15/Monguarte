@@ -2,13 +2,127 @@
 {% load bootstrap_icons %}
 
 
-<header class=" sticky-top lh-1 py-3" style=" background-color: #5c9ead">
+
+<header class=" sticky-top lh-1 py-1" style=" background-color: #5c9ead">
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse d-md-block" id="navbarSupportedContent">
+  <ul class="list-unstyled ps-0" style="white-space: nowrap;">
+  <li class="mb-1" style="display: inline-block;">
+    <div class="custom-dropdown">
+      <button class="custom-dropbtn">COMPRA</button>
+      <div class="custom-dropdown-content">
+        <a href="{% url 'compra'%}">Compra</a>
+        <a href="{% url 'detalle_compra'%}">Detalle Compra</a>
+      </div>
+    </div>
+  </li>
+  <li class="mb-1" style="display: inline-block;">
+    <div class="custom-dropdown">
+      <button class="custom-dropbtn">VENTA</button>
+      <div class="custom-dropdown-content">
+        <a href="{% url 'ventas'%}">Venta</a>
+        <a href="{% url 'detalle_ventas'%}">Detalle Venta</a>
+      </div>
+    </div>
+  </li>
+  <li class="mb-1" style="display: inline-block;">
+    <div class="custom-dropdown">
+      <button class="custom-dropbtn">INVENTARIO</button>
+      <div class="custom-dropdown-content">
+        <a href="{% url 'stock-productos'%}">Stock Producto</a>
+        <a href="{% url 'materias-primas'%}">Materia Prima</a>
+        <a href="{% url 'stock-materias-primas'%}">Stock Materia Prima</a>
+        <a href="{% url 'detalle-productos'%}">Detalle Producto</a>
+      </div>
+    </div>
+  </li>
+  <li class="mb-1" style="display: inline-block;">
+    <div class="custom-dropdown">
+      <button class="custom-dropbtn">USUARIO</button>
+      <div class="custom-dropdown-content">
+        <a href="{% url 'personas'%}">Persona</a>
+        <a href="{% url 'contabilidades'%}">Contabilidad</a>
+        <a href="{% url 'ipss'%}">Ips</a>
+        <a href="{% url 'nominas'%}">Nominas</a>
+        <a href="{% url 'trabajadores'%}">Trabajadores</a>
+        <a href="{% url 'aportes'%}">Aportes</a>
+      </div>
+    </div>
+  </li>
+  <li class="mb-1" style="display: inline-block;">
+    <div class="custom-dropdown">
+      <button class="custom-dropbtn">PRODUCTO</button>
+      <div class="custom-dropdown-content">
+        <a href="{% url 'productos'%}">Producto</a>
+        <a href="{% url 'tamaños'%}">Tamaño</a>
+        <a href="{% url 'tipos'%}">Tipo</a>
+      </div>
+    </div>
+  </li>
+  <li class="border-top my-2" style="display: inline-block;"></li>
+  <li class="mb-1" style="display: inline-block;"> <i class="bi bi-0-square"></i>
+  </li>
+  <li class="mb-1" style="display: inline-block;">
+    <!-- cierre de secion -->
+<nav class="navbar  ">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <span class="navbar-text">Bienvenida, {{ user.first_name }} ({{ user.rol }})</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<!-- cierre de secion -->
+    </div>
+  </li>
+      </ul>
+</div>
+   <div class="container d-flex justify-content-end ">
   <div class="row flex-nowrap justify-content-between align-items-center">
-    <div class="col-4 pt-1">
+    <!-- Logo and Name -->
+    <div class="col-4 text-center mr-3"> <!-- Decreased right margin here -->
+      <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
+         href="http://127.0.0.1:8000/inicio/"><h2 style="font-family: 'Dancing Script', cursive; " href="">
+            MonguArte</h2></a>
+    </div>
+
+    <!-- Logo -->
+    <div class="col-4 d-flex justify-content-end align-items-center ml-3"> <!-- Decreased left margin here -->
+      <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block" alt="Bootstrap" width="50" height="50">
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</nav>
+
+
+
+  <div class="row flex-nowrap justify-content-between align-items-center " style="margin-left: 50px;">
+
+
+
       <div  class="boton dropdown" id="mi-dropdown" >
-        <button class="nav-btn open-btn">
-        <i class="fas fa-bars"></i>
-        </button>
+        <!-- Agrega las clases de Bootstrap a tu botón -->
+<!-- Agrega las clases de Bootstrap a tu botón -->
+<button class="nav-btn open-btn d-md-none d-md-inline-block">
+  <i class="fas fa-bars"></i>
+</button>
+
       <div class="nav nav-black " style="width: 340px; background-color: #5c9ead">
         <div class="nav nav-red"style="width: 310px; background-color: #edae49">
           <div class="nav nav-white" style="width: 280px;">
@@ -79,31 +193,36 @@
                   <div class="custom-dropdown">
                           <button class="custom-dropbtn">CUENTA</button>
                           <div class="custom-dropdown-content">
-                              <a href="#">Nuevo</a>
-                              <a href="#">Perfil</a>
-                              <a href="#">Ajustes</a>
-                              <button onclick="button"> <a href="{% url 'logout' %}">Nuevo</a> </button>
+                              
+                              <button onclick="button"> <a href="{% url 'logout' %}">Salir</a> </button>
                           </div>
                       </div>
                 </li>
               </ul>
+
             </div>
-          </div>
+            </a>
         </div>
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
+               href="http://127.0.0.1:8000/inicio/"><h1 style="font-family: 'Dancing Script', cursive; " href="">
+                MonguArte</h1></a>
+            </a>
+        </div>
+
+
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block " alt="Bootstrap" width="70"
+                 height="70">
+        </div>
+
+    </div>
+
+
+
       </div>
     </div></a>
-    </div>
-    <div class="col-4 text-center">
-      <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none" href="http://127.0.0.1:8000/inicio/"><h1 style="font-family: 'Dancing Script', cursive; " href="">MonguArte</h1></a>
-        </a>
-    </div>
 
 
-    <div class="col-4 d-flex justify-content-end align-items-center">
-      <img src="/static/img/Monguarte_color.jpg"  class="rounded-circle d-inline-block " alt="Bootstrap" width="70" height="70">
-    </div>
   </div>
-
-
-  
 </header>
