@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.views.generic import TemplateView
+from accounts import views
 from base.views import (
     principal,
     logout_user,
@@ -28,6 +29,7 @@ from base.views import (
 )
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path("inicio/", principal, name="index"),
     path('', auth_views.LoginView.as_view(), name='inicio'),
@@ -50,4 +52,7 @@ urlpatterns = [
     path('Productos/', producto_vista, name="producto"),
     path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
 
+    path('templates/partials/', include('accounts.urls')),
+    path('account-register', views.register, name='Registrarse'),
+    path('cerrar-sesion/', views.cerrar_sesion, name='cerrar_sesion'),
 ]

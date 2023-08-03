@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'productos',
     'compra',
     'venta',
+    'accounts',
 
     #Librerias
     'django_bootstrap5',#pip install django-bootstrap5
