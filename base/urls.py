@@ -53,6 +53,7 @@ urlpatterns = [
     path('inicio/abrir-pdf/', TemplateView.as_view(template_name='partials/archivo_pdf.html'), name='abrir_pdf'),
 
     path('templates/partials/', include('accounts.urls')),
-    path('account-register', views.register, name='Registrarse'),
+    path('Registro Usuario', views.register, name='Registrarse'),
     path('cerrar-sesion/', views.cerrar_sesion, name='cerrar_sesion'),
+
 ]
