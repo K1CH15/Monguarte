@@ -18,7 +18,7 @@ class Persona(models.Model):
     apellidos=models.CharField(max_length=30,verbose_name="Apellidos")
     telefono=models.CharField(max_length=10,validators=[integer_validator,MaxLengthValidator(10)],verbose_name="Número Telefónico",unique=True)
     correo_electronico=models.EmailField(max_length=50,verbose_name="Correo Electrónico",unique=True)
-    class  Rol(models.TextChoices):
+    class Rol(models.TextChoices):
         ADMINISTRADOR='ADMI',_("Administrador")
         VENDEDOR='VEN',_("Vendedor")
         PROVEEDOR='PROV',_("Proveedor")

@@ -1,20 +1,26 @@
 from django import forms
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.forms import UserCreationForm
+from django.core.validators import integer_validator
 from .models import Register
-
+from django.core.validators import RegexValidator
 class CustomUserCreationForm(UserCreationForm):
-    username = forms.CharField(label='Usuario', min_length=5, max_length=150, widget=forms.TextInput(attrs={'class': 'custom-input', 'placeholder':'Nombre de Usuario'}))
-    email = forms.EmailField(label='Correo', widget=forms.EmailInput(attrs={'class': 'custom-input','placeholder':'Correo Electronico'}))
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class': 'custom-input','placeholder':'Contraseña'}))
-    password2 = forms.CharField(label='Confirmar Contraseña', widget=forms.PasswordInput(attrs={'class': 'custom-input','placeholder':'Confirmar Contraseña'}))
+    first = forms.CharField(label="Nombres",required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$')],)
+    apellido = forms.CharField(label="Apellidos", required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$') ])
+    numero_documento = forms.CharField(label="Numero de Documento:",max_length=10, validators=[integer_validator])
+    username = forms.CharField(label='Nombre de Usuario',min_length=5, max_length=150, widget=forms.TextInput(attrs={'class': 'custom-input'}))
+    email = forms.EmailField(label='Correo',required=True, widget=forms.EmailInput(attrs={'class': 'custom-input'}))
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class': 'custom-input'}))
+    password2 = forms.CharField(label='Confirmar Contraseña', widget=forms.PasswordInput(attrs={'class': 'custom-input'}))
     activo = forms.BooleanField(initial=False, widget=forms.HiddenInput, required=False)
     group = forms.ModelChoiceField(queryset=Group.objects.all(), label='Rol', required=False )
+
 
     class Meta(UserCreationForm.Meta):
         # Asegurarse de que el modelo sea User
         model = User
         fields = UserCreationForm.Meta.fields + ('group',)  # Agregar el nuevo campo al formulario
+
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -36,6 +42,7 @@ class CustomUserCreationForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Las Contraseñas no Coinciden")
         return password2
+
 
     def save(self, commit=True):
         username = self.cleaned_data['username']  # Obtener el nombre de usuario

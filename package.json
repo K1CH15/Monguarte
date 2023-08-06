@@ -15,11 +15,12 @@
     "inventario": "python manage.py makemigrations inventario",
     "compra": "python manage.py makemigrations compra",
     "venta": "python manage.py makemigrations venta",
-    "cuentas": "python manage.py makemigrations accounts",
+    "cuentas": "python manage.py makemigrations accounts & python manage.py migrate ",
     "migrate": "python manage.py migrate",
     "migrations": "npm run usuario & npm run producto & npm run inventario & npm run compra & npm run venta & npm run cuentas",
     "server": "python manage.py runserver",
-    "ver": "npm run migrations & npm run migrate  & npm run server"
+    "ver": "npm run migrations & npm run migrate  & npm run server",
+    "deletedb" :"python manage.py flush"
   },
   "watch": {
     "build": {
