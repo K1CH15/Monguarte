@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-<div class="cuerpo">
+<div  class="cuerpo">
     <footer class=" ">
         <div class="waves">
             <div class="wave" id="wave1"></div>
@@ -12,68 +12,76 @@
             <div class="wave" id="wave3"></div>
             <div class="wave01" id="wave4"></div>
             <div class="row">
-                <div class="col-12 col-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img"
-                         viewBox="0 0 24 24"><title>Product</title>
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path>
-                    </svg>
-                    <small class="d-block mb-3 text-body-secondary"><font style="vertical-align: inherit;"><font
-                            style="vertical-align: inherit;">© 2017–2023</font></font></small>
-                </div>
-                <div class="col-6 col-md">
-                    <h5><font style="vertical-align: inherit;"><font
-                            style="vertical-align: inherit;">Características</font></font></h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Cosas interesantes</font></font></a></li>
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Función aleatoria</font></font></a></li>
+              <style>
+                .d-block a {
+                  display: flex;
+                  align-items: center;
+                  margin-right: 10px;
+                }
 
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5><font style="vertical-align: inherit;"><font
-                            style="vertical-align: inherit;">Recursos</font></font></h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Nombre del recurso</font></font></a></li>
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Recurso</font></font></a></li>
+                .d-block a i {
+                  font-size: 60px;
+                  color: rgb(230, 206, 206);
+                }
 
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5><font style="vertical-align: inherit;"><font
-                            style="vertical-align: inherit;">Recursos</font></font></h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Negocio</font></font></a></li>
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Educación</font></font></a></li>
+                /* Estilos cuando el mouse se desplaza sobre el texto */
+                .text-body-secondary:hover {
+                  color: #d71da8; /* Cambiar el color al tocar el texto */
+                  animation: shake 0.10s; /* Agregar una animación de sacudida */
+                }
 
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acerca
-                        de</font></font></h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Equipo</font></font></a></li>
-                        <li><a class="link-secondary" href="#"><font style="vertical-align: inherit;"><font
-                                style="vertical-align: inherit;">Ubicaciones</font></font></a></li>
+                /* Definir la animación shake */
+                @keyframes shake {
+                  0% { transform: translateX(0); }
+                  25% { transform: translateX(-5px); }
+                  50% { transform: translateX(5px); }
+                  75% { transform: translateX(-5px); }
+                  100% { transform: translateX(0); }
+                }
+              </style>
 
-                    </ul>
 
+
+                      <div class="d-flex align-items-center justify-content-center mb-3">
+                        <a  title="Redireccionamiento para el correo electronico" href="mailto:asociacionmonguarte@gmail.com">
+                          <i class="fa fa-envelope" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+
+                        <a  title="Redirreccionamiento para whatsapp" href="https://wa.me/+573225815002" target="_blank">
+                          <i class="fab fa-whatsapp" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+
+                        <a  title="Redirrecionamiento de google maps" href="https://maps.google.com" target="_blank">
+                          <i class="fas fa-map-marker-alt" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </footer>
+              </footer>
+
+
+              <footer>
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-auto">
+                      <small class="d-block mb- text-body-secondary text-center">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit; color:aliceblue">
+                          Copyright © 2023 MonguArte | Todos los derechos reservados
+                        </font></font>
+                      </small>
+
+
+              </footer>
+
 </div>
+
 <!--
-<footer class="container py-5">
+footer class="container py-5"
 
   </footer>
+
+
+
 
 
