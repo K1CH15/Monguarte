@@ -79,7 +79,7 @@ def fabricacion_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'Se a creado correctamente')
-            return redirect('fabricacion')
+            return redirect('fabricaciones')
         else:
             messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
     else:

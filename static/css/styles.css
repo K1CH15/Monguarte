@@ -273,7 +273,7 @@ button:focus {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    min-height: 70vh;
+    min-height: 30vh;
 }
 
 footer
@@ -281,7 +281,7 @@ footer
 
     position: relative;
     width: 100%;
-    background: #5c9eae;
+    background: #6C210C;
     min-height: 50px;
 
 }
@@ -383,7 +383,7 @@ marlon
 .conta {
   position: fixed;
   bottom: 20px;
-  right: 95%; /* Ajuste para colocar el botón más a la izquierda */
+  left: 20px; /* Ajuste para colocar el botón más a la izquierda */
 }
 
 .redes a,
@@ -407,7 +407,6 @@ marlon
 }
 
 .redes a {
-  margin-bottom: -15px;
   opacity: 0;
   visibility: hidden;
 }
@@ -428,6 +427,84 @@ marlon
   transform: rotate(135deg);
   font-size: 25px;
 }
+
+/* Estilos personalizados para el menú desplegable */
+/* Estilos personalizados para el menú desplegable */
+/* Estilos personalizados para el menú desplegable */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropbtn {
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.custom-dropbtn:hover {
+  color: #f36f21;
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  min-width: 150px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dropdown-content a {
+  display: block;
+
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.custom-dropdown-content a:hover {
+  background-color: #f2f2f2;
+  color: #444;
+}
+
+.logout-button {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.logout-button a {
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #e71d36;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.logout-button a:hover {
+  background-color: #e71d36;
+}
+
+
+
+body {
+  background-color: #f0d6df; /* Cambia #f0f0f0 por el color que desees */
+}
+
 
 
 

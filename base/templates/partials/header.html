@@ -1,6 +1,6 @@
 {% load static %}
 {% load bootstrap_icons %}
-<header class=" sticky-top lh-1 py-3" style=" background-color: #5c9ead">
+<header class=" sticky-top lh-1 py-0" style="  background-color: #6C210C">
 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -55,39 +55,53 @@
                     <li class="mb-1" style="display: inline-block;"><i class="bi bi-0-square"></i>
                     </li>
                     <li class="mb-1" style="display: inline-block;">
-                        <div class="custom-dropdown">
-                            <button class="custom-dropbtn">Cuenta</button>
-                            <div class="custom-dropdown-content">
-                                <a href="#">Nuevo</a>
-                                <a href="#">Perfil</a>
-                                <a href="#">Ajustes</a>
-                                <button onclick="button"><a href="{% url 'logout' %}">Nuevo</a></button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="container d-flex justify-content-end ">
-                <div class="row flex-nowrap justify-content-between align-items-center">
-                    <!-- Logo and Name -->
-                    <div class="col-4 text-center mr-3"> <!-- Decreased right margin here -->
-                        <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
-                           href="http://127.0.0.1:8000/inicio/"><h2 style="font-family: 'Dancing Script', cursive; "
-                                                                    href="">
-                            MonguArte</h2></a>
-                    </div>
 
-                    <!-- Logo -->
-                    <div class="col-4 d-flex justify-content-end align-items-center ml-3">
-                        <!-- Decreased left margin here -->
-                        <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block" alt="Bootstrap"
-                             width="50" height="50">
-                    </div>
-                </div>
+
+                </ul>
+
+            </div>
+
             </div>
 
 
         </div>
+          <div class="d-flex justify-content-center"> <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
+                           href="http://127.0.0.1:8000/inicio/"><h2 style="font-family: 'Dancing Script', cursive; "
+                                                                    href="">
+                            MonguArte</h2></a></div>
+       <div class="col-4 text-center ml-10">
+             <nav class="navbar">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+  <span class="navbar-text bg-info text-white p-2 rounded">
+    Bienvenida, {{ user.first_name }} ({{ user.rol }})
+  </span>
+</li>
+
+        <li class="nav-item">
+
+        </li>
+      {% else %}
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+                    </div>
+      <form class="d-flex" role="search">
+        <div class="col-4 d-flex justify-content-end align-items-center ml-3">
+
+
+                        <!-- Decreased left margin here -->
+                        <img src="/static/img/usuario.png" class=" d-inline-block" alt="Bootstrap"
+                             width="50" height="50">
+                    </div>
+        <button class="btn btn-outline-danger" type="submit"><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a></button>
+      </form>
+
+  </div>
     </nav>
 
 
@@ -101,7 +115,7 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="nav nav-black " style="width: 340px; background-color: #5c9ead">
+            <div class="nav nav-black " style="width: 340px; background-color: ">
                 <div class="nav nav-red" style="width: 310px; background-color: #edae49">
                     <div class="nav nav-white" style="width: 280px;">
                         <button class="nav-btn close-btn">
@@ -166,18 +180,18 @@
                                     </div>
                                 </li>
                                 <li class="border-top my-2"></li>
-                                <li class="mb-1"><i class="bi bi-0-square"></i>
-                                <li class="mb-1">
-                                    <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">CUENTA</button>
-                                        <div class="custom-dropdown-content">
-                                            <a href="#">Nuevo</a>
-                                            <a href="#">Perfil</a>
-                                            <a href="#">Ajustes</a>
-                                            <button onclick="button"><a href="{% url 'logout' %}">Nuevo</a></button>
-                                        </div>
-                                    </div>
-                                </li>
+                                <li class="mb-1" style="display: inline-block;">
+  <div class="custom-dropdown">
+    <button class="custom-dropbtn">Cuenta</button>
+    <div class="custom-dropdown-content">
+      <a href="#" class="custom-link">Nuevo</a>
+      <a href="#" class="custom-link">Perfil</a>
+      <a href="#" class="custom-link">Ajustes</a>
+      <button class="logout-button"><a href="{% url 'logout' %}" class="custom-link">Cerrar Sesión</a></button>
+    </div>
+  </div>
+</li>
+
                             </ul>
 
                         </div>
