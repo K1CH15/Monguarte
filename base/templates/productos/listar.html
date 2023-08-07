@@ -30,6 +30,7 @@
                                             <th>Precio</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
+                                            <th>Stock</th>
                                             <th>estado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -43,6 +44,8 @@
                                                     <td>{{ producto.precio_formato_colombiano }}</td>
                                                     <td>{{ producto.get_tamano_display }}</td>
                                                     <td>{{ producto.get_tipo_display }}</td>
+                                                    <!-- Nuevo: Mostrar el stock -->
+                                                    <td>{{ producto.stock }}</td>
                                                     <td>{{ producto.get_estado_display }}</td>
 
                                                     <td>
@@ -64,6 +67,7 @@
                                             <th>Precio</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
+                                            <th>Stock</th>
                                             <th>estado</th>
                                             <th>Acciones</th>
                                         </tr>

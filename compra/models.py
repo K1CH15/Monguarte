@@ -26,10 +26,32 @@ class Detalle_Compra(models.Model):
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unidad).replace(',', '.')
     cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=0,help_text="La cantidad tiene que ser menor a 100")
+    # Campo para almacenar el valor total calculado
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total",
+                                      editable=False)
 
+    def valor_total_formato_colombiano(self):
+        return '${:,.0f}'.format(self.valor_total).replace(',', '.')
+
+    materia_prima = models.ForeignKey(Materia_Prima, verbose_name="Materia Prima", on_delete=models.CASCADE)
     compra=models.ForeignKey(Compra,verbose_name="Compra", on_delete=models.CASCADE)
     def __str__(self):
         return"%s"%(self.cantidad)
-    class meta:
+    def save(self, *args, **kwargs):
+        # Obtenemos la cantidad antes de guardar el detalle de compra
+        cantidad_nueva = self.cantidad
+
+        # Calculamos el valor total multiplicando el precio_unidad por la cantidad
+        self.valor_total = self.precio_unidad * cantidad_nueva
+
+        # Guardamos el detalle de compra antes de actualizar el stock de la materia prima
+        super(Detalle_Compra, self).save(*args, **kwargs)
+
+        # Actualizamos el stock de la materia prima asociada
+        if self.materia_prima:
+            self.materia_prima.stock += cantidad_nueva
+            self.materia_prima.save()
+
+    class Meta:
         verbose_name_plural = "Detalle Compra"
  
