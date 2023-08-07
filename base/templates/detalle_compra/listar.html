@@ -29,7 +29,10 @@
                                         <tr>
                                             <th>°N de Registro</th>
                                             <th>Precio Unitario</th>
+                                            <th>Materia Prima</th>
+                                            <th>Stock</th> <!-- Nuevo campo -->
                                             <th>Cantidad Total</th>
+                                            <th>Valor Total</th>
                                             <th>Id Compra</th>
                                             <th>Acción</th>
                                         </tr>
@@ -39,7 +42,10 @@
                                             <tr>
                                                 <td>{{ detalle_compra.id }}</td>
                                                 <td>{{ detalle_compra.precio_formato_colombiano }}</td>
+                                                <td>{{ detalle_compra.materia_prima.nombre }} - {{ detalle_compra.materia_prima.tipo }}</td> <!-- Nuevo campo -->
+                                                <td>{{ detalle_compra.materia_prima.stock }}</td> <!-- Nuevo campo -->
                                                 <td>{{ detalle_compra.cantidad }}</td>
+                                                <td>{{ detalle_compra.valor_total_formato_colombiano }}</td><!-- Nuevo campo: Valor Total -->
                                                 <td>Precio:
                                                     <b>{{ detalle_compra.compra.valor_total_compra }} </b>Fecha:<b> {{ detalle_compra.compra.fecha }}</b>
                                                 </td>
@@ -54,7 +60,10 @@
                                         <tr>
                                             <th>°N de Registro</th>
                                             <th>Precio Unitario</th>
+                                            <th>Materia Prima</th> <!-- Nuevo campo -->
+                                            <th>Stock</th> <!-- Nuevo campo -->
                                             <th>Cantidad Total</th>
+                                            <th>Valor Total</th>
                                             <th>Id Compra</th>
                                             <th>Acción</th>
                                         </tr>

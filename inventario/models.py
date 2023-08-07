@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 from productos.models import Producto
 from venta.models import Detalle_Venta
@@ -32,6 +33,7 @@ class Materia_Prima(models.Model):
     #si la materia prima ya exite con los datos iguales simplemete se suma falta para que se sume automaticamente
     #detalle_compra=models.ForeignKey(verbose_name=_("Cantidad"),help_text="Cantidad de Materia Prima",on_delete=models.CASCADE)
     unidad_medida = models.ForeignKey(Unidad_Medida, verbose_name=_("Unidad de Medida"), on_delete=models.CASCADE)
+    stock = models.PositiveIntegerField(default=0, verbose_name="Stock de Materia Prima")
     def __str__(self):
         return "%s %s %s %s %s %s" % ("Nombre de la Materia Prima:", self.nombre, "de Tipo:", self.get_tipo_display(), "y de Color:", self.color)
     class Meta:
@@ -45,11 +47,27 @@ class Fabricacion(models.Model):
     def __str__(self):
         return "%s" % (self.cantidad_producto)
 
-    class Meta:
-        verbose_name_plural = "Fabricación"
+    def save(self, *args, **kwargs):
+        # Obtenemos la cantidad de materia prima antes de guardar la fabricación
+        cantidad_materia_nueva = self.cantidad_materia
 
+        # Verificamos si hay suficiente stock de materia prima
+        if cantidad_materia_nueva > self.materia_prima.stock:
+            raise ValidationError(
+                _("No hay suficiente stock de materia prima disponible. Cantidad en stock: %(stock)s") % {
+                    'stock': self.materia_prima.stock})
 
-# class Stock_Materia_Prima(models.Model):
+        # Actualizamos el stock de materia prima restando la cantidad utilizada
+        self.materia_prima.stock -= cantidad_materia_nueva
+        self.materia_prima.save()
+
+        # Guardamos la fabricación después de actualizar el stock de materia prima
+        super(Fabricacion, self).save(*args, **kwargs)
+        if self.producto:
+            self.producto.stock += self.cantidad_producto
+            self.producto.save()
+
+        # class Stock_Materia_Prima(models.Model):
 #     cantidad=models.IntegerField(verbose_name="Cantidad de materia prima en stock")
 #     class Estado(models.TextChoices):
 #         ACTIVO='1',_("Activo")
