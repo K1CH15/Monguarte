@@ -39,6 +39,8 @@ class Producto(models.Model):
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
     cantidad=models.ForeignKey
+    stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
+
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTIVO='0',_("Inactivo")
