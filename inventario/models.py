@@ -33,7 +33,7 @@ class Materia_Prima(models.Model):
     #detalle_compra=models.ForeignKey(verbose_name=_("Cantidad"),help_text="Cantidad de Materia Prima",on_delete=models.CASCADE)
     unidad_medida = models.ForeignKey(Unidad_Medida, verbose_name=_("Unidad de Medida"), on_delete=models.CASCADE)
     def __str__(self):
-        return "%s %s %s %s %s %s" % ("Nombre: ", self.nombre, "Tipo: ", self.tipo, "Color: ", self.color)
+        return "%s %s %s %s %s %s" % ("Nombre de la Materia Prima:", self.nombre, "de Tipo:", self.get_tipo_display(), "y de Color:", self.color)
     class Meta:
         verbose_name_plural = "Materia Prima"
 class Fabricacion(models.Model):

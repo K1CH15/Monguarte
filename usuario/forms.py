@@ -21,7 +21,7 @@ class PersonaUptadeForm(ModelForm):
 class ComisionForm(ModelForm):
 
     class Meta:
-        model =Comision
+        model = Comision
         fields = "__all__"
 
 
@@ -30,6 +30,7 @@ class ComisionUptadeForm(ModelForm):
     class Meta:
         model = Comision
         fields = "__all__"
+
 
 # class AporteForm(ModelForm):
 #
