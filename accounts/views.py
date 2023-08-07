@@ -19,7 +19,7 @@ def register(request):
             return redirect('inicio')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'partials/registro.html', {'form': form})
+    return render(request, 'partials/register.html', {'form': form})
 
 
 def cerrar_sesion(request):
