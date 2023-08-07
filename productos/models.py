@@ -56,6 +56,6 @@ class Producto(models.Model):
     tipo=models.CharField(max_length=1,choices=Tipo.choices,verbose_name="Tipo")
 
     def __str__(self):
-        return"%s %s %s"%(self.nombre,self.tamano,self.tipo)
+        return"%s %s %s %s %s %s"%("Producto de Nombre:",self.nombre,"de Tipo:",self.get_tipo_display(),"y Tamaño:",self.get_tamano_display())
     class meta:
         verbose_name_plural="Producto"

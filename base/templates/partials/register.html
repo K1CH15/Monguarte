@@ -14,7 +14,8 @@
                                 {% if key == "password2" %}
                                     <strong>Contraseña: </strong>{{ value|striptags }}<br>
                                 {% else %}
-                                    <strong>{% trans key as input %} {{ input|title }} </strong>: {{ value|striptags }}<br>
+                                    <strong>{% trans key as input %} {{ input|title }} </strong>: {{ value|striptags }}
+                                    <br>
                                 {% endif %}
                             {% endfor %}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -22,10 +23,30 @@
                         </div>
                     {% endif %}
                 </div>
-                <h2 class="text-center mb-4">Registro de usuario</h2>
+                <h2 class="text-center mb-4">Registro de Nuevos Usuarios</h2>
                 <!-- register.html -->
                 <form method="post" class="row g-3 custom-form">
                     {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.nombre.label_tag }}
+                            {{ form.nombre }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.apellido.label_tag }}
+                            {{ form.apellido }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.numero_documento.label_tag }}
+                            {{ form.numero_documento }}
+                        </div>
+                    </div>
+
 
                     <div class="col-md-6">
                         <div class="form-group">
