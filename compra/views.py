@@ -44,6 +44,7 @@ def compra_crear(request):
 
     return render(request, "compra/crear.html", context)
 
+
 #@login_required
 def compra_listar(request):
     titulo="Compra"
