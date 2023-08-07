@@ -31,7 +31,7 @@ class Persona(models.Model):
     ips = models.CharField(max_length=10,verbose_name="IPS",blank=True,null=True)
 
     def __str__(self):
-        return"%s %s %s %s"%(self.numero_documento,self.nombres,self.apellidos,self.rol)
+        return"%s %s %s %s %s %s"%("Numero De Documento:",self.numero_documento,self.nombres,self.apellidos,",Rol:",self.get_rol_display())
     class meta:
         verbose_name_plural="Persona"
 #Modelo de Comisión
