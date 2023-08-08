@@ -72,7 +72,7 @@ def persona_eliminar(request,pk):
 
 #@login_required
 def comision_crear(request):
-    titulo="Comision"
+    titulo="Comisión"
     if request.method == 'POST':
         form=ComisionForm(request.POST)
         if form.is_valid():
@@ -92,7 +92,7 @@ def comision_crear(request):
 
 #@login_required
 def comision_listar(request):
-    titulo="Comision"
+    titulo="Comisión"
     modulo="usuarios"
     comision=Comision.objects.all()
     context={
@@ -106,7 +106,7 @@ def comision_listar(request):
 
 #@login_required
 def comision_modificar(request,pk):
-    titulo="Comision"
+    titulo="Comisión"
     comision=Comision.objects.get(id=pk)
     if request.method=='POST':
         form=ComisionUptadeForm(request.POST,instance=comision)

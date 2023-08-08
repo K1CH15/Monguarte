@@ -46,7 +46,7 @@
                                         {% for materia_prima in materias %}
                                             {% if materia_prima.estado != "0" %}
                                                 <tr>
-                                                    <td>{{ materia_prima.id }}</td>
+                                                    <td>{{ materia_prima.nombre }}</td>
                                                     <td>{{ materia_prima.get_tipo_display }}</td>
                                                     <td>{{ materia_prima.color }}</td>
                                                     <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->

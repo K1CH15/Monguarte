@@ -32,3 +32,6 @@ class Detalle_Venta(models.Model):
 
     class meta:
         verbose_name_plural = "Detalle Venta"
+
+    def precio_unitario_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
