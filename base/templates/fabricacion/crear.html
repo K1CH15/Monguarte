@@ -16,8 +16,7 @@
     <form id="{{ titulo }}" action="" method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="btnConfirmar btn btn-danger"
-               data-bs-toggle="modal" data-bs-target="#modal-success" type="submit" value="Agregar{{ titulo }}">
+        <input type="submit" value="Agregar{{ titulo }}">
     </form>
 
 {% endblock contenido %}

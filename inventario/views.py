@@ -1,186 +1,207 @@
-from django.shortcuts import render,redirect
-from inventario.forms import Materia_PrimaForm,Materia_PrimaUptadeForm,Materia_Prima
-from inventario.forms import FabricacionForm,FabricacionUptadeForm,Fabricacion
-from inventario.forms import Unidad_MedidaForm,Unidad_MedidaUptadeForm,Unidad_Medida
 from django.contrib import messages
+from django.shortcuts import render, redirect
 
-from django.contrib.auth.decorators import login_required
+from inventario.forms import FabricacionForm, FabricacionUptadeForm, Fabricacion
+from inventario.forms import Materia_PrimaForm, Materia_PrimaUptadeForm, Materia_Prima
+from inventario.forms import Unidad_MedidaForm, Unidad_MedidaUptadeForm, Unidad_Medida
+
+
 # Create your views here.
 
-#CRUD Materia Prima
+# CRUD Materia Prima
 
-#@login_required
+# @login_required
 def materia_prima_crear(request):
-    titulo="materia prima"
+    titulo = "materia prima"
+    mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method == 'POST':
-        form=Materia_PrimaForm(request.POST)
+        form = Materia_PrimaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'la Materia prima se a creado correctamente')
+            messages.success(request, mensaje)
             return redirect('materias-primas')
         else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request, mensajeerror)
 
     else:
-        form=Materia_PrimaForm()
-    context={
-        "titulo":titulo,
-        "form":form
+        form = Materia_PrimaForm()
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render(request,"materia prima/crear.html",context)
+    return render(request, "materia prima/crear.html", context)
 
 
-#@login_required
+# @login_required
 def materia_prima_listar(request):
-    titulo="Materia Prima"
-    modulo="inventarios"
-    m=Materia_Prima.objects.all()
-    context={
-        "titulo":titulo,
-        "modulo":modulo,
-        "materias":m,
+    titulo = "Materia Prima"
+    modulo = "inventarios"
+    m = Materia_Prima.objects.all()
+    context = {
+        "titulo": titulo,
+        "modulo": modulo,
+        "materias": m,
     }
-    return render(request,"materia prima/listar.html",context)
+    return render(request, "materia prima/listar.html", context)
 
 
-#@login_required
-def materia_prima_modificar(request,pk):
-    titulo="materia prima"
-    materia_prima=Materia_Prima.objects.get(id=pk)
-    if request.method=='POST':
-        form=Materia_PrimaUptadeForm(request.POST,instance=materia_prima)
+# @login_required
+def materia_prima_modificar(request, pk):
+    titulo = "materia prima"
+    mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
+    materia_prima = Materia_Prima.objects.get(id=pk)
+    if request.method == 'POST':
+        form = Materia_PrimaUptadeForm(request.POST, instance=materia_prima)
         if form.is_valid():
             form.save()
+            messages.success(request, mensaje)
             return redirect('materias-primas')
     else:
-        form=Materia_PrimaUptadeForm(instance=materia_prima)
-    context={
-        "titulo":titulo,
-        "form":form
+        form = Materia_PrimaUptadeForm(instance=materia_prima)
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render (request,"materia prima/modificar.html",context)
+    return render(request, "materia prima/modificar.html", context)
 
 
-#@login_required
-def materia_prima_eliminar(request,pk):
-    materia_prima=Materia_Prima.objects.filter(id=pk)
+# @login_required
+def materia_prima_eliminar(request, pk):
+    materia_prima = Materia_Prima.objects.filter(id=pk)
     materia_prima.update(
         estado="0"
     )
     return redirect('materias-primas')
 
-#CRUD Stock_Materia_Prima
 
-#@login_required
+# CRUD Stock_Materia_Prima
+
+# @login_required
 def fabricacion_crear(request):
-    titulo="Fabricación"
+    titulo = "Fabricación"
+    mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method == 'POST':
-        form=FabricacionForm(request.POST)
+        form = FabricacionForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'Se a creado correctamente')
+            messages.success(request, mensaje)
             return redirect('fabricaciones')
         else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request, mensajeerror)
     else:
-        form=FabricacionForm()
-    context={
-        "titulo":titulo,
-        "form":form
+        form = FabricacionForm()
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render(request,"fabricacion/crear.html",context)
+    return render(request, "fabricacion/crear.html", context)
 
 
-#@login_required
+# @login_required
 def fabricacion_listar(request):
-    titulo="Fabricación"
-    modulo="inventarios"
+    titulo = "Fabricación"
+    modulo = "inventarios"
     fabricacion = Fabricacion.objects.all()
-    context={
-        "titulo":titulo,
-        "modulo":modulo,
-        "fabricas":fabricacion,
+    context = {
+        "titulo": titulo,
+        "modulo": modulo,
+        "fabricas": fabricacion,
     }
-    return render(request,"fabricacion/listar.html",context)
+    return render(request, "fabricacion/listar.html", context)
 
 
-#@login_required
-def fabricacion_modificar(request,pk):
-    titulo="Fabricación"
-    fabricacion=Fabricacion.objects.get(id=pk)
-    if request.method=='POST':
-        form=FabricacionUptadeForm(request.POST,instance=fabricacion)
+# @login_required
+def fabricacion_modificar(request, pk):
+    titulo = "Fabricación"
+    mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
+    fabricacion = Fabricacion.objects.get(id=pk)
+    if request.method == 'POST':
+        form = FabricacionUptadeForm(request.POST, instance=fabricacion)
         if form.is_valid():
             form.save()
+            messages.success(request, mensaje)
             return redirect('fabricaciones')
     else:
-        form=FabricacionUptadeForm(instance=fabricacion)
-    context={
-        "titulo":titulo,
-        "form":form
+        form = FabricacionUptadeForm(instance=fabricacion)
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render (request,"fabricacion/modificar.html",context)
+    return render(request, "fabricacion/modificar.html", context)
 
 
-#@login_required
-def fabricacion_eliminar(request,pk):
-    fabricacion=Fabricacion.objects.filter(id=pk)
+# @login_required
+def fabricacion_eliminar(request, pk):
+    fabricacion = Fabricacion.objects.filter(id=pk)
     fabricacion.update(
         estado="0"
     )
     return redirect('fabricaciones')
 
-#CRUD Stock_Producto
 
-#@login_required
+# CRUD Stock_Producto
+
+# @login_required
 def unidad_medida_crear(request):
-    titulo="Unidad de Medida"
+    titulo = "Unidad de Medida"
+    mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method == 'POST':
-        form=Unidad_MedidaForm(request.POST)
+        form = Unidad_MedidaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'falta')
+            messages.success(request, mensaje)
             return redirect('unidades-medida')
         else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request, mensajeerror)
     else:
-        form=Unidad_MedidaForm()
-    context={
-        "titulo":titulo,
-        "form":form
+        form = Unidad_MedidaForm()
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render(request,"unidad de medida/crear.html",context)
+    return render(request, "unidad de medida/crear.html", context)
 
-#@login_required
+
+# @login_required
 def unidad_medida_listar(request):
-    titulo="Unidad de Medida"
-    modulo="inventarios"
-    unidade_medida=Unidad_Medida.objects.all()
-    context={
-        "titulo":titulo,
-        "modulo":modulo,
-        "unidades":unidade_medida,
+    titulo = "Unidad Medida"
+    modulo = "inventarios"
+    unidade_medida = Unidad_Medida.objects.all()
+    context = {
+        "titulo": titulo,
+        "modulo": modulo,
+        "unidades": unidade_medida,
     }
-    return render(request,"unidad de medida/listar.html",context)
+    return render(request, "unidad de medida/listar.html", context)
 
 
-#@login_required
-def unidad_medida_modificar(request,pk):
-    titulo="Unidad de Medida"
-    unidad_medida=Unidad_Medida.objects.get(id=pk)
-    if request.method=='POST':
-        form=Unidad_MedidaUptadeForm(request.POST,instance=unidad_medida)
+# @login_required
+def unidad_medida_modificar(request, pk):
+    titulo = "Unidad Medida"
+    mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
+    unidad_medida = Unidad_Medida.objects.get(id=pk)
+    if request.method == 'POST':
+        form = Unidad_MedidaUptadeForm(request.POST, instance=unidad_medida)
         if form.is_valid():
             form.save()
+            messages.success(request,mensaje)
             return redirect('unidades-medida')
     else:
-        form=Unidad_MedidaUptadeForm(instance=unidad_medida)
-    context={
-        "titulo":titulo,
-        "form":form
+        form = Unidad_MedidaUptadeForm(instance=unidad_medida)
+    context = {
+        "titulo": titulo,
+        "form": form
     }
-    return render (request,"unidad de medida/modificar.html",context)
+    return render(request, "unidad de medida/modificar.html", context)
 
+
+def unidad_medida_eliminar(request, pk):
+    unidad = Unidad_Medida.objects.filter(id=pk)
+    unidad.delete()
+    return redirect('unidades-medida')
 
 # #@login_required
 # def stock_producto_eliminar(request,pk):

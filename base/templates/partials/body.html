@@ -52,31 +52,10 @@
     </div>
 </div>
 {% include 'partials/modal.html' %}
-{#{% include 'partials/modal_agregar.html' %}#}
+
 {% include 'partials/footer.html' %}
 
 
-{% if messages %}
-    {% for message in messages %}
-        <script>
-            Swal.fire(
-                {
-                    position: 'top-end',
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 10000,
-                    timerProgressBar: true,
-                    background: '#ffffff',
-                    icon: '{{ message.tags }}',
-                    text: '{{ message }}',
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                });
-        </script>
-    {% endfor %}
-{% endif %}
 </body>
 <!--boton flotante ayuda-->
 <div class="conta">
@@ -85,7 +64,7 @@
         <a href="#" class="opcion" onclick="abrirPDF()">Ayuda</a>
 
     </div>
-    <div  title="Boton de Ayuda para el Usuario" class="btn-mas" >
+    <div title="Boton de Ayuda para el Usuario" class="btn-mas">
         <label for="btn-mas" class="fa fa-plus"></label>
     </div>
 </div>
