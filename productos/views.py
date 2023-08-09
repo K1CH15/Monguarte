@@ -1,63 +1,73 @@
-from django.shortcuts import render, redirect
-from productos.models import Producto
-from productos.forms import ProductoForm,ProductoUpdateForm
 from django.contrib import messages
+from django.shortcuts import render, redirect
+
+from productos.forms import ProductoForm, ProductoUpdateForm
+from productos.models import Producto
+
+
 # Create your views here.
 def producto_crear(request):
-    titulo="Producto"
-    if request.method== 'POST':
-        form= ProductoForm(request.POST)
+    titulo = "Producto"
+    mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
+    if request.method == 'POST':
+        form = ProductoForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'El formulario se ha enviado correctamente.')
+            messages.success(request, mensaje)
 
             return redirect('productosl')
         else:
-            messages.error(request,'¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request,mensajeerror)
     else:
-        form= ProductoForm()
-    context={
-        "titulo":titulo,
-        "form":form
-        }
-    return render(request,"productos/crear.html", context)
+        form = ProductoForm()
+    context = {
+        "titulo": titulo,
+        "form": form
+    }
+    return render(request, "productos/crear.html", context)
+
 
 def producto_listar(request):
-    titulo="Producto"
-    modulo="productos"
+    titulo = "Producto"
+    modulo = "productos"
     productosn = Producto.objects.all()
-    context={
-        "titulo":titulo,
-        "modulo":modulo,
-        "productos":productosn
+    context = {
+        "titulo": titulo,
+        "modulo": modulo,
+        "productos": productosn
     }
-    return render(request,"productos/listar.html", context)
+    return render(request, "productos/listar.html", context)
 
-def producto_modificar(request,pk):
-    titulo="Usuario"
-    producto= Producto.objects.get(id=pk)
-    
-    if request.method== 'POST':
-        form= ProductoUpdateForm(request.POST, instance=producto)
+
+def producto_modificar(request, pk):
+    titulo = "Producto"
+    producto = Producto.objects.get(id=pk)
+    mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
+    if request.method == 'POST':
+        form = ProductoUpdateForm(request.POST, instance=producto)
         if form.is_valid():
             form.save()
-            messages.success(request, 'El formulario se ha enviado correctamente.')
+            messages.success(request, mensaje)
             return redirect('productosl')
     else:
-        form= ProductoUpdateForm(instance=producto)
-    context={
-        "titulo":titulo,
-        "form":form
-        }
-    return render(request,"productos/modificar.html", context)
+        form = ProductoUpdateForm(instance=producto)
+    context = {
+        "titulo": titulo,
+        "form": form
+    }
+    return render(request, "productos/modificar.html", context)
 
-def producto_eliminar(request,pk):
-    producto= Producto.objects.filter(id=pk)
+
+def producto_eliminar(request, pk):
+    mensaje = f'¡Hecho! El P se ha modificado exitosamente.'
+    producto = Producto.objects.filter(id=pk)
     producto.update(
-        estado="0"
+        estado="0",
     )
-    return redirect('productosl')
+    messages.info(request, '¡Hecho! El Producto se ha eliminado exitosamente.')
 
+    return redirect('productosl')
 
 # def tamaño_crear(request):
 #     titulo="Tamaño"
