@@ -3,36 +3,9 @@ from django.db import models
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator
-# Create your models here.
-#Modelo de Tipo de Producto
-# class Tipo(models.Model):
-#     nombre=models.CharField(max_length=30,verbose_name="Tipo")
-#     class Estado(models.TextChoices):
-#         ACTIVO='1',_("Activo")
-#         INACTIVO='0',_("Inactivo")
-#     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-#
-#     def __str__(self):
-#         return"%s"%(self.nombre)
-#     class meta:
-#         verbose_name_plural="Tipos"
-#
-# #Modelo de Tamaño Producto
-# class Tamaño(models.Model):
-#
-#     nombre=models.CharField(max_length=30,verbose_name="Tamaño")
-#     class Estado(models.TextChoices):
-#         ACTIVO='1',_("Activo")
-#         INACTIVO='0',_("Inactivo")
-#     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-#
-#     def __str__(self):
-#         return"%s"%(self.nombre)
-#     class meta:
-#         verbose_name_plural="Tamaños"
+from safedelete.models import SafeDeleteModel
 
-#Modelo de producto
-class Producto(models.Model):
+class Producto(SafeDeleteModel):
 
     nombre=models.CharField(max_length=45,verbose_name="Nombre")
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)])

@@ -3,23 +3,11 @@ from compra.models import Compra,Detalle_Compra
 from compra.forms import CompraForm,CompraUpdateForm,Detalle_CompraForm,Detalle_CompraUpdateForm
 from django.contrib import messages
 import os
-from dbbackup.management.commands.dbbackup import Command as DbBackupCommand
+
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Creación COMPRA crear,listar,modificar,eliminar
 
-
-#backup
-def hacer_backup(request):
-    #Ruta donde desea guardar el archivo de backup (asegurate de que ña carpeta "backups2 exista)
-    backup_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'base','backups')
-    backup_file =f'{backup_dir}/nombre_del_archivo.bak'
-
-    # Logica para realizar el backup aqui
-    verbosity_level= 1 #Establece un valor entero para verbosity, p. ej. 1
-    DbBackupCommand().handle(filename=backup_file, verbosity=verbosity_level)
-
-    return redirect('compra')
 
 def compra_crear(request):
     titulo = "Compra"

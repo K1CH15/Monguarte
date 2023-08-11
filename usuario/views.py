@@ -69,6 +69,7 @@ def persona_eliminar(request,pk):
     persona.update(
         estado="0"
     )
+
     return redirect('personas')
 
 #CRUD Contabilidad
