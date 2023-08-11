@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from compra.models import Compra,Detalle_Compra
 from venta.models import Venta,Detalle_Venta
-from inventario.models import Materia_Prima,Fabricacion,Unidad_Medida
+from inventario.models import Materia_Prima,Fabricacion
 from productos.models import Producto
 from usuario.models import Persona,Comision
 #@login_required
@@ -18,7 +18,7 @@ def principal(request):
     personas=Persona.objects.all().count()
     comisiones=Comision.objects.all().count()
     fabricaciones=Fabricacion.objects.all().count()
-    unidades_de_medida=Unidad_Medida.objects.all().count()
+
 
 
     context={
@@ -32,7 +32,7 @@ def principal(request):
         "personas":personas,
         "comisiones":comisiones,
         "fabricaciones":fabricaciones,
-        "unidades_de_medida":unidades_de_medida,
+
 
     }
     return render(request,"index.html",context)

@@ -35,6 +35,7 @@
                                         <thead>
                                         <tr>
                                             <th>Nombre</th>
+                                            <th>Unidad de Medida</th>
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->
@@ -47,6 +48,7 @@
                                             {% if materia_prima.estado != "0" %}
                                                 <tr>
                                                     <td>{{ materia_prima.nombre }}</td>
+                                                    <td>{{ materia_prima.get_unidad_medida_display }}</td>
                                                     <td>{{ materia_prima.get_tipo_display }}</td>
                                                     <td>{{ materia_prima.color }}</td>
                                                     <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->
@@ -67,6 +69,7 @@
                                         <tfoot>
                                         <tr>
                                             <th>Nombre</th>
+                                            <th>Unidad de Medida</th>
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->

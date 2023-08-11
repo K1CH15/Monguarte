@@ -9,7 +9,8 @@
                 <ul class="list-unstyled ps-0" style="white-space: nowrap;">
                     <li class="mb-1" style="display: inline-block;">
                         <div class="custom-dropdown">
-                            <a class="custom-dropbtn" style="text-decoration: none" href="{% url 'compras' %}" >Compra</a>
+                            <a class="custom-dropbtn" style="text-decoration: none"
+                               href="{% url 'compras' %}">Compra</a>
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'compra' %}">Compra</a>
                                 <a href="{% url 'detalle_compra' %}">Detalle Compra</a>
@@ -18,7 +19,7 @@
                     </li>
                     <li class="mb-1" style="display: inline-block;">
                         <div class="custom-dropdown">
-                            <a class="custom-dropbtn" style="text-decoration: none" href="{% url 'venta' %}" >Venta</a>
+                            <a class="custom-dropbtn" style="text-decoration: none" href="{% url 'venta' %}">Venta</a>
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'ventas' %}">Venta</a>
                                 <a href="{% url 'detalle_ventas' %}">Detalle Venta</a>
@@ -30,14 +31,14 @@
                             <a class="custom-dropbtn" style="text-decoration: none" href="{% url 'inventario' %}">Inventario</a>
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'fabricaciones' %}">Fabricación</a>
-                                <a href="{% url 'unidades-medida' %}">Unidad de Medida</a>
                                 <a href="{% url 'materias-primas' %}">Materia Prima</a>
                             </div>
                         </div>
                     </li>
                     <li class="mb-1" style="display: inline-block;">
                         <div class="custom-dropdown">
-                            <a class="custom-dropbtn" style="text-decoration: none" href="{% url 'usuario' %}" >Usuario</a>
+                            <a class="custom-dropbtn" style="text-decoration: none"
+                               href="{% url 'usuario' %}">Usuario</a>
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'personas' %}">Persona</a>
                                 <a href="{% url 'comisiones' %}">Comisión</a>
@@ -61,47 +62,50 @@
 
             </div>
 
-            </div>
+        </div>
 
 
         </div>
-          <div class="d-flex justify-content-center"> <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
-                           href="http://127.0.0.1:8000/inicio/"><h2 style="font-family: 'Dancing Script', cursive; "
-                                                                    href="">
-                            MonguArte</h2></a></div>
-       <div class="col-4 text-center ml-10">
-             <nav class="navbar">
-  <div class="container">
-    <ul class="navbar-nav ml-auto">
-      {% if user.is_authenticated %}
-        <li class="nav-item">
+        <div class="d-flex justify-content-center"><a class="blog-header-logo text-body-emphasis text-light none"
+                                                      style="text-decoration: none"
+                                                      href="http://127.0.0.1:8000/inicio/"><h2
+                style="font-family: 'Dancing Script', cursive; "
+                href="">
+            MonguArte</h2></a></div>
+        <div class="col-4 text-center ml-10">
+            <nav class="navbar">
+                <div class="container">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
   <span class="navbar-text bg-info text-white p-2 rounded">
     Bienvenida, {{ user.first_name }} ({{ user.rol }})
   </span>
-</li>
+                            </li>
 
-        <li class="nav-item">
+                            <li class="nav-item">
 
-        </li>
-      {% else %}
+                            </li>
+                        {% else %}
 
-      {% endif %}
-    </ul>
-  </div>
-</nav>
-                    </div>
-      <form class="d-flex" role="search">
-        <div class="col-4 d-flex justify-content-end align-items-center ml-3">
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <form class="d-flex" role="search">
+            <div class="col-4 d-flex justify-content-end align-items-center ml-3">
 
 
-                        <!-- Decreased left margin here -->
-                        <img src="/static/img/usuario.png" class=" d-inline-block" alt="Bootstrap"
-                             width="50" height="50">
-                    </div>
-        <button class="btn btn-outline-danger" type="submit"><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a></button>
-      </form>
+                <!-- Decreased left margin here -->
+                <img src="/static/img/usuario.png" class=" d-inline-block" alt="Bootstrap"
+                     width="50" height="50">
+            </div>
+            <button class="btn btn-outline-danger" type="submit"><a class="nav-link" href="{% url 'logout' %}">Cerrar
+                Sesión</a></button>
+        </form>
 
-  </div>
+        </div>
     </nav>
 
 
@@ -156,7 +160,6 @@
                                         <button class="custom-dropbtn">INVENTARIO</button>
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'fabricaciones' %}">Fabricación/a>
-                                                <a href="{% url 'unidades-medida' %}">Unidad de Medida</a>
                                                 <a href="{% url 'materias-primas' %}">Materia Prima</a>
                                         </div>
                                     </div>
@@ -181,16 +184,18 @@
                                 </li>
                                 <li class="border-top my-2"></li>
                                 <li class="mb-1" style="display: inline-block;">
-  <div class="custom-dropdown">
-    <button class="custom-dropbtn">Cuenta</button>
-    <div class="custom-dropdown-content">
-      <a href="#" class="custom-link">Nuevo</a>
-      <a href="#" class="custom-link">Perfil</a>
-      <a href="#" class="custom-link">Ajustes</a>
-      <button class="logout-button"><a href="{% url 'logout' %}" class="custom-link">Cerrar Sesión</a></button>
-    </div>
-  </div>
-</li>
+                                    <div class="custom-dropdown">
+                                        <button class="custom-dropbtn">Cuenta</button>
+                                        <div class="custom-dropdown-content">
+                                            <a href="#" class="custom-link">Nuevo</a>
+                                            <a href="#" class="custom-link">Perfil</a>
+                                            <a href="#" class="custom-link">Ajustes</a>
+                                            <button class="logout-button"><a href="{% url 'logout' %}"
+                                                                             class="custom-link">Cerrar Sesión</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
 
                             </ul>
 

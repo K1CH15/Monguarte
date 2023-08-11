@@ -4,11 +4,13 @@ from django.core.validators import integer_validator,MaxLengthValidator
 from usuario.models import Persona
 from productos.models import Producto
 from django.db.models import Q
+from safedelete.models import SafeDeleteModel
+
 #Módulo de venta
 # Create your models here.
 #Modelo de Venta
 
-class Venta(models.Model):
+class Venta(SafeDeleteModel):
     fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
@@ -22,7 +24,7 @@ class Venta(models.Model):
         verbose_name_plural="Venta"
 
 #Modelo de Detalle Venta
-class Detalle_Venta(models.Model):
+class Detalle_Venta(SafeDeleteModel):
     precio_unitario = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Precio Unitario", default=0)
     cantidad_total = models.PositiveIntegerField(verbose_name="Cantidad Total", default=0)
     producto = models.ForeignKey(Producto, verbose_name=_("Producto"), on_delete=models.CASCADE,related_name="detalles_venta_producto")

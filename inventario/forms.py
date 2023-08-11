@@ -1,32 +1,18 @@
 from django import forms
 from django.forms import ModelForm
-from inventario.models import Materia_Prima,Unidad_Medida,Fabricacion
+from inventario.models import Materia_Prima,Fabricacion
 class Materia_PrimaForm(ModelForm):
 
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-        exclude=["estado"]
+        exclude=["estado","stock"]
 class Materia_PrimaUptadeForm(ModelForm):
 
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-        
-
-class Unidad_MedidaForm(ModelForm):
-    class Meta:
-        model = Unidad_Medida
-        fields = "__all__"
-        exclude=["estado"]
-
-class Unidad_MedidaUptadeForm(ModelForm):
-
-    class Meta:
-        model = Unidad_Medida
-        fields = "__all__"
-
-
+        exclude = ["estado", "stock"]
 class FabricacionForm(ModelForm):
 
     class Meta:

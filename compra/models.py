@@ -4,9 +4,10 @@ from django.core.validators import MaxValueValidator
 from usuario.models import Persona,Comision
 from inventario.models import Materia_Prima
 from django.db.models import Q
+from safedelete.models import SafeDeleteModel
 # Create your models here.
 #Modelo de Compra
-class Compra(models.Model):
+class Compra(SafeDeleteModel):
     fecha = models.DateTimeField(verbose_name="Fecha de Compra",auto_now_add=True)
     #valor_total_compra = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MaxValueValidator(9999999999)], verbose_name="Valor total")
     class Estado(models.TextChoices):
@@ -21,7 +22,7 @@ class Compra(models.Model):
     class meta:
         verbose_name_plural="Compra"
 #Modelo de Detalle_Compra
-class Detalle_Compra(models.Model):
+class Detalle_Compra(SafeDeleteModel):
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999999)], verbose_name="Precio Unitario")
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unidad).replace(',', '.')
