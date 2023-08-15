@@ -16,8 +16,9 @@
     <form action="" method="POST">
         {% csrf_token %}
         {{form|crispy}}
-        <input  type="submit" value="Agregar {{titulo}}">
+        <input class="btn btn-success" type="submit" value="Agregar {{titulo}}"> <a href="{% url 'materias-primas' %}" class="btn btn-danger">Regresar</a>
     </form>
+
 <script>
     $(document).ready(function() {
         var tipoSelect = $("#id_tipo");
