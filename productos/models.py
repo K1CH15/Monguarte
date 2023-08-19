@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator
@@ -11,8 +11,12 @@ class Producto(SafeDeleteModel):
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)])
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
+
+    def clean(self):
+        if self.stock != 0:
+            raise ValidationError("No se puede modificar este producto ")
     cantidad=models.ForeignKey
-    stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
+    stock = models.PositiveIntegerField(default=0, editable=False, verbose_name="Stock de Materia Prima")
 
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")

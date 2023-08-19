@@ -38,7 +38,7 @@
                                             <tr>
                                                 <td>{{ comision.id }}</td>
                                                 <td>{{ comision.fecha }}</td>
-                                                <td>{{ comision.precio_formato_colombiano }}</td>
+                                                <td>{{ comision.valor_comision|default_if_none:"0"|floatformat:0 }}</td>
 
                                             </tr>
                                         {% endfor %}
