@@ -12,6 +12,7 @@ class Materia_PrimaUptadeForm(ModelForm):
     class Meta:
         model = Materia_Prima
         fields = "__all__"
+        exclude = ["estado"]
         
 
 class Unidad_MedidaForm(ModelForm):
