@@ -1,11 +1,15 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm,widgets
 from usuario.models import Persona,Comision
 
 
 #fORMULARIOS
 #formularios Persona
 class PersonaForm(ModelForm):
+    def _init_(self, *args, **kwargs):
+        super()._init_(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control small-input'
     class Meta:
         model = Persona
         fields = "__all__"

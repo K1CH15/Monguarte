@@ -1,6 +1,5 @@
 {% extends 'partials/body.html' %}
 {% load static %}
-
 {% block contenido %}
     <!-- Content Header (Page header) -->
     <div class="d-flex justify-content-end" style="height: 1px;">
@@ -32,8 +31,9 @@
                                             <th>Cantidad Producto</th>
                                             <th>Cantidad Materia Prima</th>
                                             <th>Materia Prima</th>
-                                            <th>Cantidad Materia Prima</th>
                                             <th>Producto</th>
+
+
                                             <th>Acción</th>
 
                                         </tr>
@@ -45,6 +45,8 @@
                                                 <td>{{ fabricacion.cantidad_producto }}</td>
                                                 <td>{{ fabricacion.cantidad_materia }}</td>
                                                 <td>{{ fabricacion.materia_prima }}</td>
+                                                <td>{{ fabricacion.producto }}</td>
+
                                                 <td>
                                                     <button type="button" data-ids="{{ fabricacion.id }}"
                                                             class="btnEliminar btn btn-danger"
@@ -63,7 +65,6 @@
                                             <th>Cantidad Producto</th>
                                             <th>Cantidad Materia Prima</th>
                                             <th>Materia Prima</th>
-                                            <th>Cantidad Materia Prima</th>
                                             <th>Producto</th>
                                             <th>Acción</th>
                                         </tr>

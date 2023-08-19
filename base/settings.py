@@ -10,12 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-from pathlib import Path
 import os
+from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 import mimetypes
+
 mimetypes.add_type("text/css", ".css", True)
 
 # Quick-start development settings - unsuitable for production
@@ -29,35 +31,41 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',]
+LOCAL_APPS=[
+    # Apps
+    'usuario.apps.PersonaConfig',
+    'inventario.apps.InventarioConfig',
+    'productos.apps.ProductosConfig',
+    'compra.apps.CompraConfig',
+    'venta.apps.VentaConfig',
+    'accounts.apps.AccountsConfig',
+    'utils.apps.UtilsConfig'
+    ]
 
-    #Apps
-    'usuario',
-    'inventario',
-    'productos',
-    'compra',
-    'venta',
-    'accounts',
-
-    #Librerias
-    'django_bootstrap5',#pip install django-bootstrap5
-    'crispy_forms', #pip install django-crispy-forms
-    'crispy_bootstrap5', #pip install crispy-bootstrap5
+THIRD_PARTY_APPS = [
+    # Librerias
+    'django_bootstrap5',  # pip install django-bootstrap5
+    'crispy_forms',  # pip install django-crispy-forms
+    'crispy_bootstrap5',  # pip install crispy-bootstrap5
     'django_bootstrap_icons',
-    'dbbackup', #pip intall django-dbbackup
-    'django_extensions', # pip install django-extensions
+    'safedelete',
+    'django_dump_load_utf8',
+    'django_seed',
 ]
-CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"
-CRISPY_TEMPLATE_PACK= "bootstrap5"
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,7 +75,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 
 ]
 
@@ -91,7 +98,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -100,8 +106,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     "ENGINE": "django.db.backends.mysql",
+    #     "OPTIONS": {
+    #         "read_default_file": 'my.cnf',
+    #         "init_command": "SET default_storage_engine=INNODB",
+    #     },
+    # }
 }
 
+LANGUAGE_CODE = 'es-es'
+
+TIME_ZONE = 'America/Bogota'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -121,28 +137,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
-
-LANGUAGE_CODE = 'es'
-
-TIME_ZONE = 'America/Bogota'
-
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS= [
-    os.path.join(BASE_DIR,"static"),
-    ('node_modules',os.path.join(BASE_DIR, 'node_modules')),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
 ]
-STATIC_ROOT ="/static"
+STATIC_ROOT = "/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -160,9 +169,3 @@ LOGIN_URL = 'inicio'
 LOGIN_REDIRECT_URL = 'index'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# configuracion de django-dbbackup
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {
-    'location':BASE_DIR / 'base'/'backups/'
-}
