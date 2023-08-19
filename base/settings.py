@@ -33,22 +33,25 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    'django.contrib.staticfiles',]
+LOCAL_APPS=[
     # Apps
-    'usuario',
-    'inventario',
-    'productos',
-    'compra',
-    'venta',
-    'accounts',
+    'usuario.apps.PersonaConfig',
+    'inventario.apps.InventarioConfig',
+    'productos.apps.ProductosConfig',
+    'compra.apps.CompraConfig',
+    'venta.apps.VentaConfig',
+    'accounts.apps.AccountsConfig',
+    'utils.apps.UtilsConfig'
+    ]
 
+THIRD_PARTY_APPS = [
     # Librerias
     'django_bootstrap5',  # pip install django-bootstrap5
     'crispy_forms',  # pip install django-crispy-forms
@@ -57,8 +60,10 @@ INSTALLED_APPS = [
     'safedelete',
     'django_dump_load_utf8',
     'django_seed',
-
 ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
