@@ -1,16 +1,16 @@
-from decimal import Decimal
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-from django.core.validators import integer_validator, MaxLengthValidator, MaxValueValidator
-from usuario.models import Persona, Comision
+from django.core.validators import integer_validator,MaxLengthValidator
+from usuario.models import Persona
 from productos.models import Producto
 from django.db.models import Q
+from safedelete.models import SafeDeleteModel
+
 #Módulo de venta
 # Create your models here.
 #Modelo de Venta
 
-class Venta(models.Model):
+class Venta(SafeDeleteModel):
     fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
@@ -24,44 +24,16 @@ class Venta(models.Model):
         verbose_name_plural="Venta"
 
 #Modelo de Detalle Venta
-class Detalle_Venta(models.Model):
+class Detalle_Venta(SafeDeleteModel):
+    precio_unitario = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Precio Unitario", default=0)
     cantidad_total = models.PositiveIntegerField(verbose_name="Cantidad Total", default=0)
-    producto = models.ForeignKey(Producto, verbose_name=_("Producto"), on_delete=models.CASCADE, related_name="detalles_venta_producto")
-    venta = models.ForeignKey(Venta, verbose_name=_("Venta"), on_delete=models.CASCADE, related_name="detalles_venta")
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total", editable=False)
-
-    def precio_unitario(self):
-        return self.producto.precio_unitario
-
-    def precio_unitario_formato_colombiano(self):
-        return '${:,.0f}'.format(self.precio_unitario()).replace(',', '.')
-
-    def valor_total_formato_colombiano(self):
-        return '${:,.0f}'.format(self.valor_total).replace(',', '.')
-
+    producto = models.ForeignKey(Producto, verbose_name=_("Producto"), on_delete=models.CASCADE,related_name="detalles_venta_producto")
+    venta= models.ForeignKey(Venta, verbose_name=_("Venta"), on_delete=models.CASCADE,related_name="detalles_venta")
     def __str__(self):
-        return "%s %s %s" % (self.cantidad_total, self.precio_unitario(), self.venta)
+        return "%s %s %s" % (self.cantidad_total, self.precio_unitario, self.venta)
 
-    def calcular_comision(self):
-        return self.valor_total * Decimal('0.10')  # Calcula el 10% de la comisión
+    class meta:
+        verbose_name_plural = "Detalle Venta"
 
-    def save(self, *args, **kwargs):
-        self.valor_total = self.precio_unitario() * self.cantidad_total
-
-        if self.cantidad_total > self.producto.stock:
-            raise ValidationError(
-                _("No hay suficiente stock del producto disponible. Cantidad en stock: %(stock)s") % {
-                    'stock': self.producto.stock})
-
-        self.producto.stock -= self.cantidad_total
-        self.producto.save()
-        # Calcular comisión
-        comision_valor = self.calcular_comision()
-
-        # Create a Comision instance associated with the current Detalle_Venta instance
-        comision = Comision.objects.create(valor_comision=comision_valor)
-
-        super(Detalle_Venta, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural = "Detalles Venta"
+    def precio_unitario_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')

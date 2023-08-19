@@ -13,10 +13,12 @@
             </ol>
     </div>
     <!-- /.content-header -->
-    <form action="" method="POST">
+
+    <form  action="" method="POST">
         {% csrf_token %}
         {{form|crispy}}
-        <input type="submit" value="Agregar {{titulo}}">
+        <input class="btn btn-success" type="submit" value="Agregar {{titulo}}"> <a href="{% url 'personas' %}" class="btn btn-danger">Regresar</a>
     </form>
+
 {% endblock contenido %}
 

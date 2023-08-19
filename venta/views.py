@@ -9,15 +9,17 @@ from django.contrib.auth.decorators import login_required
 
 #@login_required
 def venta_crear(request):
-    titulo="venta"
+    titulo="Venta"
+    mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method=='POST':
         form=VentaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Venta creada exitosamente. ')
+            messages.success(request, mensaje)
             return redirect('ventas')
         else:
-            messages.error(request, 'No se logro crear la venta intentelo de nuevo.')
+            messages.error(request, mensajeerror)
     else:
         form=VentaForm()
     context={"titulo":titulo,"form":form}
@@ -26,7 +28,7 @@ def venta_crear(request):
 
 #@login_required
 def venta_listar(request):
-    titulo="venta"
+    titulo="Venta"
     modulo="ventas"
     venta=Venta.objects.all()
     context={"titulo":titulo,"venta":venta,"modulo": modulo}
@@ -35,13 +37,15 @@ def venta_listar(request):
 
 #@login_required
 def venta_modificar(request,pk):
-    titulo="venta"
+    titulo="Venta"
+    mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
     venta=Venta.objects.get(id=pk)
+
     if request.method=='POST':
         form=VentaUpdateForm(request.POST, instance=venta)
         if form.is_valid():
             form.save()
-            messages.success(request, 'La venta se ha modificado. ')
+            messages.success(request, mensaje)
             return redirect('ventas')
     else:
         form=VentaUpdateForm(instance=venta)
@@ -59,7 +63,9 @@ def venta_eliminar(request,pk):
 
 #@login_required
 def detalle_venta_crear(request):
-    titulo="Detalle_Venta "
+    titulo="Detalle Venta"
+    mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method=='POST':
         form=Detalle_VentaForm(request.POST)
         if form.is_valid():
@@ -86,7 +92,8 @@ def detalle_venta_listar(request):
 
 #@login_required
 def detalle_venta_modificar(request,pk):
-    titulo="Detalle_Venta"
+    titulo="Detalle Venta"
+    mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
     detalle_venta=Detalle_Venta.objects.get(id=pk)
     if request.method=='POST':
         form=Detalle_VentaUpdateForm(request.POST, instance=detalle_venta)

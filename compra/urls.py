@@ -13,5 +13,5 @@ urlpatterns = [
     path('detalle_compra/crear/', detalle_compra_crear, name="detalle_compra-crear" ),
     path('detalle_compra/modificar/<int:pk>/', detalle_compra_modificar, name="detalle_compra-modificar" ),
 
-    path('hacer-backup/', views.hacer_backup, name='hacer_backup'),
+
 ]

@@ -3,36 +3,25 @@ from compra.models import Compra,Detalle_Compra
 from compra.forms import CompraForm,CompraUpdateForm,Detalle_CompraForm,Detalle_CompraUpdateForm
 from django.contrib import messages
 import os
-from dbbackup.management.commands.dbbackup import Command as DbBackupCommand
+
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Creación COMPRA crear,listar,modificar,eliminar
 
 
-#backup
-def hacer_backup(request):
-    #Ruta donde desea guardar el archivo de backup (asegurate de que ña carpeta "backups2 exista)
-    backup_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'base','backups')
-    backup_file =f'{backup_dir}/nombre_del_archivo.bak'
-
-    # Logica para realizar el backup aqui
-    verbosity_level= 1 #Establece un valor entero para verbosity, p. ej. 1
-    DbBackupCommand().handle(filename=backup_file, verbosity=verbosity_level)
-
-    return redirect('compra')
-
 def compra_crear(request):
     titulo = "Compra"
     compra = Compra.objects.all()  # Obtén las compras desde la base de datos
-
+    mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method == 'POST':
         form = CompraForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'La Compra Se Agregó Correctamente')
+            messages.success(request,mensaje)
             return redirect('compra')
         else:
-            messages.error(request, '¡Oops! Parece que ha ocurrido un error en el formulario. Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request, mensajeerror)
     else:
         form = CompraForm()
 
@@ -61,12 +50,12 @@ def compra_listar(request):
 def compra_modificar(request,pk):
     titulo="Compra"
     compra= Compra.objects.get(id=pk)
-
+    mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
     if request.method== 'POST':
         form= CompraUpdateForm(request.POST, instance=compra)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Se Modifico Correctamente La Compra')
+            messages.success(request, mensaje)
             return redirect('compra')
         else:
             messages.error(request, 'Error Al Modificar La Compra')
@@ -91,16 +80,16 @@ def compra_eliminar(request,pk):
 def detalle_compra_crear(request):
     titulo = "Detalle Compra Crear"
     comprasn = Compra.objects.all()  # Obtén las compras desde la base de datos
-
+    mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
+    mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
     if request.method == 'POST':
         form = Detalle_CompraForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'El detalle de compra se ha agregado correctamente')
+            messages.success(request, mensaje)
             return redirect('detalle_compra')
         else:
-            messages.error(request, '¡Oops! Parece que ha ocurrido un error en el formulario. '
-                                    'Te pedimos que revises los campos resaltados y realices las correcciones necesarias.')
+            messages.error(request,mensajeerror)
     else:
         form = Detalle_CompraForm()
 
@@ -127,12 +116,12 @@ def detalle_compra_listar(request):
 def detalle_compra_modificar(request,pk):
     titulo="Detalle_compra"
     detalle_compra = Detalle_Compra.objects.get(id=pk)
-
+    mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
     if request.method== 'POST':
         form= Detalle_CompraUpdateForm(request.POST, instance=detalle_compra)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Se Modifico Correctamente El Detalle Compra')
+            messages.success(request, mensaje)
             return redirect('detalle_compra')
         else:
             messages.error(request, 'Error Al Modificar El Detalle Compra')
