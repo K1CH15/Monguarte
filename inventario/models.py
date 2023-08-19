@@ -33,9 +33,13 @@ class Materia_Prima(models.Model):
     #si la materia prima ya exite con los datos iguales simplemete se suma falta para que se sume automaticamente
     #detalle_compra=models.ForeignKey(verbose_name=_("Cantidad"),help_text="Cantidad de Materia Prima",on_delete=models.CASCADE)
     unidad_medida = models.ForeignKey(Unidad_Medida, verbose_name=_("Unidad de Medida"), on_delete=models.CASCADE)
-    stock = models.PositiveIntegerField(default=0, verbose_name="Stock de Materia Prima")
+    stock = models.PositiveIntegerField(default=0, editable=False, verbose_name="Stock de Materia Prima")
     def __str__(self):
         return "%s %s %s %s %s %s" % ("Nombre de la Materia Prima:", self.nombre, "de Tipo:", self.get_tipo_display(), "y de Color:", self.color)
+
+    def clean(self):
+        if self.stock != 0:
+            raise ValidationError("No se puede modificar una materia prima.")
     class Meta:
         verbose_name_plural = "Materia Prima"
 class Fabricacion(models.Model):
