@@ -16,21 +16,55 @@
     <!-- /.content-header -->
 
     <div class="wrapper">
-    <div class="card glass-card">
-        <div class="row g-5">
+        <div class="card">
+            <h2>Crear Producto</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="{{ form.nombre.id_for_label }}" class="form-label"></label>
+                {{ form.nombre|as_crispy_field }}
+                <label for="{{ form.precio_unitario.id_for_label }}" class="form-label"></label>
+                {{ form.precio_unitario|as_crispy_field }}
+                <label for="{{ form.tipo.id_for_label }}" class="form-label"></label>
+                {{ form.tipo|as_crispy_field }}
+                <label for="{{ form.tamano.id_for_label }}" class="form-label"></label>
+                {{ form.tamano|as_crispy_field }}
 
-                <form class="row g-3" action="" method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-
-                    <div class="d-flex justify-content-center">
-
-                        <input class="btn btn-success me-2" type="submit" value="Agregar {{ titulo }}"> <a
-                            href="{% url 'productosl' %}" class="btn btn-danger ">Regresar</a>
-                    </div>
-                </form>
-
+                <div class="btn-container">
+                    <button class="btn btn-success" type="submit">Agregar Producto</button>
+                    <a class="btn btn-danger" href="{% url 'productosl' %}">Regresar</a>
+                </div>
+            </form>
         </div>
     </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            padding: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
 {% endblock contenido %}
     
