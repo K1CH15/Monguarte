@@ -36,11 +36,23 @@ class Persona(SafeDeleteModel):
     class meta:
         verbose_name_plural="Persona"
 #Modelo de Comisión
-class Comision(SafeDeleteModel):
-    valor=models.DecimalField(max_digits=25, decimal_places=2, verbose_name="Valor")#puede que se deje fijo en 8mil
-    fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
-    def precio_formato_colombiano(self):
-        return '${:,.0f}'.format(self.valor).replace(',', '.')
+class Comision(models.Model):
+    fecha = models.DateField(auto_now_add=True, verbose_name="Fecha")
+    valor_comision = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor de Comisión")
+
+    @classmethod
+    def get_or_create_total_comision(cls):
+        total_comision, created = cls.objects.get_or_create(pk=1)
+        return total_comision
+
+    @classmethod
+    def accumulate_comision(cls, comision_valor):
+        total_comision = cls.get_or_create_total_comision()
+        total_comision.valor_comision += comision_valor
+        total_comision.save()
+
+    def valor_comision_formato_colombiano(self):
+        return '${:,.0f}'.format(self.valor_comision).replace(',', '.')
 
 #modelo de IPS
 # class Ips(SafeDeleteModel):

@@ -54,9 +54,12 @@
                                                     <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->
                                                     <td>{{ materia_prima.get_estado_display }}</td>
                                                     <td>
-                                                        <button type="button" data-ids="{{ materia_prima.id }}"
+                                                        <button type="button"
+                                                                data-ids="{{ materia_prima.id }}"
                                                                 class="btnEliminar btn btn-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-danger"
+                                                                {% if materia_prima.stock > 0 %} disabled {% endif %}>
                                                             Eliminar
                                                         </button>
                                                         <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
