@@ -49,13 +49,14 @@
                                                     <td>{{ producto.get_estado_display }}</td>
 
                                                     <td>
-                                                        <button type="button" data-ids="{{ producto.id }}"
+                                                        <button type="button"
+                                                                data-ids="{{ producto.id }}"
                                                                 class="btnEliminar btn btn-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-danger"
+                                                                {% if producto.stock > 0 %} disabled {% endif %}>
                                                             Eliminar
                                                         </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'productos-modificar' producto.id %}">Modificar</a>
                                                     </td>
                                                 </tr>
                                             {% endif %}

@@ -13,11 +13,47 @@
         </ol>
     </div>
     <!-- /.content-header -->
-    <form id="{{ titulo }}" action="" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input class="btn btn-success" type="submit" value="Agregar {{ titulo }}"> <a href="{% url 'fabricaciones' %}" class="btn btn-danger">Regresar</a>
-    </form>
+    <div class="wrapper">
+        <div class="card">
+            <h2>Crear Fabricacion</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="btn-container">
+                    <button class="btn btn-success" type="submit">Agregar {{ titulo }}</button>
+                    <a class="btn btn-danger" href="{% url 'personas' %}">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            padding: 20px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
 
 {% endblock contenido %}
 

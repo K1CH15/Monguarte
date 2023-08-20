@@ -29,7 +29,7 @@
                                             <th>ID</th>
                                             <th>Cantidad Total</th>
                                             <th>Precio Unitario</th>
-                                            <th>Información Venta</th>
+                                            <th>Venta Id</th>
                                             <th>Valor total</th>
                                             <th>Fecha</th>
                                             <th>Estado</th>
@@ -41,9 +41,9 @@
                                             <tr>
                                                 <td>{{ Detalle_Venta.id }}</td>
                                                 <td>{{ Detalle_Venta.cantidad_total }}</td>
-                                                <td>{{ Detalle_Venta.precio_unitario_colombiano}}</td>
+                                                <td>{{ Detalle_Venta.precio_unitario_formato_colombiano }}</td>
                                                 <td>{{ Detalle_Venta.venta }}</td>
-                                                <td>{{ Detalle_Venta.venta.valor_total }}</td>
+                                                <td>{{ Detalle_Venta.valor_total_formato_colombiano }}</td><!-- Nuevo campo: Valor Total -->
                                                 <td>{{ Detalle_Venta.venta.fecha }}</td>
                                                 <td>{{ Detalle_Venta.venta.get_estado_display }}</td>
                                                 <td>

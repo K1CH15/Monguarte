@@ -27,6 +27,10 @@ class Materia_Prima(SafeDeleteModel):
     stock = models.PositiveIntegerField(default=0, verbose_name="Stock de Materia Prima")
     def __str__(self):
         return "%s %s %s %s %s %s" % ("Nombre de la Materia Prima:", self.nombre, "de Tipo:", self.get_tipo_display(), "y de Color:", self.color)
+
+    def clean(self):
+        if self.stock != 0:
+            raise ValidationError("No se puede modificar esta materia prima")
     class Meta:
         verbose_name_plural = "Materia Prima"
 class Fabricacion(SafeDeleteModel):
