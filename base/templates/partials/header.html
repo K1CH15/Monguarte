@@ -139,7 +139,7 @@
                             <ul class="list-unstyled ps-0">
                                 <li class="mb-1">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">COMPRA</button>
+                                        <button class="custom-dropbtn1">COMPRA</button>
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'compra' %}">Compra</a>
                                             <a href="{% url 'detalle_compra' %}">Detalle Compra</a>
@@ -148,7 +148,7 @@
                                 </li>
                                 <li class="mb-1">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">VENTA</button>
+                                        <button class="custom-dropbtn1">VENTA</button>
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'ventas' %}">Venta</a>
                                             <a href="{% url 'detalle_ventas' %}">Detalle Venta</a>
@@ -157,16 +157,16 @@
                                 </li>
                                 <li class="mb-1">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">INVENTARIO</button>
+                                        <button class="custom-dropbtn1">INVENTARIO</button>
                                         <div class="custom-dropdown-content">
-                                            <a href="{% url 'fabricaciones' %}">Fabricación/a>
+                                            <a href="{% url 'fabricaciones' %}">Fabricación</a>
                                                 <a href="{% url 'materias-primas' %}">Materia Prima</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="mb-1">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">USUARIO</button>
+                                        <button class="custom-dropbtn1">USUARIO</button>
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'personas' %}">Persona</a>
                                             <a href="{% url 'comisiones' %}">comisión</a>
@@ -175,7 +175,7 @@
                                 </li>
                                 <li class="mb-1">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">PRODUCTO</button>
+                                        <button class="custom-dropbtn1">PRODUCTO</button>
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'productosl' %}">Producto</a>
 
@@ -185,11 +185,9 @@
                                 <li class="border-top my-2"></li>
                                 <li class="mb-1" style="display: inline-block;">
                                     <div class="custom-dropdown">
-                                        <button class="custom-dropbtn">Cuenta</button>
+                                        <button class="custom-dropbtn1">Cuenta</button>
                                         <div class="custom-dropdown-content">
-                                            <a href="#" class="custom-link">Nuevo</a>
-                                            <a href="#" class="custom-link">Perfil</a>
-                                            <a href="#" class="custom-link">Ajustes</a>
+
                                             <button class="logout-button"><a href="{% url 'logout' %}"
                                                                              class="custom-link">Cerrar Sesión</a>
                                             </button>
