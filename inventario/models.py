@@ -30,7 +30,7 @@ class Materia_Prima(SafeDeleteModel):
 
     def clean(self):
         if self.stock != 0:
-            raise ValidationError("No se puede modificar esta materia prima")
+            raise ValidationError("Una vez que el stock se haya actualizado a cero después de una compra, no se permitirán más modificaciones en la materia prima. ")
     class Meta:
         verbose_name_plural = "Materia Prima"
 class Fabricacion(SafeDeleteModel):
