@@ -16,11 +16,15 @@ class PersonaForm(ModelForm):
         exclude=["estado"]
 
 class PersonaUptadeForm(ModelForm):
-
+    def _init_(self, *args, **kwargs):
+        super()._init_(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control small-input'
     class Meta:
         model = Persona
         fields = "__all__"
         exclude = ["id","rol"]
+
 
 class ComisionForm(ModelForm):
 
