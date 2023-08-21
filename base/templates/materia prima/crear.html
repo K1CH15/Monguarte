@@ -22,11 +22,31 @@
 
                 <div class="btn-container">
                     <button class="btn btn-success" type="submit">Agregar {{ titulo }}</button>
-                    <a class="btn btn-danger" href="{% url 'personas' %}">Regresar</a>
+                    <a class="btn btn-danger" href="{% url 'materias-primas' %}">Regresar</a>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        var tipoSelect = $("#id_tipo");
+        var colorField = $("#div_id_color");  // Cambia esto para apuntar al div que rodea al campo de color
+
+        // Función para mostrar u ocultar el campo de color según la selección del tipo
+        function toggleColorField() {
+            if (tipoSelect.val() === "2") {  // Cambia "2" por el valor correcto para Esparto
+                colorField.hide();
+            } else {
+                colorField.show();
+            }
+        }
+
+        // Llama a la función al cargar la página y cuando cambie la selección del tipo
+        toggleColorField();
+        tipoSelect.on("change", toggleColorField);
+    });
+</script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,24 +75,6 @@
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-        var tipoSelect = $("#id_tipo");
-        var colorField = $("#div_id_color");  // Cambia esto para apuntar al div que rodea al campo de color
 
-        // Función para mostrar u ocultar el campo de color según la selección del tipo
-        function toggleColorField() {
-            if (tipoSelect.val() === "2") {  // Cambia "2" por el valor correcto para Esparto
-                colorField.hide();
-            } else {
-                colorField.show();
-            }
-        }
-
-        // Llama a la función al cargar la página y cuando cambie la selección del tipo
-        toggleColorField();
-        tipoSelect.on("change", toggleColorField);
-    });
-</script>
 {% endblock contenido %}
 

@@ -15,14 +15,14 @@
     <!-- /.content-header -->
     <div class="wrapper">
         <div class="card">
-            <h2>Crear Fabricacion</h2>
+            <h2>Crear Fabricación</h2>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
 
                 <div class="btn-container">
-                    <button class="btn btn-success" type="submit">Agregar {{ titulo }}</button>
-                    <a class="btn btn-danger" href="{% url 'personas' %}">Regresar</a>
+                    <button class="btn btn-success" type="submit">{{ titulo }}</button>
+                    <a class="btn btn-danger" href="{% url 'fabricaciones' %}">Regresar</a>
                 </div>
             </form>
         </div>

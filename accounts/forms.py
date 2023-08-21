@@ -5,9 +5,8 @@ from django.core.validators import integer_validator
 from .models import Register
 from django.core.validators import RegexValidator
 class CustomUserCreationForm(UserCreationForm):
-    first = forms.CharField(label="Nombres",required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$')],)
-    apellido = forms.CharField(label="Apellidos", required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$') ])
-    numero_documento = forms.CharField(label="Numero de Documento:",max_length=10, validators=[integer_validator])
+    first_name = forms.CharField(label="Nombres",required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$')],)
+    last_name = forms.CharField(label="Apellidos", required=True,max_length=45, validators=[RegexValidator (r'^[a-zA-Z]+$')])
     username = forms.CharField(label='Nombre de Usuario',min_length=5, max_length=150, widget=forms.TextInput(attrs={'class': 'custom-input'}))
     email = forms.EmailField(label='Correo',required=True, widget=forms.EmailInput(attrs={'class': 'custom-input'}))
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class': 'custom-input'}))
