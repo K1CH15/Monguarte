@@ -63,19 +63,33 @@ def venta_eliminar(request,pk):
 
 #@login_required
 def detalle_venta_crear(request):
-    titulo="Detalle Venta"
+    titulo = "Detalle Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
     mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
-    if request.method=='POST':
-        form=Detalle_VentaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('detalle_ventas')
-    else:
-        form=Detalle_VentaForm()
-    context={"titulo":titulo,"form":form}
-    return render(request,"detalle_venta/crear.html", context)
 
+    if request.method == 'POST':
+        form = Detalle_VentaForm(request.POST)
+        if form.is_valid():
+            cantidad_total = form.cleaned_data['cantidad_total']
+            producto_stock = form.cleaned_data['producto'].stock
+
+            if cantidad_total > producto_stock:
+                messages.error(request, f'No hay suficiente stock del producto disponible. Cantidad en stock: {producto_stock}')
+            else:
+                form.save()
+                messages.success(request, mensaje)
+                return redirect('detalle_ventas')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
+            messages.error(request, mensajeerror)
+
+    else:
+        form = Detalle_VentaForm()
+
+    context = {"titulo": titulo, "form": form}
+    return render(request, "detalle_venta/crear.html", context)
 
 #@login_required
 def detalle_venta_listar(request):
