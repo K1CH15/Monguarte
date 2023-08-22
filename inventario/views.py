@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from inventario.forms import FabricacionForm, FabricacionUptadeForm, Fabricacion
 from inventario.forms import Materia_PrimaForm, Materia_PrimaUptadeForm, Materia_Prima
 
@@ -10,7 +10,7 @@ from inventario.forms import Materia_PrimaForm, Materia_PrimaUptadeForm, Materia
 
 # CRUD Materia Prima
 
-# @login_required
+@login_required
 def materia_prima_crear(request):
     titulo = "materia prima"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -33,7 +33,7 @@ def materia_prima_crear(request):
     return render(request, "materia prima/crear.html", context)
 
 
-# @login_required
+@login_required
 def materia_prima_listar(request):
     titulo = "Materia Prima"
     modulo = "inventarios"
@@ -46,7 +46,7 @@ def materia_prima_listar(request):
     return render(request, "materia prima/listar.html", context)
 
 
-# @login_required
+@login_required
 def materia_prima_modificar(request, pk):
     titulo = "materia prima"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -66,7 +66,7 @@ def materia_prima_modificar(request, pk):
     return render(request, "materia prima/modificar.html", context)
 
 
-# @login_required
+@login_required
 def materia_prima_eliminar(request, pk):
     materia_prima = Materia_Prima.objects.filter(id=pk)
     materia_prima.update(
@@ -77,7 +77,7 @@ def materia_prima_eliminar(request, pk):
 
 # CRUD Stock_Materia_Prima
 
-# @login_required
+@login_required
 def fabricacion_crear(request):
     titulo = "Fabricación"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -105,7 +105,7 @@ def fabricacion_crear(request):
     return render(request, "fabricacion/crear.html", context)
 
 
-# @login_required
+@login_required
 def fabricacion_listar(request):
     titulo = "Fabricacion"
     modulo = "inventarios"
@@ -118,7 +118,7 @@ def fabricacion_listar(request):
     return render(request, "fabricacion/listar.html", context)
 
 
-# @login_required
+@login_required
 def fabricacion_modificar(request, pk):
     titulo = "Fabricacion"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -138,12 +138,10 @@ def fabricacion_modificar(request, pk):
     return render(request, "fabricacion/modificar.html", context)
 
 
-# @login_required
+@login_required
 def fabricacion_eliminar(request, pk):
     fabricacion = Fabricacion.objects.filter(id=pk)
     fabricacion.update(
         estado="0"
     )
     return redirect('fabricaciones')
-
-#

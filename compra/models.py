@@ -28,8 +28,7 @@ class Detalle_Compra(SafeDeleteModel):
         return '${:,.0f}'.format(self.precio_unidad).replace(',', '.')
     cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=0,help_text="La cantidad tiene que ser menor a 100")
     # Campo para almacenar el valor total calculado
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total",
-                                      editable=False)
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total",editable=False)
 
     def valor_total_formato_colombiano(self):
         return '${:,.0f}'.format(self.valor_total).replace(',', '.')

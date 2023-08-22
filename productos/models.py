@@ -8,7 +8,7 @@ from safedelete.models import SafeDeleteModel
 class Producto(SafeDeleteModel):
 
     nombre=models.CharField(max_length=45,verbose_name="Nombre")
-    precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)])
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)],help_text="ingrese solo el numero sin puntos ni comas")
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
 

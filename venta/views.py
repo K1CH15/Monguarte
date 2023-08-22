@@ -3,11 +3,10 @@ from venta.models import Venta, Detalle_Venta
 from venta.forms import Detalle_VentaForm,Detalle_VentaUpdateForm,VentaForm,VentaUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 # Create your views here.
 #VIEWS VENTA
 
-#@login_required
+@login_required
 def venta_crear(request):
     titulo="Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -20,13 +19,14 @@ def venta_crear(request):
             return redirect('ventas')
         else:
             messages.error(request, mensajeerror)
+
     else:
         form=VentaForm()
     context={"titulo":titulo,"form":form}
     return render(request,"venta/crear.html", context)
 
 
-#@login_required
+@login_required
 def venta_listar(request):
     titulo="Venta"
     modulo="ventas"
@@ -35,7 +35,7 @@ def venta_listar(request):
     return render(request,"venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def venta_modificar(request,pk):
     titulo="Venta"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -53,7 +53,7 @@ def venta_modificar(request,pk):
     return render(request,"venta/modificar.html", context)
 
 
-#@login_required
+@login_required
 def venta_eliminar(request,pk):
     venta=Venta.objects.filter(id=pk)
     venta.update(estado="0")
@@ -61,37 +61,26 @@ def venta_eliminar(request,pk):
 
 #VIEWS DETALLE_VENTA
 
-#@login_required
+@login_required
 def detalle_venta_crear(request):
-    titulo = "Detalle Venta"
+    titulo="Detalle Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
     mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
-
-    if request.method == 'POST':
-        form = Detalle_VentaForm(request.POST)
+    if request.method=='POST':
+        form=Detalle_VentaForm(request.POST)
         if form.is_valid():
-            cantidad_total = form.cleaned_data['cantidad_total']
-            producto_stock = form.cleaned_data['producto'].stock
-
-            if cantidad_total > producto_stock:
-                messages.error(request, f'No hay suficiente stock del producto disponible. Cantidad en stock: {producto_stock}')
-            else:
-                form.save()
-                messages.success(request, mensaje)
-                return redirect('detalle_ventas')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f'{field}: {error}')
-            messages.error(request, mensajeerror)
-
+            form.save()
+            return redirect('detalle_ventas')
     else:
-        form = Detalle_VentaForm()
+        from productos.models import Producto
+        form=Detalle_VentaForm()
+        productos_activos = Producto.objects.filter(estado='1')  # Obtener solo los usuarios activos
+        form.fields['producto'].queryset = productos_activos
+    context={"titulo":titulo,"form":form}
+    return render(request,"detalle_venta/crear.html", context)
 
-    context = {"titulo": titulo, "form": form}
-    return render(request, "detalle_venta/crear.html", context)
 
-#@login_required
+@login_required
 def detalle_venta_listar(request):
     titulo="Detalle Venta"
     modulo="ventas"
@@ -104,7 +93,7 @@ def detalle_venta_listar(request):
     return render(request,"detalle_venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def detalle_venta_modificar(request,pk):
     titulo="Detalle Venta"
     mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
