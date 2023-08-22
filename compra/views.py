@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect
 from compra.models import Compra,Detalle_Compra
 from compra.forms import CompraForm,CompraUpdateForm,Detalle_CompraForm,Detalle_CompraUpdateForm
 from django.contrib import messages
-import os
-
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Creación COMPRA crear,listar,modificar,eliminar
 
-
+@login_required
 def compra_crear(request):
     titulo = "Compra"
     compra = Compra.objects.all()  # Obtén las compras desde la base de datos
@@ -34,7 +32,7 @@ def compra_crear(request):
     return render(request, "compra/crear.html", context)
 
 
-#@login_required
+@login_required
 def compra_listar(request):
     titulo="Compra"
     modulo="compras"
@@ -46,7 +44,7 @@ def compra_listar(request):
     }
     return render(request,"compra/listar.html", context)
 
-#@login_required
+@login_required
 def compra_modificar(request,pk):
     titulo="Compra"
     compra= Compra.objects.get(id=pk)
@@ -67,7 +65,7 @@ def compra_modificar(request,pk):
         }
     return render(request,"compra/modificar.html", context)
 
-#@login_required
+@login_required
 def compra_eliminar(request,pk):
     compra= Compra.objects.filter(id=pk)
     compra.update(
@@ -76,7 +74,7 @@ def compra_eliminar(request,pk):
     return redirect('compra')
 
 #Creación DETALLE COMPRA
-#@login_required
+@login_required
 def detalle_compra_crear(request):
     titulo = "Detalle Compra Crear"
     comprasn = Compra.objects.all()  # Obtén las compras desde la base de datos
@@ -91,8 +89,10 @@ def detalle_compra_crear(request):
         else:
             messages.error(request,mensajeerror)
     else:
+        from inventario.models import Materia_Prima
         form = Detalle_CompraForm()
-
+        materias_activas = Materia_Prima.objects.filter(estado='1')  # Obtener solo los usuarios activos
+        form.fields['materia_prima'].queryset = materias_activas
     context = {
         "titulo": titulo,
         "comprasn": comprasn,
@@ -101,7 +101,7 @@ def detalle_compra_crear(request):
 
     return render(request, "detalle_compra/crear.html", context)
 
-#@login_required
+@login_required
 def detalle_compra_listar(request):
     titulo="Detalle Compra"
     detalle_compras= Detalle_Compra.objects.all()
@@ -112,7 +112,7 @@ def detalle_compra_listar(request):
     }
     return render(request,"detalle_compra/listar.html", context)
 
-#@login_required
+@login_required
 def detalle_compra_modificar(request,pk):
     titulo="Detalle_compra"
     detalle_compra = Detalle_Compra.objects.get(id=pk)

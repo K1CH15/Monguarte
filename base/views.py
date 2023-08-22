@@ -6,7 +6,7 @@ from venta.models import Venta,Detalle_Venta
 from inventario.models import Materia_Prima,Fabricacion
 from productos.models import Producto
 from usuario.models import Persona,Comision
-#@login_required
+@login_required
 def principal(request):
     titulo="Bienvenido"
     compras= Compra.objects.all().count

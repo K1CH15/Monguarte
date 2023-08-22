@@ -7,7 +7,7 @@ from usuario.models import Persona,Comision
 
 #CRUD PERSONA
 
-#@login_required
+@login_required
 def persona_crear(request):
     titulo="Persona"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -29,7 +29,7 @@ def persona_crear(request):
     return render(request,"persona/crear.html",context)
 
 
-#@login_required
+@login_required
 def persona_listar(request):
     titulo="Persona"
     modulo="usuarios"
@@ -43,7 +43,7 @@ def persona_listar(request):
     return render(request,"persona/listar.html",context)
 
 
-#@login_required
+@login_required
 def persona_modificar(request,pk):
     titulo="Persona"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -63,7 +63,7 @@ def persona_modificar(request,pk):
     return render (request,"persona/modificar.html",context)
 
 
-#@login_required
+@login_required
 def persona_eliminar(request,pk):
     persona=Persona.objects.filter(id=pk)
     persona.update(
@@ -74,7 +74,7 @@ def persona_eliminar(request,pk):
 
 #CRUD Contabilidad
 
-#@login_required
+@login_required
 def comision_crear(request):
     titulo="Comisión"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -96,7 +96,7 @@ def comision_crear(request):
     return render(request,"comision/crear.html",context)
 
 
-#@login_required
+@login_required
 def comision_listar(request):
     titulo="Comisión"
     modulo="usuarios"
@@ -110,7 +110,7 @@ def comision_listar(request):
     return render(request,"comision/listar.html",context)
 
 
-#@login_required
+@login_required
 def comision_modificar(request,pk):
     titulo="Comisión"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'

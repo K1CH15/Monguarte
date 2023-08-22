@@ -3,11 +3,10 @@ from venta.models import Venta, Detalle_Venta
 from venta.forms import Detalle_VentaForm,Detalle_VentaUpdateForm,VentaForm,VentaUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 # Create your views here.
 #VIEWS VENTA
 
-#@login_required
+@login_required
 def venta_crear(request):
     titulo="Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -20,13 +19,14 @@ def venta_crear(request):
             return redirect('ventas')
         else:
             messages.error(request, mensajeerror)
+
     else:
         form=VentaForm()
     context={"titulo":titulo,"form":form}
     return render(request,"venta/crear.html", context)
 
 
-#@login_required
+@login_required
 def venta_listar(request):
     titulo="Venta"
     modulo="ventas"
@@ -35,7 +35,7 @@ def venta_listar(request):
     return render(request,"venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def venta_modificar(request,pk):
     titulo="Venta"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -53,7 +53,7 @@ def venta_modificar(request,pk):
     return render(request,"venta/modificar.html", context)
 
 
-#@login_required
+@login_required
 def venta_eliminar(request,pk):
     venta=Venta.objects.filter(id=pk)
     venta.update(estado="0")
@@ -61,7 +61,7 @@ def venta_eliminar(request,pk):
 
 #VIEWS DETALLE_VENTA
 
-#@login_required
+@login_required
 def detalle_venta_crear(request):
     titulo="Detalle Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
@@ -72,12 +72,15 @@ def detalle_venta_crear(request):
             form.save()
             return redirect('detalle_ventas')
     else:
+        from productos.models import Producto
         form=Detalle_VentaForm()
+        productos_activos = Producto.objects.filter(estado='1')  # Obtener solo los usuarios activos
+        form.fields['producto'].queryset = productos_activos
     context={"titulo":titulo,"form":form}
     return render(request,"detalle_venta/crear.html", context)
 
 
-#@login_required
+@login_required
 def detalle_venta_listar(request):
     titulo="Detalle Venta"
     modulo="ventas"
@@ -90,7 +93,7 @@ def detalle_venta_listar(request):
     return render(request,"detalle_venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def detalle_venta_modificar(request,pk):
     titulo="Detalle Venta"
     mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
