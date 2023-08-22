@@ -39,6 +39,11 @@ class Fabricacion(SafeDeleteModel):
     cantidad_materia=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=0,help_text="cantidad utilizada para hacer el producto")
     materia_prima = models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)
     producto=models.ForeignKey(Producto,verbose_name="Producto",on_delete=models.CASCADE)
+    class Estado(models.TextChoices):
+        ACTIVO = '1', _("Activo")
+        INACTIVO = '0', _("Inactivo")
+
+    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     def __str__(self):
         return "%s" % (self.cantidad_producto)
 

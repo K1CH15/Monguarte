@@ -107,7 +107,7 @@ def fabricacion_crear(request):
 
 # @login_required
 def fabricacion_listar(request):
-    titulo = "Fabricación"
+    titulo = "Fabricacion"
     modulo = "inventarios"
     fabricacion = Fabricacion.objects.all()
     context = {
@@ -120,7 +120,7 @@ def fabricacion_listar(request):
 
 # @login_required
 def fabricacion_modificar(request, pk):
-    titulo = "Fabricación"
+    titulo = "Fabricacion"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
     fabricacion = Fabricacion.objects.get(id=pk)
     if request.method == 'POST':
