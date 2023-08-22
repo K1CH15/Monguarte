@@ -33,8 +33,8 @@
                                             <th>Stock</th> <!-- Nuevo campo -->
                                             <th>Cantidad Total</th>
                                             <th>Valor Total</th>
-                                            <th>Id Compra</th>
-                                            <th>Acción</th>
+                                            <th>Administrador</th>
+                                            <th>Proveedor</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -42,16 +42,17 @@
                                             <tr>
                                                 <td>{{ detalle_compra.id }}</td>
                                                 <td>{{ detalle_compra.precio_formato_colombiano }}</td>
-                                                <td>{{ detalle_compra.materia_prima.nombre }} - {{ detalle_compra.materia_prima.tipo }}</td> <!-- Nuevo campo -->
+                                                <td>{{ detalle_compra.materia_prima.nombre }} - {{ detalle_compra.materia_prima.get_tipo_display  }}</td> <!-- Nuevo campo -->
                                                 <td>{{ detalle_compra.materia_prima.stock }}</td> <!-- Nuevo campo -->
                                                 <td>{{ detalle_compra.cantidad }}</td>
                                                 <td>{{ detalle_compra.valor_total_formato_colombiano }}</td><!-- Nuevo campo: Valor Total -->
-                                                <td>Precio:
-                                                    <b>{{ detalle_compra.compra.valor_total_compra }} </b>Fecha:<b> {{ detalle_compra.compra.fecha }}</b>
+                                                <td>
+                                                    <b>{{ detalle_compra.compra.persona_admin }},{{ detalle_compra.compra.fecha}} </b>
                                                 </td>
                                                 <td>
-
+                                                    <b>{{ detalle_compra.compra.persona_proveedor }},{{ detalle_compra.compra.fecha}} </b>
                                                 </td>
+                                                
                                             </tr>
                                         {% endfor %}
                                         </tbody>
@@ -63,8 +64,8 @@
                                             <th>Stock</th> <!-- Nuevo campo -->
                                             <th>Cantidad Total</th>
                                             <th>Valor Total</th>
-                                            <th>Id Compra</th>
-                                            <th>Acción</th>
+                                            <th>Administrador</th>
+                                            <th>Proveedor</th>
                                         </tr>
                                         </tfoot>
                                     </table>
