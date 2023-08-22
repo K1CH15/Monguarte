@@ -7,13 +7,14 @@ from usuario.models import Persona,Comision
 from productos.models import Producto
 from django.db.models import Q
 from safedelete.models import SafeDeleteModel
+from django.utils import timezone
 
 #Módulo de venta
 # Create your models here.
 #Modelo de Venta
 
 class Venta(SafeDeleteModel):
-    fecha=models.DateTimeField(verbose_name="Fecha",auto_now_add=True)
+    fecha=models.DateTimeField(verbose_name="Fecha",default=timezone.now)
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")

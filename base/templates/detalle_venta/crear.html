@@ -11,9 +11,55 @@
             </ol>
     </div>
     <!-- /.content-header -->
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form|crispy}}
-        <input class="btn btn-success" type="submit" value="Agregar {{titulo}}">  <a href="{% url 'detalle_ventas' %}" class="btn btn-danger">Regresar</a>
-    </form>
+
+    <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Crear {{ titulo }}</h3>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST" id="myForm">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="button" onclick="mostrarModal()">
+                Agregar {{ titulo }}</button>
+            <a href="{% url 'detalle_ventas' %}" class="btn btn-danger">Regresar</a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar acción</h5>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas agregar el detalle de venta?
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" id="confirmButton">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function mostrarModal() {
+        $('#confirmModal').modal('show');
+    }
+
+    $(document).ready(function() {
+        $('#confirmButton').on('click', function() {
+            var form = document.getElementById('myForm');
+            if (form.checkValidity()) {
+                form.submit(); // Envía el formulario
+            } else {
+                // Mostrar mensajes de error de validación en campos resaltados en rojo
+                form.reportValidity();
+            }
+        });
+    });
+</script>
 {% endblock contenido%}

@@ -40,6 +40,7 @@
                                         </thead>
                                         <tbody>
                                         {% for fabricacion in fabricas %}
+                                            {% if fabricacion.estado != "0" %}
                                             <tr>
                                                 <td>{{ fabricacion.fecha }}</td>
                                                 <td>{{ fabricacion.cantidad_producto }}</td>
@@ -57,6 +58,7 @@
                                                        href="{% url 'fabricaciones-modificar' fabricacion.id %}">Modificar</a>
                                                 </td>
                                             </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>

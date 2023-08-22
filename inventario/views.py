@@ -82,26 +82,32 @@ def fabricacion_crear(request):
     titulo = "Fabricación"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
     mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
+
     if request.method == 'POST':
         form = FabricacionForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, mensaje)
-            return redirect('fabricaciones')
+            cantidad_materia = form.cleaned_data['cantidad_materia']
+            materia_prima_stock = form.cleaned_data['materia_prima'].stock
+
+            if cantidad_materia > materia_prima_stock:
+                messages.error(request, f'No hay suficiente stock de materia prima disponible. Cantidad en stock: {materia_prima_stock}')
+            else:
+                form.save()
+                messages.success(request, mensaje)
+                return redirect('fabricaciones')
         else:
             messages.error(request, mensajeerror)
+
     else:
         form = FabricacionForm()
-    context = {
-        "titulo": titulo,
-        "form": form
-    }
+
+    context = {"titulo": titulo, "form": form}
     return render(request, "fabricacion/crear.html", context)
 
 
 @login_required
 def fabricacion_listar(request):
-    titulo = "Fabricación"
+    titulo = "Fabricacion"
     modulo = "inventarios"
     fabricacion = Fabricacion.objects.all()
     context = {
@@ -114,7 +120,7 @@ def fabricacion_listar(request):
 
 @login_required
 def fabricacion_modificar(request, pk):
-    titulo = "Fabricación"
+    titulo = "Fabricacion"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
     fabricacion = Fabricacion.objects.get(id=pk)
     if request.method == 'POST':

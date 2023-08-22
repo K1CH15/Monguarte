@@ -438,7 +438,18 @@ marlon
 
 .custom-dropbtn {
   background-color: transparent;
-  color: #fff;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.custom-dropbtn1 {
+  background-color: transparent;
+  color: #603737;
   padding: 10px;
   border: none;
   cursor: pointer;
@@ -484,7 +495,7 @@ marlon
 }
 
 .logout-button a {
-  color: #fff;
+  color: #000000;
   background-color: transparent;
   border: 2px solid #e71d36;
   padding: 8px 16px;

@@ -20,9 +20,8 @@
             <tr>
                 <th># Registro</th>
                 <th>Fecha</th>
-                <th>Valor Total</th>
-                <th>Estado</th>
-                <th>Acción</th>
+                <th>Admistrador</th>
+                <th>Proveedor</th>
             </tr>
         </thead>
         <tbody>
@@ -31,14 +30,8 @@
                     <tr>
                         <td>{{ compra.id }}</td>
                         <td>{{ compra.fecha }}</td>
-                        <td>{{ compra.precio_formato_colombiano }}</td>
-                        <td>{{ compra.get_estado_display }}</td>
-                        <td>
-                            <button type="button" data-ids="{{ compra.id }}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                Eliminar
-                            </button>
-                            <a class="btn btn-primary btn-sm" href="{% url 'compra-modificar' compra.id %}">Modificar</a>
-                        </td>
+                        <td>{{ compra.persona_admin }}</td>
+                        <td>{{ compra.persona_proveedor }}</td>
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -47,17 +40,57 @@
 </div>
 
     <!-- Agrega el formulario de creación de compra debajo de la tabla -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Crear {{ titulo }}</h3>
-        </div>
-        <div class="card-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <input class="btn btn-success" type="submit" value="Agregar {{ titulo }}"> <a href="{% url 'detalle_compra' %}" class="btn btn-danger">Regresar</a>
-            </form>
+   <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Crear {{ titulo }}</h3>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST" id="myForm">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="button" onclick="mostrarModal()">
+                Agregar {{ titulo }}</button>
+            <a href="{% url 'detalle_compra' %}" class="btn btn-danger">Regresar</a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar acción</h5>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas agregar el detalle de compra?
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" id="confirmButton">Aceptar</button>
+            </div>
         </div>
     </div>
+</div>
+
+<script>
+    function mostrarModal() {
+        $('#confirmModal').modal('show');
+    }
+
+    $(document).ready(function() {
+        $('#confirmButton').on('click', function() {
+            var form = document.getElementById('myForm');
+            if (form.checkValidity()) {
+                form.submit(); // Envía el formulario
+            } else {
+                // Mostrar mensajes de error de validación en campos resaltados en rojo
+                form.reportValidity();
+            }
+        });
+    });
+</script>
+
+
 {% endblock contenido %}
 
