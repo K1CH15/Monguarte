@@ -41,13 +41,14 @@
                                                     <td>{{ Venta.valor_total }}</td>
                                                     <td>{{ Venta.get_estado_display }}</td>
                                                     <td>
-                                                        <button type="button" data-ids="{{ Venta.id }}"
-                                                                class="btnEliminar btn btn-danger"
+                                                        <button title="Eliminar Registro" type="button"
+                                                                data-ids="{{ Venta.id }}"
+                                                                class="btnEliminar btn btn-danger bi bi-trash"
                                                                 data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                            Eliminar
                                                         </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'ventas-modificar' Venta.id %}">Modificar</a>
+                                                        <a title="Modificar Registro"
+                                                           class="btn btn-primary btn-md bi bi-wrench m-1 me-1 bi bi-pencil-square"
+                                                           href="{% url 'ventas-modificar' Venta.id %}"></a>
                                                     </td>
                                                 </tr>
                                             {% endif %}
@@ -67,6 +68,8 @@
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
+                            <a href="{% url 'ventas-crear' %}"
+                               class="btn btn-success w-25 boton-crear-posicion bi bi-tags"> Crear {{ titulo }}</a>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -75,6 +78,6 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-        <a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
     </div>
 {% endblock contenido %}

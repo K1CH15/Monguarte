@@ -49,13 +49,12 @@
                                                     <td>{{ producto.get_estado_display }}</td>
 
                                                     <td>
-                                                        <button type="button"
+                                                        <button title="Elimina Registro" type="button"
                                                                 data-ids="{{ producto.id }}"
-                                                                class="btnEliminar btn btn-danger"
+                                                                class="btnEliminar btn btn-danger bi bi-trash       "
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#modal-danger"
                                                                 {% if producto.stock > 0 %} disabled {% endif %}>
-                                                            Eliminar
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -77,6 +76,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                        <a href="{% url 'productos-crear' %}" class="btn btn-success w-25 boton-crear-posicion "> <span class="fas fa-box-open"> </span> Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -86,7 +86,7 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-        <a href="{% url 'productos-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
     </div>
 
 {% endblock contenido %}

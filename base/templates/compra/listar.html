@@ -45,12 +45,12 @@
                                                     <td>{{ compra.precio_formato_colombiano }}</td>
                                                     <td>{{ compra.get_estado_display }}</td>
                                                     <td>
-                                                        <button type="button" data-ids="{{ compra.id }}"
-                                                                class="btnEliminar btn btn-danger"
+                                                        <button title="Eliminar Registro" type="button" data-ids="{{ compra.id }}"
+                                                                class="btnEliminar btn btn-danger bi bi-trash"
                                                                 data-bs-toggle="modal" data-bs-target="#modal-danger">
                                                             Eliminar
                                                         </button>
-                                                        <a class="btn btn-primary"
+                                                        <a title="Modificar Registro" class="btn btn-primary bi bi-pencil-square"
                                                            href="{% url 'compra-modificar' compra.id %}">Modficar</a>
                                                     </td>
                                                 </tr>
@@ -70,9 +70,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                            <a href="{% url 'compra-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
-
-
+                            <a href="{% url 'compra-crear' %}" class="btn btn-success w-25 boton-crear-posicion bi bi-cart-plus"> Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->

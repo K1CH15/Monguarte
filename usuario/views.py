@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from usuario.forms import PersonaForm,PersonaUptadeForm
 from usuario.forms import ComisionForm,ComisionUptadeForm
 from usuario.models import Persona,Comision
+from django.contrib.auth.models import User,make_password
 
 #CRUD PERSONA
 
@@ -12,10 +13,28 @@ def persona_crear(request):
     titulo="Persona"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
     mensajeerror = f'¡Oops! Hubo un error en el formulario de {titulo}. Por favor, revisa y corrige los campos resaltados en rojo.'
+
     if request.method == 'POST':
         form=PersonaForm(request.POST)
         if form.is_valid():
-            form.save()
+            primer_nombre = form.cleaned_data['nombres'][0].upper()
+            primer_apellido = form.cleaned_data['apellidos'][0].lower()
+            ultimos_digitos_documento = form.cleaned_data ['numero_documento'][-4:]
+            nueva_contrasena = f"@{primer_nombre}{primer_apellido}{ultimos_digitos_documento }"
+            contrasena_encriptada = make_password(nueva_contrasena)
+            nuevo_usuario = User(
+                username=form.cleaned_data['numero_documento'],
+                password=contrasena_encriptada,
+                email=form.cleaned_data['correo_electronico'],
+                first_name=form.cleaned_data['nombres'],
+                last_name=form.cleaned_data['apellidos']
+            )
+            nuevo_usuario.save()
+            usuario = form.save(commit=False)
+            usuario.persona = nuevo_usuario
+            usuario.save()
+            grupo_seleccionado = form.cleaned_data['rol']
+            nuevo_usuario.groups.add(grupo_seleccionado)
             messages.success(request,mensaje)
             return redirect('personas')
         else:

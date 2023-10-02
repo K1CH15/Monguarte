@@ -19,8 +19,8 @@ class Venta(SafeDeleteModel):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")
     estado=models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-    persona_vendedor = models.ForeignKey(Persona, verbose_name=_("Vendedor"), on_delete=models.CASCADE,related_name="ventas_vendedor",limit_choices_to=Q(rol=Persona.Rol.VENDEDOR))
-    persona_cliente = models.ForeignKey(Persona, verbose_name=_("Cliente"), on_delete=models.CASCADE,related_name="ventas_cliente" ,limit_choices_to=Q(rol=Persona.Rol.CLIENTE))
+    persona_vendedor = models.ForeignKey(Persona, verbose_name=_("Vendedor"), on_delete=models.CASCADE,related_name="ventas_vendedor")
+    persona_cliente = models.ForeignKey(Persona, verbose_name=_("Cliente"), on_delete=models.CASCADE,related_name="ventas_cliente")
     def __str__(self):
         return"%s %s"%(self.persona_vendedor,self.persona_cliente)
     class meta:

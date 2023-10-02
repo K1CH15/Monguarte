@@ -15,8 +15,8 @@ class Compra(SafeDeleteModel):
         INACTIVO='0',_("Inactivo")
     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
-    persona_admin=models.ForeignKey(Persona,verbose_name="Administrador", on_delete=models.CASCADE,related_name="compras_administrador",limit_choices_to=Q(rol=Persona.Rol.ADMINISTRADOR))
-    persona_proveedor= models.ForeignKey(Persona, verbose_name="Proveedor", on_delete=models.CASCADE,related_name="compras_proveedor",limit_choices_to=Q(rol=Persona.Rol.PROVEEDOR))
+    persona_admin=models.ForeignKey(Persona,verbose_name="Administrador", on_delete=models.CASCADE,related_name="compras_administrador")
+    persona_proveedor= models.ForeignKey(Persona, verbose_name="Proveedor", on_delete=models.CASCADE,related_name="compras_proveedor")
     def __str__(self):
         return"%s %s"%(self.persona_admin,self.persona_proveedor)
     class meta:

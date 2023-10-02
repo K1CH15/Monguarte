@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 #VIEWS VENTA
 
-#@login_required
+@login_required
 def venta_crear(request):
     titulo="Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito la {titulo}.'
@@ -26,7 +26,7 @@ def venta_crear(request):
     return render(request,"venta/crear.html", context)
 
 
-#@login_required
+@login_required
 def venta_listar(request):
     titulo="Venta"
     modulo="ventas"
@@ -35,7 +35,7 @@ def venta_listar(request):
     return render(request,"venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def venta_modificar(request,pk):
     titulo="Venta"
     mensaje = f'¡Hecho! La {titulo} se ha modificado exitosamente.'
@@ -53,7 +53,7 @@ def venta_modificar(request,pk):
     return render(request,"venta/modificar.html", context)
 
 
-#@login_required
+@login_required
 def venta_eliminar(request,pk):
     venta=Venta.objects.filter(id=pk)
     venta.update(estado="0")
@@ -61,7 +61,7 @@ def venta_eliminar(request,pk):
 
 #VIEWS DETALLE_VENTA
 
-#@login_required
+@login_required
 def detalle_venta_crear(request):
     titulo = "Detalle Venta"
     mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
@@ -91,7 +91,7 @@ def detalle_venta_crear(request):
     context = {"titulo": titulo, "form": form}
     return render(request, "detalle_venta/crear.html", context)
 
-#@login_required
+@login_required
 def detalle_venta_listar(request):
     titulo="Detalle Venta"
     modulo="ventas"
@@ -104,7 +104,7 @@ def detalle_venta_listar(request):
     return render(request,"detalle_venta/listar.html", context)
 
 
-#@login_required
+@login_required
 def detalle_venta_modificar(request,pk):
     titulo="Detalle Venta"
     mensaje = f'¡Hecho! El {titulo} se ha modificado exitosamente.'
