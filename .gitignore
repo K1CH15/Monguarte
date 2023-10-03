@@ -9,7 +9,7 @@
 
 ### Django ###
 *.log
-*.pot
+*.potgit commit -m "Eliminar archivos .pyc"
 __pycache__/
 local_settings.py
 db.sqlite3
