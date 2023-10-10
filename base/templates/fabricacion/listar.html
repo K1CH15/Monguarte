@@ -32,33 +32,30 @@
                                             <th>Cantidad Materia Prima</th>
                                             <th>Materia Prima</th>
                                             <th>Producto</th>
-                                            <th>Costo Fabricacion</th>
-
-                                            <th>Acción</th>
+                                            <th class="notexport">Acción</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {% for fabricacion in fabricas %}
                                             {% if fabricacion.estado != "0" %}
-                                                <tr>
-                                                    <td>{{ fabricacion.fecha }}</td>
-                                                    <td>{{ fabricacion.cantidad_producto }}</td>
-                                                    <td>{{ fabricacion.cantidad_materia }}</td>
-                                                    <td>{{ fabricacion.materia_prima }}</td>
-                                                    <td>{{ fabricacion.producto }}</td>
-                                                    <td>{{ fabricacion.calcular_costo_fabricacion }}</td>
+                                            <tr>
+                                                <td>{{ fabricacion.fecha }}</td>
+                                                <td>{{ fabricacion.cantidad_producto }}</td>
+                                                <td>{{ fabricacion.cantidad_materia }}</td>
+                                                <td>{{ fabricacion.materia_prima }}</td>
+                                                <td>{{ fabricacion.producto }}</td>
 
-                                                    <td>
-                                                        <button type="button" data-ids="{{ fabricacion.id }}"
-                                                                class="btnEliminar btn btn-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                            Eliminar
-                                                        </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'fabricaciones-modificar' fabricacion.id %}">Modificar</a>
-                                                    </td>
-                                                </tr>
+                                                <td>
+                                                    <button title="Eliminar Registro" type="button" data-ids="{{ fabricacion.id }}"
+                                                            class="btnEliminar btn btn-danger bi bi-trash"
+                                                            data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                        Eliminar
+                                                    </button>
+                                                    <a title="Modificar Registro" class="btn btn-primary btn-md bi m-1 me-1 bi bi-pencil-square"
+                                                       href="{% url 'fabricaciones-modificar' fabricacion.id %}">Modificar</a>
+                                                </td>
+                                            </tr>
                                             {% endif %}
                                         {% endfor %}
                                         </tbody>
@@ -68,7 +65,6 @@
                                             <th>Cantidad Producto</th>
                                             <th>Cantidad Materia Prima</th>
                                             <th>Materia Prima</th>
-                                            <th>Costo Fabricacion</th>
                                             <th>Producto</th>
                                             <th>Acción</th>
                                         </tr>
@@ -77,6 +73,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                                <a href="{% url 'fabricaciones-crear' %}" class="boton-crear-posicion btn btn-success  w-25 bi bi-building-gear"> Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -86,6 +83,6 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-        <a href="{% url 'fabricaciones-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
     </div>
 {% endblock contenido %}

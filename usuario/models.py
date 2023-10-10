@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import integer_validator,MaxLengthValidator,ValidationError,RegexValidator
 from safedelete.models import SafeDeleteModel
+from django.contrib.auth.models import User,Group
 #Módulo de usuarios
 # Create your models here.
 #Modelo Persona
@@ -14,17 +15,13 @@ class Persona(SafeDeleteModel):
         TI='TI',_("Tarjeta de Identidad")
         CE='CE',_("Cédula de Extranjería")
     tipo_documento=models.CharField(max_length=3,choices=TipoDocumento.choices,default=TipoDocumento.CC,verbose_name="Tipo de Documento")
-    numero_documento=models.CharField(max_length=10,validators=[integer_validator],verbose_name="Número de Documento",unique=True)
+    numero_documento=models.CharField(max_length=10,validators=[integer_validator,RegexValidator(r'^\d+$',message="Este campo solo permite valores numericos")],verbose_name="Número de Documento",unique=True)
     nombres=models.CharField(max_length=30,verbose_name="Nombres")
     apellidos=models.CharField(max_length=30,verbose_name="Apellidos")
-    telefono=models.CharField(max_length=10,validators=[integer_validator,MaxLengthValidator(10)],verbose_name="Número Telefónico",unique=True)
+    telefono=models.CharField(max_length=10,validators=[integer_validator,MaxLengthValidator(10),RegexValidator(r'^\d+$')],verbose_name="Número Telefónico",unique=True)
     correo_electronico=models.EmailField(max_length=50,verbose_name="Correo Electrónico",unique=True)
-    class Rol(models.TextChoices):
-        ADMINISTRADOR='ADMI',_("Administrador")
-        VENDEDOR='VEN',_("Vendedor")
-        PROVEEDOR='PROV',_("Proveedor")
-        CLIENTE='CLIE',_("Cliente")
-    rol=models.CharField(max_length=4,choices=Rol.choices,help_text="Roles:Administrador,Vendedor,Proveedor,Cliente")
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='usuarios',null=True,blank=True)
+    rol=models.ForeignKey(Group,verbose_name="Rol",on_delete=models.SET_NULL,null=True,blank=True,help_text="Roles:Administrador,Vendedor,")
     class Estado(models.TextChoices):
         ACTIVO='1',_("Activo")
         INACTICO='0',_("Inactivo")

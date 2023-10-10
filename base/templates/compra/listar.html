@@ -22,53 +22,47 @@
                             <div class="card-header">
                                 <h3 class="card-title">{{ titulo }}</h3>
                             </div>
-
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>°N de Registro</th>
+                                            <th class="notexport">°N de Registro</th>
                                             <th>Fecha</th>
-                                            <th>Persona Admin</th>
-                                            <th>Persona Prove</th>
-
-                                            <th>Acción</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado</th>
+                                            <th class="notexport">Acción</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for compra in compra %}
+                                        {% for compra in comprasn %}
 
-                                            <tr>
-                                                <td>{{ compra.id }}</td>
-                                                <td>{{ compra.fecha }}</td>
-                                                <td>{{ compra.persona_admin }}</td>
-                                                <td>{{ compra.persona_proveedor }}</td>
-                                                <td>
-
-                                                {% if compra.estado == '1' %}
-                                                    <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1 isabled"
-                                                       href="{% url 'detalle_compra' compra.id %}">Modificar</a>
-
-                                                {% else %}
-                                                    <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
-                                                       onclick="toggleVisibility()"
-                                                       href="{% url 'verr_contenido' compra.id %}">
-                                                        <i id="eye-icon" class="fas fa-eye"></i> Ver
-                                                    </a>
-                                                {% endif %}
-                                                </td>
-                                            </tr>
-
+                                            {% if compra.estado != "0" %}
+                                                <tr>
+                                                    <td>{{ compra.id }}</td>
+                                                    <td>{{ compra.fecha }}</td>
+                                                    <td>{{ compra.precio_formato_colombiano }}</td>
+                                                    <td>{{ compra.get_estado_display }}</td>
+                                                    <td>
+                                                        <button title="Eliminar Registro" type="button" data-ids="{{ compra.id }}"
+                                                                class="btnEliminar btn btn-danger bi bi-trash"
+                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                            Eliminar
+                                                        </button>
+                                                        <a title="Modificar Registro" class="btn btn-primary bi bi-pencil-square"
+                                                           href="{% url 'compra-modificar' compra.id %}">Modficar</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>°N de Registro</th>
                                             <th>Fecha</th>
-                                            <th>Administrador</th>
-                                            <th>Proveedor</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado</th>
                                             <th>Acción</th>
                                         </tr>
                                         </tfoot>
@@ -76,9 +70,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                            <a href="{% url 'compra-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
-
-
+                            <a href="{% url 'compra-crear' %}" class="btn btn-success w-25 boton-crear-posicion bi bi-cart-plus"> Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -89,6 +81,5 @@
         </section>
         <!-- /.content -->
     </div>
-
 
 {% endblock contenido %}
