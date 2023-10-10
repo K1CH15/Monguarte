@@ -5,9 +5,12 @@ from productos.models import Producto
 from venta.models import Detalle_Venta
 from django.core.validators import MaxValueValidator
 from safedelete.models import SafeDeleteModel
+from decimal import Decimal
 
 class Materia_Prima(SafeDeleteModel):
     nombre = models.CharField(max_length=20, verbose_name="Nombre de la Materia Prima",help_text="Ingrese el Nombre de la Materia Prima")
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999999)],
+                                        verbose_name="Precio Unitario",default=0,)
     class Unidad_Medida(models.TextChoices):
         GRAMO = '0', _("Gramos (gr) ")
         LIBRRA  = '1',_("Libras (lb)")
@@ -25,6 +28,9 @@ class Materia_Prima(SafeDeleteModel):
     #si la materia prima ya exite con los datos iguales simplemete se suma falta para que se sume automaticamente
     #detalle_compra=models.ForeignKey(verbose_name=_("Cantidad"),help_text="Cantidad de Materia Prima",on_delete=models.CASCADE)
     stock = models.PositiveIntegerField(default=0, verbose_name="Stock de Materia Prima")
+
+    def precio_unitario_formato_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
     def __str__(self):
         return "%s %s %s %s %s %s" % ("Nombre de la Materia Prima:", self.nombre, "de Tipo:", self.get_tipo_display(), "y de Color:", self.color)
 
@@ -47,6 +53,12 @@ class Fabricacion(SafeDeleteModel):
     def __str__(self):
         return "%s" % (self.cantidad_producto)
 
+    def calcular_costo_fabricacion(self):
+        costo_fabricacion = Decimal(0)
+        if self.materia_prima and self.cantidad_materia > 0:
+            costo_fabricacion = self.materia_prima.precio_unitario * self.cantidad_materia
+        return '${:,.0f}'.format(costo_fabricacion).replace(',', '.')
+
     def save(self, *args, **kwargs):
         # Obtenemos la cantidad de materia prima antes de guardar la fabricación
         cantidad_materia_nueva = self.cantidad_materia
@@ -67,36 +79,17 @@ class Fabricacion(SafeDeleteModel):
             self.producto.stock += self.cantidad_producto
             self.producto.save()
 
-        # class Stock_Materia_Prima(SafeDeleteModel):
-#     cantidad=models.IntegerField(verbose_name="Cantidad de materia prima en stock")
-#     class Estado(models.TextChoices):
-#         ACTIVO='1',_("Activo")
-#         INACTIVO='0',_("Inactivo")
-#     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-#     materia_prima=models.ForeignKey(Materia_Prima, verbose_name=_("Materia Prima"), on_delete=models.CASCADE)
+
+
+
+# class Stock(SafeDeleteModel):
+#     materia_prima = models.OneToOneField(Materia_Prima, on_delete=models.CASCADE)
+#     cantidad = models.PositiveIntegerField(default=0, verbose_name="Stock de Materia Prima")
+#     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Precio Unitario")
+#     valor_total_compra = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total de la Compra")
 #
 #     def __str__(self):
-#         return"%s %s"%("la cantidad de producto es:",self.materia_prima)
-#     class Meta:
-#         verbose_name_plural="Stock Materia Prima"
+#         return f"{self.materia_prima.nombre} - Stock: {self.cantidad} - Precio Unitario: {self.precio_unitario}"
 #
-# class Detalle_Producto(SafeDeleteModel):
-#     producto=models.ForeignKey(Producto, verbose_name=_("Productos"), on_delete=models.CASCADE)
-#     stock_materia_prima=models.ForeignKey(Stock_Materia_Prima, verbose_name=_("Stock Materia Prima"), on_delete=models.CASCADE)
-#     def __str__(self):
-#         return"%s"%(self.id)
 #     class Meta:
-#         verbose_name_plural="Detalle Producto"
-# class Stock_Producto(SafeDeleteModel):
-#     cantidad=models.IntegerField(verbose_name="Cantidad Total")
-#     class Estado(models.TextChoices):
-#         ACTIVO='1',_("Activo")
-#         INACTIVO='0',_("Inactivo")
-#     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
-#     detalle_producto=models.ForeignKey(Detalle_Producto, verbose_name=_("Detalle Producto"), on_delete=models.CASCADE)
-#     detalle_venta=models.ForeignKey(Detalle_Venta, verbose_name=_("Detalle venta"), on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return"%s %s %s"%(self.cantidad,self.detalle_producto,self.detalle_venta)
-#     class Meta:
-#         verbose_name_plural="Stock Producto"
+#         verbose_name_plural = "Stocks de Materia Prima"

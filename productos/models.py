@@ -6,12 +6,20 @@ from django.core.validators import MaxValueValidator
 from safedelete.models import SafeDeleteModel
 
 class Producto(SafeDeleteModel):
-
     nombre=models.CharField(max_length=45,verbose_name="Nombre")
-    precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)])
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)],
+        null=True,
+        blank=True)
+    calcular_costo_fabricacion = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
+                                                     verbose_name="Costo de Fabricación")
+
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
 
+    def calcular_costo_fabricacion_formato_colombiano(self):
+        if self.calcular_costo_fabricacion is not None:
+            return '${:,.0f}'.format(self.calcular_costo_fabricacion).replace(',', '.')
+        return None
     def clean(self):
         if self.stock != 0:
             raise ValidationError("No se puede modificar este producto ")

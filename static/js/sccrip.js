@@ -75,30 +75,30 @@
             useEmojis:false,
         },
 
-        customFunctions: [{
-            method: (cf, state) => {
-                const theme = "light"
-                setStoredTheme(theme)
-                setTheme(theme)
-            },
-            buttonText: 'Modo Claro',
-            id: 1,
-            toggle: false,
-            icon: 'light_mode',
-            emoji: '☀️'
-        },
-        {
-            method: (cf, state) => {
-                const theme = "dark"
-                setStoredTheme(theme)
-                setTheme(theme)
-            },
-            buttonText: 'Modo Oscuro',
-            id: 2,
-            toggle: false,
-            icon: 'dark_mode',
-            emoji: '🌙'
-        }]
+        // customFunctions: [{
+        //     method: (cf, state) => {
+        //         const theme = "light"
+        //         setStoredTheme(theme)
+        //         setTheme(theme)
+        //     },
+        //     buttonText: 'Modo Claro',
+        //     id: 1,
+        //     toggle: false,
+        //     icon: 'light_mode',
+        //     emoji: '☀️'
+        // },
+        // {
+        //     method: (cf, state) => {
+        //         const theme = "dark"
+        //         setStoredTheme(theme)
+        //         setTheme(theme)
+        //     },
+        //     buttonText: 'Modo Oscuro',
+        //     id: 2,
+        //     toggle: false,
+        //     icon: 'dark_mode',
+        //     emoji: '🌙'
+        // }]
     };
     options.textToSpeechLang = 'es-ES';
     options.speechToTextLang = 'es-ES';

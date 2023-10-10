@@ -1,11 +1,14 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from productos.forms import ProductoForm, ProductoUpdateForm
 from productos.models import Producto
+from django.shortcuts import render, get_object_or_404
+from .forms import PrecioUnitarioForm
 
 
 # Create your views here.
+@login_required
 def producto_crear(request):
     titulo = "Producto"
     mensaje = f'¡Hecho! Se ha añadido con éxito el {titulo}.'
@@ -27,7 +30,7 @@ def producto_crear(request):
     }
     return render(request, "productos/crear.html", context)
 
-
+@login_required
 def producto_listar(request):
     titulo = "Producto"
     modulo = "productos"
@@ -39,7 +42,7 @@ def producto_listar(request):
     }
     return render(request, "productos/listar.html", context)
 
-
+@login_required
 def producto_modificar(request, pk):
     titulo = "Producto"
     producto = Producto.objects.get(id=pk)
@@ -58,7 +61,7 @@ def producto_modificar(request, pk):
     }
     return render(request, "productos/modificar.html", context)
 
-
+@login_required
 def producto_eliminar(request, pk):
     mensaje = f'¡Hecho! El P se ha modificado exitosamente.'
     producto = Producto.objects.filter(id=pk)
@@ -69,6 +72,22 @@ def producto_eliminar(request, pk):
 
     return redirect('productosl')
 
+def lista_de_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'productos/listar.html', {'productos': productos})
+
+def establecer_precio(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+
+    if request.method == 'POST':
+        form = PrecioUnitarioForm(request.POST, instance=producto)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_de_productos')  # Redirige a la lista de productos después de guardar el precio
+    else:
+        form = PrecioUnitarioForm(instance=producto)
+
+    return render(request, 'productos/editar_precio.html', {'form': form, 'producto': producto})
 # def tamaño_crear(request):
 #     titulo="Tamaño"
 #     if request.method== 'POST':

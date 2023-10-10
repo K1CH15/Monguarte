@@ -27,11 +27,18 @@ class Venta(SafeDeleteModel):
         verbose_name_plural="Venta"
 
 #Modelo de Detalle Venta
+from django.db import models
+
 class Detalle_Venta(models.Model):
     cantidad_total = models.PositiveIntegerField(verbose_name="Cantidad Total", default=0)
     producto = models.ForeignKey(Producto, verbose_name=_("Producto"), on_delete=models.CASCADE, related_name="detalles_venta_producto")
     venta = models.ForeignKey(Venta, verbose_name=_("Venta"), on_delete=models.CASCADE, related_name="detalles_venta")
     valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total", editable=False)
+    class Estado(models.TextChoices):
+        ACTIVO = '1', _("Activo")
+        INACTIVO = '0', _("Inactivo")
+
+    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def precio_unitario(self):
         return self.producto.precio_unitario
@@ -45,26 +52,11 @@ class Detalle_Venta(models.Model):
     def __str__(self):
         return "%s %s %s" % (self.cantidad_total, self.precio_unitario(), self.venta)
 
-    def calcular_comision(self):
-        return self.valor_total * Decimal('0.10')  # Calcula el 10% de la comisión
-
     def save(self, *args, **kwargs):
         self.valor_total = self.precio_unitario() * self.cantidad_total
-
-        if self.cantidad_total > self.producto.stock:
-            raise ValidationError(
-                _("No hay suficiente stock del producto disponible. Cantidad en stock: %(stock)s") % {
-                    'stock': self.producto.stock})
-
-        self.producto.stock -= self.cantidad_total
-        self.producto.save()
-        # Calcular comisión
-        comision_valor = self.calcular_comision()
-
-        # Create a Comision instance associated with the current Detalle_Venta instance
-        comision = Comision.objects.create(valor_comision=comision_valor)
 
         super(Detalle_Venta, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Detalles Venta"
+
