@@ -271,7 +271,7 @@ button:focus {
 .cuerpo
 {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
     min-height: 30vh;
 }
@@ -364,7 +364,6 @@ footer .wave01#wave4
     0%{background-position-x: 0px;}
     100%{background-position-x: 1000px;}
 }
-marlon
 
 
 
@@ -376,18 +375,13 @@ marlon
   box-sizing: border-box;
 }
 
-#btn-mas {
-  display: none;
-}
-
 .conta {
   position: fixed;
   bottom: 20px;
   left: 20px; /* Ajuste para colocar el botón más a la izquierda */
 }
 
-.redes a,
-.btn-mas label {
+.redes a {
   display: block;
   text-decoration: none;
   background: #cc2b2b;
@@ -404,28 +398,6 @@ marlon
 .redes a:hover {
   background: #fff;
   color: #cc2b2b;
-}
-
-.redes a {
-  opacity: 0;
-  visibility: hidden;
-}
-
-#btn-mas:checked ~ .redes a {
-  margin-bottom: 10px;
-  opacity: 1;
-  visibility: visible;
-}
-
-.btn-mas label {
-  cursor: pointer;
-  background: #f44141;
-  font-size: 23px;
-}
-
-#btn-mas:checked ~ .btn-mas label {
-  transform: rotate(135deg);
-  font-size: 25px;
 }
 
 /* Estilos personalizados para el menú desplegable */
@@ -516,3 +488,15 @@ body {
   background-color: #fcf9fa; /* Cambia #f0f0f0 por el color que desees */
 }
 
+/*Estilos para button de usuario/cerrar session*/
+.dropdown-menu {
+  background-color: #a52a2a;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #a52a2a;
+}
