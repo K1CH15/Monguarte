@@ -72,7 +72,9 @@
             persistent: true
         },
         icon: {
-            useEmojis:false,
+            useEmojis: false,
+            backgroundColor: '#f44141',
+            circular: true
         },
 
         customFunctions: [{
