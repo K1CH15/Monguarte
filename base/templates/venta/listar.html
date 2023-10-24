@@ -25,33 +25,34 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="notexport">Id</th>
+                                            <th>Id</th>
                                             <th>Fecha</th>
-                                            <th>Valor Total</th>
-                                            <th>Estado</th>
-                                            <th class="notexport">Acción</th>
+                                            <th>Vendedor</th>
+                                            <th>Cliente</th>
+                                            <th>Acción</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {% for Venta in venta %}
-                                            {% if Venta.estado != "0" %}
-                                                <tr>
-                                                    <td>{{ Venta.id }}</td>
-                                                    <td>{{ Venta.fecha }}</td>
-                                                    <td>{{ Venta.valor_total }}</td>
-                                                    <td>{{ Venta.get_estado_display }}</td>
-                                                    <td>
-                                                        <button title="Eliminar Registro" type="button"
-                                                                data-ids="{{ Venta.id }}"
-                                                                class="btnEliminar btn btn-danger bi bi-trash"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                        </button>
-                                                        <a title="Modificar Registro"
-                                                           class="btn btn-primary btn-md bi bi-wrench m-1 me-1 bi bi-pencil-square"
-                                                           href="{% url 'ventas-modificar' Venta.id %}"></a>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                            <tr>
+                                                <td>{{ Venta.id }}</td>
+                                                <td>{{ Venta.fecha }}</td>
+                                                <td>{{ Venta.persona_vendedor }}</td>
+                                                <td>{{ Venta.persona_cliente }}</td>
+                                                <td>
+                                                    {% if Venta.estado == '1' %}
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1 isabled"
+                                                           href="{% url 'detalle_ventas' Venta.id %}">Modificar</a>
+
+                                                    {% else %}
+                                                        <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
+                                                           onclick="toggleVisibility()"
+                                                           href="{% url 'ver_contenido' Venta.id %}">
+                                                            <i id="eye-icon" class="fas fa-eye"></i> Ver
+                                                        </a>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>
@@ -68,8 +69,6 @@
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
-                            <a href="{% url 'ventas-crear' %}"
-                               class="btn btn-success w-25 boton-crear-posicion bi bi-tags"> Crear {{ titulo }}</a>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -78,6 +77,6 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
+        <a href="{% url 'ventas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
     </div>
 {% endblock contenido %}

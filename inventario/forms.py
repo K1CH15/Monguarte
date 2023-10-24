@@ -6,13 +6,13 @@ class Materia_PrimaForm(ModelForm):
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-        exclude=["estado","stock","precio_unidad"]
+        exclude=["estado","stock","precio_unitario"]
 class Materia_PrimaUptadeForm(ModelForm):
 
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-        exclude = ["estado", "stock","precio_unidad"]
+        exclude = ["estado", "stock","precio_unitario"]
 class FabricacionForm(ModelForm):
 
     class Meta:

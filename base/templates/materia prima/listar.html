@@ -39,8 +39,8 @@
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->
-                                            <th>Estado</th>
-                                            <th class="notexport">Acción</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Acción</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -52,17 +52,18 @@
                                                     <td>{{ materia_prima.get_tipo_display }}</td>
                                                     <td>{{ materia_prima.color }}</td>
                                                     <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->
-                                                    <td>{{ materia_prima.get_estado_display }}</td>
+                                                    <td>{{ materia_prima.precio_unitario_formato_colombiano }}</td>
                                                     <td>
-                                                        <button title="Eliminar Regsitro" type="button"
+                                                        <button type="button"
                                                                 data-ids="{{ materia_prima.id }}"
-                                                                class="btnEliminar btn btn-danger bi bi-trash"
+                                                                class="btnEliminar btn btn-danger"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#modal-danger"
                                                                 {% if materia_prima.stock > 0 %} disabled {% endif %}>
+                                                            Eliminar
                                                         </button>
-                                                        <a title="Modificar Registro" class="btn btn-primary btn-md m-1 me-1 bi bi-pencil-square"
-                                                           href="{% url 'materias-primas-modificar' materia_prima.id %}"></a>
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                           href="{% url 'materias-primas-modificar' materia_prima.id %}">Modificar</a>
                                                     </td>
                                                 </tr>
                                             {% endif %}
@@ -75,7 +76,7 @@
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->
-                                            <th>Estado</th>
+                                            <th>Precio unitario</th>
                                             <th>Acción</th>
                                         </tr>
 
@@ -85,9 +86,6 @@
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
-                            <a href="{% url 'materias-primas-crear' %}"
-                               class="btn btn-success w-25 boton-crear-posicion  "> <span class="fas fa-dolly-flatbed"></span> Crear {{ titulo }}</a>
-
                         </div>
                         <!-- /.col -->
                     </div>
@@ -96,7 +94,7 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
+        <a href="{% url 'materias-primas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
     </div>
 
 {% endblock contenido %}

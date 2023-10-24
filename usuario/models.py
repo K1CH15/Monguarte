@@ -29,7 +29,7 @@ class Persona(SafeDeleteModel):
     ips = models.CharField(max_length=10,verbose_name="IPS",blank=True,null=True)
 
     def __str__(self):
-        return"%s %s %s %s %s %s"%("Numero De Documento:",self.numero_documento,self.nombres,self.apellidos,",Rol:",self.get_rol_display())
+        return"%s %s %s %s %s %s"%("Numero De Documento:",self.numero_documento,self.nombres,self.apellidos,",Rol:",self.rol)
     class meta:
         verbose_name_plural="Persona"
 #Modelo de Comisión
