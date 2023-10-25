@@ -481,9 +481,10 @@ footer .wave01#wave4
 .logout-button a:hover {
   background-color: #e71d36;
 }
-
-
-
+.boton-crear-posicion{
+    margin-left:935px;
+    margin-bottom: 5px;
+}
 body {
   background-color: #fcf9fa; /* Cambia #f0f0f0 por el color que desees */
 }

@@ -1,8 +1,6 @@
 from django.urls import path
-
 from inventario.views import fabricacion_listar, fabricacion_crear, fabricacion_modificar, fabricacion_eliminar
 from inventario.views import materia_prima_crear, materia_prima_eliminar, materia_prima_listar, materia_prima_modificar
-
 
 urlpatterns = [
 
@@ -15,4 +13,7 @@ urlpatterns = [
     path('fabricacion/crear/', fabricacion_crear, name="fabricaciones-crear"),
     path('fabricacion/modificar/<int:pk>/', fabricacion_modificar, name="fabricaciones-modificar"),
     path('fabricacion/eliminar/<int:pk>/', fabricacion_eliminar, name="fabricaciones-eliminar"),
+    # path('stock/', listar_stock, name='stock'),
+    # path('stock/agregar/', agregar_stock, name='agregar_stock'),
+
 ]
