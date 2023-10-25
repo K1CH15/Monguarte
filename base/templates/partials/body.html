@@ -60,27 +60,20 @@
 
     <div class="container wrapper">
         <div class="row g-5">
-        {% block contenido %}
+            {% block contenido %}
 
 
-        {% endblock contenido %}
+            {% endblock contenido %}
+        </div>
     </div>
-</div>
 {% include 'partials/modal.html' %}
-
 {% include 'partials/footer.html' %}
-
-
 </body>
 <!--boton flotante ayuda-->
+
 <div class="conta">
-    <input type="checkbox" id="btn-mas">
     <div class="redes">
         <a href="#" class="opcion" onclick="abrirPDF()">Ayuda</a>
-
-    </div>
-    <div title="Boton de Ayuda para el Usuario" class="btn-mas">
-        <label for="btn-mas" class="fa fa-plus"></label>
     </div>
 </div>
 <script>
@@ -88,9 +81,6 @@
         window.open('/inicio/abrir-pdf/', '_blank');
     }
 </script>
-
-
-
 
 
 {% block javascript_content %}
