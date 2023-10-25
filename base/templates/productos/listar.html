@@ -26,13 +26,14 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th >Nombre</th>
+                                            <th>Nombre</th>
                                             <th>Precio Unitario</th>
+                                            <th>Precio Fabricacion</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
                                             <th>Stock</th>
                                             <th>estado</th>
-                                            <th class="notexport">Acciones</th>
+                                            <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -41,7 +42,16 @@
                                             {% if producto.estado != "0" %}
                                                 <tr>
                                                     <td>{{ producto.nombre }}</td>
-                                                    <td>{{ producto.precio_formato_colombiano }}</td>
+                                                    <td>
+                                                        {% if producto.precio_unitario %}
+                                                            {{ producto.precio_formato_colombiano }}
+                                                        {% else %}
+                                                            Por definir
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {{ producto.calcular_costo_fabricacion_formato_colombiano }}
+                                                    </td> <!-- Mostrar el campo Precio Fabricación -->
                                                     <td>{{ producto.get_tamano_display }}</td>
                                                     <td>{{ producto.get_tipo_display }}</td>
                                                     <!-- Nuevo: Mostrar el stock -->
@@ -49,13 +59,27 @@
                                                     <td>{{ producto.get_estado_display }}</td>
 
                                                     <td>
-                                                        <button title="Elimina Registro" type="button"
+                                                        <button type="button"
                                                                 data-ids="{{ producto.id }}"
-                                                                class="btnEliminar btn btn-danger bi bi-trash       "
+                                                                class="btnEliminar btn btn-danger"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#modal-danger"
-                                                                {% if producto.stock > 0 %} disabled {% endif %}>
+                                                                style="{% if producto.stock > 0 %} display: none; {% endif %}">
+                                                            Eliminar
                                                         </button>
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                           href="{% url 'productos-modificar' producto.id %}">Modificar</a>
+
+
+                                                        {% if producto.calcular_costo_fabricacion %}
+                                                            <button type="button"
+                                                                    class="btn btn-success btn-md bi bi-wrench m-1 me-1"
+                                                                    onclick="window.location.href='{% url 'establecer_precio' producto.id %}'">
+                                                                Poner Precio
+                                                            </button>
+                                                        {% endif %}
+
+
                                                     </td>
                                                 </tr>
                                             {% endif %}
@@ -65,6 +89,7 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Precio Unitario</th>
+                                            <th>Precio Fabricacion</th>
                                             <th>Tamaño</th>
                                             <th>Tipo</th>
                                             <th>Stock</th>
@@ -76,7 +101,6 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                        <a href="{% url 'productos-crear' %}" class="btn btn-success w-25 boton-crear-posicion "> <span class="fas fa-box-open"> </span> Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -86,7 +110,7 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
+        <a href="{% url 'productos-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
     </div>
 
 {% endblock contenido %}
