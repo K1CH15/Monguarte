@@ -14,6 +14,34 @@
     <!-- Content Header (Page header) -->
 
 
+<<<<<<< HEAD
+ <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>N° Registro</th>
+                <th>Fecha</th>
+                <th>Admistrador</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in comprasn %}
+                {% if compra.estado != "0" %}
+                    <tr>
+                        <td>{{ compra.id }}</td>
+                        <td>{{ compra.fecha }}</td>
+                        <td>{{ compra.persona_admin }}</td>
+                        <td>{{ compra.persona_proveedor }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+=======
+>>>>>>> main
     <!-- Agrega el formulario de creación de compra debajo de la tabla -->
    <div class="card">
     <div class="card-header">
