@@ -7,23 +7,14 @@ class Materia_PrimaForm(ModelForm):
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-<<<<<<< HEAD
-        exclude=["estado","stock"]
-=======
         exclude=["estado","stock","precio_unidad"]
-class Materia_PrimaUptadeForm(ModelForm):
->>>>>>> main
 
 class Materia_PrimaUptadeForm(ModelForm):
     class Meta:
         model = Materia_Prima
         fields = "__all__"
-<<<<<<< HEAD
-        exclude = ["estado", "stock"]
-
-=======
         exclude = ["estado", "stock","precio_unidad"]
->>>>>>> main
+
 class FabricacionForm(ModelForm):
     # Modifica el campo materia_prima para utilizar el widget Select2
     materia_prima = forms.ModelChoiceField(
