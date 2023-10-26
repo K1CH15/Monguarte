@@ -4,6 +4,7 @@
   "description": "aplicativo para la gestión de informacion de la empresa monguarte",
   "main": "index.js",
   "scripts": {
+
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildcss": "sass --style=compressed resources/scss/:static/css/",
     "buildjs": "uglifyjs-folder resources/js/ -eo static/js/",
@@ -33,8 +34,8 @@
     "resinventario" : "python manage.py loaddatautf8 inventario/seed/inventario.json",
     "rescompra": "python manage.py loaddatautf8 compra/seed/compra.json",
     "resventa": "python manage.py loaddatautf8 venta/seed/venta.json",
-    "resdb" : "npm run resusuario & npm run resproducto & npm run resinventario & npm run rescompra & npm run resventa",
-    
+    "resdb" : "npm run resusuario & npm run resproducto & npm run resinventario & npm run rescompra & npm run resventa"
+
   },
   "watch": {
     "build": {
