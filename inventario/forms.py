@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from inventario.models import Materia_Prima,Fabricacion
+from inventario.models import Materia_Prima,Fabricacion,Producto
 from django_select2.forms import Select2Widget
 
 class Materia_PrimaForm(ModelForm):
@@ -22,6 +22,11 @@ class FabricacionForm(ModelForm):
         widget=Select2Widget,  # Utiliza el widget Select2
     )
 
+    # Modifica el campo producto para utilizar el widget Select2
+    producto = forms.ModelChoiceField(
+        queryset=Producto.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Fabricacion
         fields = "__all__"
@@ -34,6 +39,11 @@ class FabricacionUptadeForm(ModelForm):
         widget=Select2Widget,  # Utiliza el widget Select2
     )
 
+    # Modifica el campo producto para utilizar el widget Select2
+    producto = forms.ModelChoiceField(
+        queryset=Producto.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Fabricacion
         fields = "__all__"
