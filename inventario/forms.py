@@ -11,6 +11,7 @@ class Materia_PrimaForm(ModelForm):
 
 class Materia_PrimaUptadeForm(ModelForm):
     class Meta:
+        
         model = Materia_Prima
         fields = "__all__"
         exclude = ["estado", "stock"]
