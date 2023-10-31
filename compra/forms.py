@@ -1,14 +1,27 @@
+from django import forms
 from django.forms import ModelForm
-from compra.models import Compra,Detalle_Compra
+from compra.models import Compra,Detalle_Compra,Persona
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django_select2.forms import Select2Widget
 
 class CompraForm(ModelForm):
+    # Modifica el campo persona para utilizar el widget Select2
+    persona_admin = forms.ModelChoiceField(
+        queryset=Persona.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
+    # Modifica el campo persona para utilizar el widget Select2
+    persona_proveedor = forms.ModelChoiceField(
+        queryset=Persona.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Compra
         fields = "__all__"
         exclude = ["estado"]
         success_message = 'la compra se añadió correctamente'
+
 class CompraUpdateForm(ModelForm):
     class Meta:
         model = Compra
