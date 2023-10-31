@@ -27,30 +27,32 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Fecha</th>
-                                            <th>Valor Total</th>
-                                            <th>Estado</th>
+                                            <th>Vendedor</th>
+                                            <th>Cliente</th>
                                             <th>Acción</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {% for Venta in venta %}
-                                            {% if Venta.estado != "0" %}
-                                                <tr>
-                                                    <td>{{ Venta.id }}</td>
-                                                    <td>{{ Venta.fecha }}</td>
-                                                    <td>{{ Venta.valor_total }}</td>
-                                                    <td>{{ Venta.get_estado_display }}</td>
-                                                    <td>
-                                                        <button type="button" data-ids="{{ Venta.id }}"
-                                                                class="btnEliminar btn btn-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                            Eliminar
-                                                        </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'ventas-modificar' Venta.id %}">Modificar</a>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                            <tr>
+                                                <td>{{ Venta.id }}</td>
+                                                <td>{{ Venta.fecha }}</td>
+                                                <td>{{ Venta.persona_vendedor }}</td>
+                                                <td>{{ Venta.persona_cliente }}</td>
+                                                <td>
+                                                    {% if Venta.estado == '1' %}
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1 isabled"
+                                                           href="{% url 'detalle_ventas' Venta.id %}">Modificar</a>
+
+                                                    {% else %}
+                                                        <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
+                                                           onclick="toggleVisibility()"
+                                                           href="{% url 'ver_contenido' Venta.id %}">
+                                                            <i id="eye-icon" class="fas fa-eye"></i> Ver
+                                                        </a>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>

@@ -13,11 +13,10 @@
     </div>
     <!-- /.content-header -->
 
-        <form action="" method="POST" id="myForm">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-success" type="button" onclick="guardarYRedireccionar(event)">
-                Agregar {{ titulo }}</button>
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class="btn btn-success" type="submit" value="Agregar {{titulo}}">
             <a href="{% url 'compra' %}" class="btn btn-danger">Regresar</a>
         </form>
     {% block extrajs %}

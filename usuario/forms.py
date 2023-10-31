@@ -13,7 +13,7 @@ class PersonaForm(ModelForm):
     class Meta:
         model = Persona
         fields = "__all__"
-        exclude=["estado"]
+        exclude=["estado","user"]
 
 class PersonaUptadeForm(ModelForm):
     def _init_(self, *args, **kwargs):

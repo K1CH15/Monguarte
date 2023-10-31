@@ -22,47 +22,53 @@
                             <div class="card-header">
                                 <h3 class="card-title">{{ titulo }}</h3>
                             </div>
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>N° de Registro</th>
+                                            <th>°N de Registro</th>
                                             <th>Fecha</th>
-                                            <th>Valor Total</th>
-                                            <th>Estado</th>
+                                            <th>Persona Admin</th>
+                                            <th>Persona Prove</th>
+
                                             <th>Acción</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for compra in comprasn %}
+                                        {% for compra in compra %}
 
-                                            {% if compra.estado != "0" %}
-                                                <tr>
-                                                    <td>{{ compra.id }}</td>
-                                                    <td>{{ compra.fecha }}</td>
-                                                    <td>{{ compra.precio_formato_colombiano }}</td>
-                                                    <td>{{ compra.get_estado_display }}</td>
-                                                    <td>
-                                                        <button type="button" data-ids="{{ compra.id }}"
-                                                                class="btnEliminar btn btn-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                            Eliminar
-                                                        </button>
-                                                        <a class="btn btn-primary"
-                                                           href="{% url 'compra-modificar' compra.id %}">Modficar</a>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                            <tr>
+                                                <td>{{ compra.id }}</td>
+                                                <td>{{ compra.fecha }}</td>
+                                                <td>{{ compra.persona_admin }}</td>
+                                                <td>{{ compra.persona_proveedor }}</td>
+                                                <td>
+
+                                                {% if compra.estado == '1' %}
+                                                    <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1 isabled"
+                                                       href="{% url 'detalle_compra' compra.id %}">Modificar</a>
+
+                                                {% else %}
+                                                    <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
+                                                       onclick="toggleVisibility()"
+                                                       href="{% url 'verr_contenido' compra.id %}">
+                                                        <i id="eye-icon" class="fas fa-eye"></i> Ver
+                                                    </a>
+                                                {% endif %}
+                                                </td>
+                                            </tr>
+
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>N° de Registro</th>
+                                            <th>°N de Registro</th>
                                             <th>Fecha</th>
-                                            <th>Valor Total</th>
-                                            <th>Estado</th>
+                                            <th>Administrador</th>
+                                            <th>Proveedor</th>
                                             <th>Acción</th>
                                         </tr>
                                         </tfoot>
@@ -83,5 +89,6 @@
         </section>
         <!-- /.content -->
     </div>
+
 
 {% endblock contenido %}

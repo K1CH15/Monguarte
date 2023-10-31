@@ -33,6 +33,7 @@ class Detalle_CompraForm(ModelForm):
     class Meta:
         model = Detalle_Compra
         fields = "__all__"
+        exclude = ["compra","estado"]
         success_message = 'el detalle de la compra se añadió correctamente'
 
 
@@ -41,6 +42,6 @@ class Detalle_CompraUpdateForm(ModelForm):
     class Meta:
         model = Detalle_Compra
         fields = "__all__"
-        exclude =["id"]
+        exclude =["id","estado"]
         success_message = 'el detalle de la compra se actualizó correctamente'
 

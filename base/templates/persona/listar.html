@@ -27,16 +27,20 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
+
                                             <th>N° de Registro</th>
+
+                                            <th class="notexport" >°N de Registro</th>
+
                                             <th>Tipo de Documento</th>
                                             <th>Número de Documento</th>
                                             <th>Nombres</th>
                                             <th>Apellidos</th>
-                                            <th>Teléfono</th>
-                                            <th>Rol</th>
-                                            <th>Correo Electrónico</th>
-                                            <th>Estado</th>
-                                            <th>Acción</th>
+                                            <th >Teléfono</th>
+                                            <th >Rol</th>
+                                            <th >Correo Electrónico</th>
+                                            <th class="notexport">Estado</th>
+                                            <th class="notexport">Acción</th>
 
                                         </tr>
                                         </thead>
@@ -50,18 +54,18 @@
                                                     <td>{{ persona.nombres }} </td>
                                                     <td>{{ persona.apellidos }} </td>
                                                     <td>{{ persona.telefono }}</td>
-                                                    <td>{{ persona.get_rol_display }}</td>
+                                                    <td>{{ persona.rol }}</td>
                                                     <td>{{ persona.correo_electronico }}</td>
                                                     <td>{{ persona.get_estado_display }}</td>
                                                     <td>
-
-                                                        <button type="button" data-ids="{{ persona.id }}"
-                                                                class="btnEliminar btn btn-danger"
+                                                        <button title="Eliminar Registro" type="button"
+                                                                data-ids="{{ persona.id }}"
+                                                                class="btnEliminar btn btn-danger bi bi-trash"
                                                                 data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                                            Eliminar
                                                         </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'personas-modificar' persona.id %}">Modificar</a>
+                                                        <a title="Modificar Registro"
+                                                           class="btn btn-primary btn-md bi bi-pencil-square"
+                                                           href="{% url 'personas-modificar' persona.id %}"></a>
                                                     </td>
                                                 </tr>
                                             {% endif %}
@@ -86,6 +90,8 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            <a href="{% url 'personas-crear' %}" class="boton-crear-posicion btn btn-success w-25 bi bi-person-fill-add">
+                                Crear {{ titulo }}</a>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -95,7 +101,7 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-        <a href="{% url 'personas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+
     </div>
 
 {% endblock contenido %}

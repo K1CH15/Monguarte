@@ -39,7 +39,7 @@
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->
-                                            <th>Estado</th>
+                                            <th>Precio Unitario</th>
                                             <th>Acción</th>
                                         </tr>
                                         </thead>
@@ -52,7 +52,7 @@
                                                     <td>{{ materia_prima.get_tipo_display }}</td>
                                                     <td>{{ materia_prima.color }}</td>
                                                     <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->
-                                                    <td>{{ materia_prima.get_estado_display }}</td>
+                                                    <td>{{ materia_prima.precio_unitario_formato_colombiano }}</td>
                                                     <td>
                                                         <button type="button"
                                                                 data-ids="{{ materia_prima.id }}"
@@ -76,7 +76,7 @@
                                             <th>Tipo</th>
                                             <th>Color</th>
                                             <th>Stock</th> <!-- Nuevo campo -->
-                                            <th>Estado</th>
+                                            <th>Precio unitario</th>
                                             <th>Acción</th>
                                         </tr>
 

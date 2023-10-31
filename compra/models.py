@@ -15,8 +15,8 @@ class Compra(SafeDeleteModel):
         INACTIVO='0',_("Inactivo")
     estado = models.CharField(max_length=1,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
 
-    persona_admin=models.ForeignKey(Persona,verbose_name="Administrador", on_delete=models.CASCADE,related_name="compras_administrador",limit_choices_to=Q(rol=Persona.Rol.ADMINISTRADOR))
-    persona_proveedor= models.ForeignKey(Persona, verbose_name="Proveedor", on_delete=models.CASCADE,related_name="compras_proveedor",limit_choices_to=Q(rol=Persona.Rol.PROVEEDOR))
+    persona_admin=models.ForeignKey(Persona,verbose_name="Administrador", on_delete=models.CASCADE,related_name="compras_administrador")
+    persona_proveedor= models.ForeignKey(Persona, verbose_name="Proveedor", on_delete=models.CASCADE,related_name="compras_proveedor")
     def __str__(self):
         return"%s %s"%(self.persona_admin,self.persona_proveedor)
     class meta:
@@ -24,34 +24,27 @@ class Compra(SafeDeleteModel):
 #Modelo de Detalle_Compra
 class Detalle_Compra(SafeDeleteModel):
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999999)], verbose_name="Precio Unitario")
-    def precio_formato_colombiano(self):
-        return '${:,.0f}'.format(self.precio_unidad).replace(',', '.')
-    cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=0,help_text="La cantidad tiene que ser menor a 100")
-    # Campo para almacenar el valor total calculado
     valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Valor Total",
                                       editable=False)
+    class Estado(models.TextChoices):
+        ACTIVO = '1', _("Activo")
+        INACTIVO = '0', _("Inactivo")
 
+    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    def precio_formato_colombiano(self):
+        return '${:,.0f}'.format(self.precio_unidad).replace(',', '.')
     def valor_total_formato_colombiano(self):
         return '${:,.0f}'.format(self.valor_total).replace(',', '.')
+    cantidad=models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=0,help_text="La cantidad tiene que ser menor a 100")
+    # Campo para almacenar el valor total calculado
 
     materia_prima = models.ForeignKey(Materia_Prima, verbose_name="Materia Prima", on_delete=models.CASCADE)
     compra=models.ForeignKey(Compra,verbose_name="Compra", on_delete=models.CASCADE)
     def __str__(self):
         return"%s"%(self.cantidad)
     def save(self, *args, **kwargs):
-        # Obtenemos la cantidad antes de guardar el detalle de compra
-        cantidad_nueva = self.cantidad
+        super().save(*args, **kwargs)
 
-        # Calculamos el valor total multiplicando el precio_unidad por la cantidad
-        self.valor_total = self.precio_unidad * cantidad_nueva
-
-        # Guardamos el detalle de compra antes de actualizar el stock de la materia prima
-        super(Detalle_Compra, self).save(*args, **kwargs)
-
-        # Actualizamos el stock de la materia prima asociada
-        if self.materia_prima:
-            self.materia_prima.stock += cantidad_nueva
-            self.materia_prima.save()
 
     class Meta:
         verbose_name_plural = "Detalle Compra"
