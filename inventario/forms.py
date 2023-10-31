@@ -16,7 +16,10 @@ class Materia_PrimaUptadeForm(ModelForm):
         fields = "__all__"
         exclude = ["estado", "stock","precio_unitario"]
 class FabricacionForm(ModelForm):
-
+    materia_prima = forms.ModelChoiceField(
+        queryset=Materia_Prima.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     # Modifica el campo producto para utilizar el widget Select2
     producto = forms.ModelChoiceField(
         queryset=Producto.objects.all(),
