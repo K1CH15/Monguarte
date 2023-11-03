@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from compra.models import Compra,Detalle_Compra,Persona
+from compra.models import Compra,Detalle_Compra,Persona,Materia_Prima
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django_select2.forms import Select2Widget
@@ -30,6 +30,10 @@ class CompraUpdateForm(ModelForm):
         success_message = 'la compra se actualizó correctamente'
 
 class Detalle_CompraForm(ModelForm):
+    materia_prima = forms.ModelChoiceField(
+        queryset=Materia_Prima.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Detalle_Compra
         fields = "__all__"
@@ -38,7 +42,10 @@ class Detalle_CompraForm(ModelForm):
 
 
 class Detalle_CompraUpdateForm(ModelForm):
-
+    materia_prima = forms.ModelChoiceField(
+        queryset=Materia_Prima.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Detalle_Compra
         fields = "__all__"

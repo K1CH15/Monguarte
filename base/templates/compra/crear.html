@@ -19,6 +19,9 @@
         <input class="btn btn-success" type="submit" value="Agregar {{titulo}}">
             <a href="{% url 'compra' %}" class="btn btn-danger">Regresar</a>
         </form>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
     <script>
         function guardarYRedireccionar(event) {
             event.preventDefault(); // Evitar que se envíe el formulario de inmediato

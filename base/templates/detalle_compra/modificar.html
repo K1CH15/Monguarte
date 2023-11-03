@@ -12,6 +12,9 @@
                 <li class="breadcrumb-item active">Modificar Detalle Compra </li>
             </ol>
     </div>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
     <!-- /.content-header -->
         <form action="" method="POST">
             {% csrf_token %}
