@@ -27,11 +27,8 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-<<<<<<< HEAD
+
                                             <th>N° de Registro</th>
-=======
-                                            <th class="notexport">°N de Registro</th>
->>>>>>> main
                                             <th>Fecha</th>
                                             <th>Comisión por Venta</th>
 
@@ -42,7 +39,7 @@
                                             <tr>
                                                 <td>{{ comision.id }}</td>
                                                 <td>{{ comision.fecha }}</td>
-                                                <td >{{ comision.valor_comision_formato_colombiano|default_if_none:"0" }}</td>
+                                                <td>{{ comision.valor_comision_formato_colombiano|default_if_none:"0" }}</td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

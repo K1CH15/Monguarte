@@ -29,8 +29,6 @@
 
                                             <th>Fecha</th>
                                             <th>Cantidad Producto</th>
-                                            <th>Cantidad Materia Prima</th>
-                                            <th>Materia Prima</th>
                                             <th>Producto</th>
                                             <th>Costo Fabricacion</th>
 
@@ -39,15 +37,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for fabricacion in fabricas %}
-                                            {% if fabricacion.estado != "0" %}
+                                        {% for fabricacion in fabricacion %}
+
                                                 <tr>
                                                     <td>{{ fabricacion.fecha }}</td>
                                                     <td>{{ fabricacion.cantidad_producto }}</td>
-                                                    <td>{{ fabricacion.cantidad_materia }}</td>
-                                                    <td>{{ fabricacion.materia_prima }}</td>
                                                     <td>{{ fabricacion.producto }}</td>
-                                                    <td>{{ fabricacion.calcular_costo_fabricacion }}</td>
+                                                    <td>{{ fabricacion.costo_fabricacion }}</td>
 
                                                     <td>
                                                         <button type="button" data-ids="{{ fabricacion.id }}"
@@ -55,19 +51,25 @@
                                                                 data-bs-toggle="modal" data-bs-target="#modal-danger">
                                                             Eliminar
                                                         </button>
+                                                         {% if fabricacion.estado == '1' %}
                                                         <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'fabricaciones-modificar' fabricacion.id %}">Modificar</a>
+                                                           href="{% url 'fabricacion_detalle' fabricacion.id %}">Modificar</a>
+                                                        {% else %}
+                                                        <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
+                                                           onclick="toggleVisibility()"
+                                                           href="{% url 'verr_contenido' fabricacion.id %}">
+                                                            <i id="eye-icon" class="fas fa-eye"></i> Ver
+                                                        </a>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
-                                            {% endif %}
+
                                         {% endfor %}
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>Fecha</th>
                                             <th>Cantidad Producto</th>
-                                            <th>Cantidad Materia Prima</th>
-                                            <th>Materia Prima</th>
                                             <th>Costo Fabricacion</th>
                                             <th>Producto</th>
                                             <th>Acción</th>

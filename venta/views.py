@@ -117,31 +117,34 @@ def detalle_venta_listar(request, pk):
         productos_id = request.POST.get('producto')  # Obtén el producto del formulario POST
         cantidad_total = int(request.POST.get('cantidad_total', 0))  # Obtén la cantidad del formulario POST
 
-        # Verifica si ya existe un registro con la misma materia prima en la compra actual
-        detalle_existente = detalle_venta.filter(producto=productos_id).first()
-
-        if detalle_existente:
-            # Si existe, aumenta la cantidad en ese registro
-            detalle_existente.cantidad_total += cantidad_total
-            detalle_existente.save()
+        # Verifica si el precio unitario del producto está definido
+        producto = Producto.objects.get(id=productos_id)
+        if producto.precio_unitario is None:
+            messages.warning(request, 'El precio unitario no está definido para este producto.')
         else:
-            # Si no existe, crea un nuevo registro
-            form = Detalle_VentaForm(request.POST)
-            if form.is_valid():
-                det_venta = form.save(commit=False)
-                det_venta.venta = Venta.objects.get(id=pk)
+            # Continúa con la lógica de agregar el detalle de venta
+            detalle_existente = detalle_venta.filter(producto=productos_id).first()
 
-                # Verifica el stock disponible antes de guardar
-                producto = det_venta.producto
-                if cantidad_total <= producto.stock:
-                    det_venta.save()
-                    messages.success(request, "El formulario se ha enviado correctamente.")
-                else:
-                    messages.error(request,
-                                   f"No hay suficiente stock del producto disponible. Cantidad en stock: {producto.stock}")
-
+            if detalle_existente:
+                # Si existe, aumenta la cantidad en ese registro
+                detalle_existente.cantidad_total += cantidad_total
+                detalle_existente.save()
             else:
-                messages.error(request, "El formulario tiene errores.")
+                # Si no existe, crea un nuevo registro
+                form = Detalle_VentaForm(request.POST)
+                if form.is_valid():
+                    det_venta = form.save(commit=False)
+                    det_venta.venta = Venta.objects.get(id=pk)
+
+                    # Verifica el stock disponible antes de guardar
+                    if cantidad_total <= producto.stock:
+                        det_venta.save()
+                        messages.success(request, "El formulario se ha enviado correctamente.")
+                    else:
+                        messages.error(request,
+                                       f"No hay suficiente stock del producto disponible. Cantidad en stock: {producto.stock}")
+                else:
+                    messages.error(request, "El formulario tiene errores.")
     else:
         form = Detalle_VentaForm()
 

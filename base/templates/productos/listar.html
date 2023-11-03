@@ -50,7 +50,7 @@
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        {{ producto.calcular_costo_fabricacion_formato_colombiano }}
+                                                        {{ producto.costo_fabricacion }}
                                                     </td> <!-- Mostrar el campo Precio Fabricación -->
                                                     <td>{{ producto.get_tamano_display }}</td>
                                                     <td>{{ producto.get_tipo_display }}</td>
@@ -59,6 +59,8 @@
                                                     <td>{{ producto.get_estado_display }}</td>
 
                                                     <td>
+
+
                                                         <button type="button"
                                                                 data-ids="{{ producto.id }}"
                                                                 class="btnEliminar btn btn-danger"
@@ -67,11 +69,12 @@
                                                                 style="{% if producto.stock > 0 %} display: none; {% endif %}">
                                                             Eliminar
                                                         </button>
-                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
-                                                           href="{% url 'productos-modificar' producto.id %}">Modificar</a>
+                                                        {% if producto.stock == '0' %}
+                                                            <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                               href="{% url 'productos-modificar' producto.id %}">Modificar</a>
+                                                        {% endif %}
 
-
-                                                        {% if producto.calcular_costo_fabricacion %}
+                                                        {% if producto.costo_fabricacion %}
                                                             <button type="button"
                                                                     class="btn btn-success btn-md bi bi-wrench m-1 me-1"
                                                                     onclick="window.location.href='{% url 'establecer_precio' producto.id %}'">

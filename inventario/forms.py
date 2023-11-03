@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from inventario.models import Materia_Prima,Fabricacion
+from inventario.models import Materia_Prima,Fabricacion, Fabricacion_Detalle
 class Materia_PrimaForm(ModelForm):
 
     class Meta:
@@ -18,7 +18,7 @@ class FabricacionForm(ModelForm):
     class Meta:
         model = Fabricacion
         fields = "__all__"
-        exclude = ['estado']
+        exclude = ['estado','materia_prima','cantidad_materia','costo_fabricacion']
 
 
 class FabricacionUptadeForm(ModelForm):
@@ -26,7 +26,20 @@ class FabricacionUptadeForm(ModelForm):
     class Meta:
         model = Fabricacion
         fields = "__all__"
+        exclude = ['estado', 'materia_prima', 'cantidad_materia','costo_fabricacion']
 
+class Fabricacion_DetalleForm(ModelForm):
+
+    class Meta:
+        model = Fabricacion_Detalle
+        fields = "__all__"
+        exclude = ['fabricacion','estado']
+
+class Fabricacion_DetalleUptadeForm(ModelForm):
+    class Meta:
+        model = Fabricacion_Detalle
+        fields = "__all__"
+        exclude = ['fabricacion', 'estado']
 # class StockForm(forms.ModelForm):
 #     class Meta:
 #         model = Stock
