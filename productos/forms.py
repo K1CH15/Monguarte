@@ -5,14 +5,14 @@ class ProductoForm(ModelForm):
     class Meta:
         model = Producto
         fields = "__all__"
-        exclude=["estado","precio_unitario","calcular_costo_fabricacion"]
+        exclude=["estado","precio_unitario","calcular_costo_fabricacion",'costo_fabricacion']
         # fields= ["Id",NombreProducto","PrecioUniario","CantidadProducto"]
         
 class ProductoUpdateForm(ModelForm):
     class Meta:
         model = Producto
         fields = "__all__"
-        exclude=["estado","precio_unitario","calcular_costo_fabricacion"]
+        exclude=["estado","precio_unitario","calcular_costo_fabricacion",'costo_fabricacion']
 class PrecioUnitarioForm(ModelForm):
     class Meta:
         model = Producto

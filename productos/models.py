@@ -10,19 +10,11 @@ class Producto(SafeDeleteModel):
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=0, validators=[MaxValueValidator(9999999999)],
         null=True,
         blank=True)
-    calcular_costo_fabricacion = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
+    costo_fabricacion = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
                                                      verbose_name="Costo de Fabricación")
 
     def precio_formato_colombiano(self):
         return '${:,.0f}'.format(self.precio_unitario).replace(',', '.')
-
-    def calcular_costo_fabricacion_formato_colombiano(self):
-        if self.calcular_costo_fabricacion is not None:
-            return '${:,.0f}'.format(self.calcular_costo_fabricacion).replace(',', '.')
-        return None
-    def clean(self):
-        if self.stock != 0:
-            raise ValidationError("No se puede modificar este producto ")
     cantidad=models.ForeignKey
     stock = models.PositiveIntegerField(default=0, editable=False, verbose_name="Stock de Materia Prima")
 
