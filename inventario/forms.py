@@ -10,11 +10,11 @@ class Materia_PrimaForm(ModelForm):
 class Materia_PrimaUptadeForm(ModelForm):
 
     class Meta:
+        
         model = Materia_Prima
         fields = "__all__"
         exclude = ["estado", "stock","precio_unitario"]
 class FabricacionForm(ModelForm):
-
     class Meta:
         model = Fabricacion
         fields = "__all__"
@@ -22,7 +22,6 @@ class FabricacionForm(ModelForm):
 
 
 class FabricacionUptadeForm(ModelForm):
-
     class Meta:
         model = Fabricacion
         fields = "__all__"
