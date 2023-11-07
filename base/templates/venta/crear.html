@@ -19,4 +19,8 @@
         <input class="btn btn-success" type="submit" value="Agregar {{titulo}}">
         <a href="{% url 'ventas' %}" class="btn btn-danger">Regresar</a>
     </form>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+
 {% endblock contenido %}

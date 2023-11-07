@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from venta.models import Detalle_Venta, Venta
-
+from venta.models import Detalle_Venta, Venta,Persona
+from django_select2.forms import Select2Widget
 class Detalle_VentaForm(ModelForm):
     class Meta:
         model = Detalle_Venta
@@ -14,6 +14,16 @@ class Detalle_VentaUpdateForm(ModelForm):
         exclude = ["estado"]
 
 class VentaForm(ModelForm):
+    # Modifica el campo persona_vendedor para utilizar el widget Select2
+    persona_vendedor = forms.ModelChoiceField(
+        queryset=Persona.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
+    # Modifica el campo persona_cliente para utilizar el widget Select2
+    persona_cliente = forms.ModelChoiceField(
+        queryset=Persona.objects.all(),
+        widget=Select2Widget,  # Utiliza el widget Select2
+    )
     class Meta:
         model = Venta
         fields = '__all__'

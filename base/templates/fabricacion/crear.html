@@ -27,7 +27,9 @@
             </form>
         </div>
     </div>
-
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
     <style>
         body {
             font-family: Arial, sans-serif;

@@ -18,5 +18,8 @@
             {{form|crispy}}
             <input type="submit" value="Modificar {{titulo}}">  <a href="{% url 'detalle_compra' %}" class="btn btn-danger">Regresar</a>
         </form>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
 
 {% endblock contenido %}
