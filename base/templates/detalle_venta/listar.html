@@ -87,9 +87,7 @@
                                         <form method="POST">
                                             {% csrf_token %}
                                             <td style="color: #68411d;text-align: center;">
-                                                <select name="producto" class="select form-select" required=""
-                                                        id="id_productos">
-
+                                                <select name="producto" class="select form-control" required=""id="id_productos" style="width: 150px; height: 100px !important;">
                                                     <option value="" selected="">---------</option>
                                                     {% for producto in productos %}
                                                         <option value="{{ producto.id }}">{{ producto }}</option>
@@ -99,7 +97,7 @@
                                             <td style="color: #68411d;text-align: center;">
                                                 <input type="number" name="cantidad_total"
                                                        class="numberinput form-control"
-                                                       required="" id="id_cantidad_total" min="0">
+                                                       required="" id="id_cantidad_total" min="0" style="width: 75px;">
                                             </td>
                                             <td></td>
                                             <td>
@@ -127,7 +125,10 @@
 
 
     </section>
-    <!-- /.content -->
-    </div>
+    <script>
+        $(document).ready(function() {
+            $('#id_productos').select2();
+        });
+    </script>
 {% endblock contenido %}
 

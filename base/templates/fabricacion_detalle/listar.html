@@ -85,8 +85,7 @@
                                         <form method="POST">
                                             {% csrf_token %}
                                             <td style="color: #68411d;text-align: center;">
-                                                <select name="materia_prima" class="select form-select" required=""
-                                                        id="id_materia_prima">
+                                                <select name="materia_prima" class="select form-control" required="" id="id_materia_prima" style="width: 150px; height: 100cm;">
 
                                                     <option value="" selected="">---------</option>
                                                     {% for materia_prima in materias %}
@@ -97,7 +96,7 @@
                                             <td>
                                                 <input type="number" name="cantidad_materia" value="0" min="0"
                                                        class="numberinput form-control" required=""
-                                                       id="id_cantidad_materia">
+                                                       id="id_cantidad_materia" style="width: 80px;">
                                             </td>
                                             <td>
                                                 <button type="submit" class="btn btn-success">+</button>
@@ -124,6 +123,9 @@
 
 
     </section>
-    <!-- /.content -->
-    </div>
+    <script>
+        $(document).ready(function() {
+            $('#id_materia_prima').select2();
+        });
+    </script>
 {% endblock contenido %}
